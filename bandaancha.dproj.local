@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/03/10 21:26:18.000.133,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/03/11 16:46:50.000.306,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/03/11 17:57:49.000.844,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/03/27 15:58:23.000.953,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/03/27 16:04:57.000.212,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/04/20 23:30:49.000.696,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/27 11:48:15.000.564,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/27 11:49:01.000.505,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/09/08 17:49:26.000.434,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/09/08 17:50:20.000.726,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.fmx=F:\Proyectos\Prueba Cards\Unit1.fmx</Transaction>
+    <Transaction>2020/09/08 17:50:20.000.726,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=F:\Proyectos\Prueba Cards\Unit1.pas</Transaction>
+    <Transaction>2020/09/08 17:50:24.000.975,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=F:\Proyectos\Prueba Cards\Cards.dproj</Transaction>
+    <Transaction>2020/09/08 21:37:31.000.831,=F:\Proyectos\Prueba Cards\Roboto-Medium.ttf</Transaction>
+    <Transaction>2020/09/08 21:37:31.000.838,=F:\Proyectos\Prueba Cards\Roboto-Thin.ttf</Transaction>
+    <Transaction>2020/09/08 23:27:42.000.043,F:\Proyectos\Prueba Cards\Roboto-Thin.ttf=</Transaction>
+    <Transaction>2020/09/08 23:27:42.000.146,F:\Proyectos\Prueba Cards\Roboto-Medium.ttf=</Transaction>
+    <Transaction>2020/09/08 23:28:42.000.538,=F:\Proyectos\Prueba Cards\Fluo Gums.ttf</Transaction>
+    <Transaction>2020/09/08 23:31:55.000.420,F:\Proyectos\Prueba Cards\Fluo Gums.ttf=</Transaction>
+    <Transaction>2020/09/08 23:33:46.000.939,=F:\Proyectos\Prueba Cards\FONT1.ttf</Transaction>
+    <Transaction>2020/09/09 13:03:59.000.384,F:\Proyectos\Prueba Cards\FONT1.ttf=</Transaction>
+    <Transaction>2020/09/09 13:16:15.000.188,=F:\Proyectos\Prueba Cards\FONT2.ttf</Transaction>
+    <Transaction>2020/09/09 17:14:40.000.013,=C:\RAD Studio\source\fmx\FMX.FontGlyphs.Android.pas</Transaction>
+    <Transaction>2020/09/09 17:17:22.000.761,F:\Proyectos\Prueba Cards\FONT2.ttf=</Transaction>
+    <Transaction>2020/09/09 17:17:22.000.773,=F:\Proyectos\Prueba Cards\FONT1.ttf</Transaction>
+    <Transaction>2020/09/09 17:25:03.000.454,=F:\Proyectos\Prueba Cards\ROBOTO2.ttf</Transaction>
+    <Transaction>2020/09/09 17:25:03.000.445,=F:\Proyectos\Prueba Cards\ROBOTO1.ttf</Transaction>
+    <Transaction>2020/09/09 18:14:34.000.960,=F:\Proyectos\Prueba Cards\ROBOTO3.ttf</Transaction>
+    <Transaction>2020/09/14 11:40:08.000.976,F:\Proyectos\Prueba Cards\bandaancha.dproj=F:\Proyectos\Prueba Cards\Cards.dproj</Transaction>
+    <Transaction>2020/10/07 19:36:38.000.247,=F:\Proyectos\bandaancha\Unit2.pas</Transaction>
+    <Transaction>2020/10/07 19:37:14.000.256,=F:\Delphi_Comp\Toast\Android.JNI.Toast.pas</Transaction>
+    <Transaction>2020/10/07 19:55:30.000.321,F:\Proyectos\bandaancha\ROBOTO1.ttf=</Transaction>
+    <Transaction>2020/10/07 19:55:32.000.369,F:\Proyectos\bandaancha\ROBOTO2.ttf=</Transaction>
+    <Transaction>2020/10/07 19:55:34.000.481,F:\Proyectos\bandaancha\ROBOTO3.ttf=</Transaction>
+    <Transaction>2020/10/07 20:06:36.000.545,=F:\Proyectos\bandaancha\ANSON.ttf</Transaction>
+    <Transaction>2020/10/07 20:06:55.000.695,=F:\Proyectos\bandaancha\ALEGREYA.ttf</Transaction>
+    <Transaction>2020/10/08 17:02:04.000.950,=F:\Proyectos\bandaancha\KELSON.ttf</Transaction>
+    <Transaction>2020/10/08 17:02:09.000.914,=F:\Proyectos\bandaancha\NIXIE.ttf</Transaction>
+    <Transaction>2020/10/10 15:59:40.000.436,=F:\Proyectos\bandaancha\DOSIS.ttf</Transaction>
+    <Transaction>2020/10/10 16:05:20.000.086,F:\Proyectos\bandaancha\NIXIE.ttf=</Transaction>
+    <Transaction>2020/10/10 16:05:30.000.054,=F:\Proyectos\bandaancha\UBUNTU.ttf</Transaction>
+    <Transaction>2020/10/10 16:11:29.000.493,=F:\Proyectos\bandaancha\UBUNTUITALIC.ttf</Transaction>
+    <Transaction>2020/10/10 16:14:16.000.483,=F:\Proyectos\bandaancha\ROBOTOITALIC.ttf</Transaction>
+    <Transaction>2020/10/10 16:43:48.000.538,F:\Proyectos\bandaancha\DOSIS.ttf=</Transaction>
+    <Transaction>2022/10/12 19:48:51.000.513,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNC\FNC.jar</Transaction>
+    <Transaction>2022/10/12 19:49:21.000.964,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\v13\android-support-v13.jar</Transaction>
+    <Transaction>2022/10/12 19:55:30.000.072,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\WebChromeClient\FNCWebChromeClient.jar</Transaction>
+    <Transaction>2022/10/12 19:55:41.000.052,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\CustomTabs\CustomTabs.jar</Transaction>
+    <Transaction>2022/10/12 19:55:52.000.659,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNCPrintDocumentAdapter\FNCPrintDocumentAdapter.jar</Transaction>
+    <Transaction>2022/10/12 19:55:58.000.992,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\JavascriptHelper\JavaScriptHelper.jar</Transaction>
+    <Transaction>2022/10/12 20:03:47.000.372,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\WebChromeClient\FNCWebChromeClient.jar=</Transaction>
+    <Transaction>2022/10/12 20:04:18.000.425,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\CustomTabs\CustomTabs.jar=</Transaction>
+    <Transaction>2022/10/12 20:04:56.000.263,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\JavascriptHelper\JavaScriptHelper.jar=</Transaction>
+    <Transaction>2022/10/12 20:04:59.000.520,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNCPrintDocumentAdapter\FNCPrintDocumentAdapter.jar=</Transaction>
+    <Transaction>2022/10/12 21:50:49.000.076,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\CustomTabs\CustomTabs.jar</Transaction>
+    <Transaction>2022/10/12 21:50:57.000.573,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNCPrintDocumentAdapter\FNCPrintDocumentAdapter.jar</Transaction>
+    <Transaction>2022/10/12 21:51:07.000.559,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\WebChromeClient\FNCWebChromeClient.jar</Transaction>
+    <Transaction>2022/10/12 21:51:52.000.036,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\JavascriptHelper\JavaScriptHelper.jar</Transaction>
+    <Transaction>2022/10/12 21:53:04.000.323,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNC\FNC.jar=</Transaction>
+    <Transaction>2022/10/12 22:00:24.000.586,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\CustomTabs\CustomTabs.jar=</Transaction>
+    <Transaction>2022/10/12 22:01:04.000.536,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\v13\android-support-v13.jar=</Transaction>
+    <Transaction>2022/10/12 22:01:04.000.690,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\JavascriptHelper\JavaScriptHelper.jar=</Transaction>
+    <Transaction>2022/10/12 22:01:04.000.647,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\WebChromeClient\FNCWebChromeClient.jar=</Transaction>
+    <Transaction>2022/10/12 22:01:04.000.606,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNCPrintDocumentAdapter\FNCPrintDocumentAdapter.jar=</Transaction>
+    <Transaction>2022/10/13 11:49:17.000.916,I:\bandaancha\ROBOTOITALIC.ttf=</Transaction>
+    <Transaction>2022/10/13 11:49:17.000.725,I:\bandaancha\KELSON.ttf=</Transaction>
+    <Transaction>2022/10/13 11:49:18.000.069,I:\bandaancha\UBUNTU.ttf=</Transaction>
+    <Transaction>2022/10/13 23:48:53.000.980,=C:\Program Files (x86)\Embarcadero\Studio\22.0\source\fmx\FMX.FontGlyphs.Android.pas</Transaction>
+    <Transaction>2022/10/13 23:50:38.000.547,C:\Program Files (x86)\Embarcadero\Studio\22.0\source\fmx\FMX.FontGlyphs.Android.pas=</Transaction>
+    <Transaction>2022/10/14 11:33:34.000.300,=C:\Program Files (x86)\Embarcadero\Studio\22.0\source\fmx\FMX.FontGlyphs.Android.pas</Transaction>
+    <Transaction>2022/10/19 21:07:36.000.725,C:\Program Files (x86)\Embarcadero\Studio\22.0\source\fmx\FMX.FontGlyphs.Android.pas=</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5" Android64="X5BDU19215010028" Android="X5BDU19215010028"/>
+	</ActiveMobileDevice>
+	<BT_BuildType>Debug</BT_BuildType>
+</BorlandProject>
