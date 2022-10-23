@@ -1,5 +1,5 @@
 # Noticias-bandaancha.eu
-Aplicación Android para ver las 10 últimas noticias del portal bandaancha.eu
+Aplicación Android para ver las 10 últimas noticias del portal https://bandaancha.eu
 
 Hacen falta dos librerías de dominio publico instaladas en el IDE para que funcione correctamente
 
