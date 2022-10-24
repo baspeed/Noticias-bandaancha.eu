@@ -73,7 +73,7 @@
     <Transaction>2022/10/19 21:07:36.000.725,C:\Program Files (x86)\Embarcadero\Studio\22.0\source\fmx\FMX.FontGlyphs.Android.pas=</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android64="X5BDU19215010028" Android="X5BDU19215010028"/>
+		<NoProfile iOSSimulator="iPhone5" Android64="" Android=""/>
 	</ActiveMobileDevice>
-	<BT_BuildType>Debug</BT_BuildType>
+	<BT_BuildType>AppStore</BT_BuildType>
 </BorlandProject>
