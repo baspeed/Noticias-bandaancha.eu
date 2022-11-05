@@ -7,10 +7,13 @@
 //
 // Código fuente abierto y libre según licencia GPL v3
 // https://www.gnu.org/licenses/gpl-3.0.txt
-
+//
 // Creada inicialmente en Delphi 10.2 Tokyo
+//
 // Versión actual creada en Delphi 11.2 Alexandria
 //
+// Modificación comenzada el  05-11-2022 para coger las noticias directamente de
+// bandaancha.eu sin pasar por feedburner.com
 // ---------------------------------------------------------------------------------
 
 unit Unit1;
@@ -93,17 +96,7 @@ type
     IdHTTP1: TIdHTTP;               // Control que permite la descarga de páginas web en la aplicación
     IdSSLIOHandlerSocketOpenSSL1: TIdSSLIOHandlerSocketOpenSSL; // Control que permite utilizar el protocolo HTTPS para páginas seguras
     FMXLoadingIndicator1: TFMXLoadingIndicator; // Control animado de carga de páginas web
-    Label1: TLabel;       // Título de la noticia de la tarjeta 1
-    Label23: TLabel;      // Descripción de la noticia 1
-    Label25: TLabel;      // Descripción de la noticia 2
-    Label26: TLabel;      // Descripción de la noticia 3
-    Label27: TLabel;      // Descripción de la noticia 4
-    Label28: TLabel;      // Descripción de la noticia 5
-    Label29: TLabel;      // Descripción de la noticia 6
-    Label30: TLabel;      // Descripción de la noticia 7
-    Label31: TLabel;      // Descripción de la noticia 8
-    Label32: TLabel;      // Descripción de la noticia 9
-    Label33: TLabel;      // Descripción de la noticia 10
+    Label1: TLabel;      // Descripción de la noticia 10
     Image1: TImage;       // Imagen de la noticia 1
     Image2: TImage;       // Imagen de la noticia 2
     Image3: TImage;       // Imagen de la noticia 3
@@ -115,7 +108,25 @@ type
     Image9: TImage;       // Imagen de la noticia 9
     Image10: TImage;      // Imagen de la noticia 10
     Image11: TImage;      // Imagen del logo de bandaancha en el menú deslizante
-    DzHTMLText1: TDzHTMLText;       // Control de texto HTML para mostrar el texto que aparece como descripción de la aplicación en el menú deslizante
+    DzHTMLText1: TDzHTMLText;
+    DzHTMLText2: TDzHTMLText;
+    DzHTMLText3: TDzHTMLText;
+    DzHTMLText4: TDzHTMLText;
+    DzHTMLText5: TDzHTMLText;
+    DzHTMLText6: TDzHTMLText;
+    DzHTMLText7: TDzHTMLText;
+    DzHTMLText8: TDzHTMLText;
+    DzHTMLText9: TDzHTMLText;
+    DzHTMLText10: TDzHTMLText;
+    DzHTMLText11: TDzHTMLText;
+    Panel1: TPanel;
+    ToolBar2: TToolBar;
+    ToolBar3: TToolBar;
+    Image12: TImage;
+    Label23: TLabel;
+    DzHTMLText12: TDzHTMLText;
+    Button1: TButton;
+    Button2: TButton;       // Descripción noticia 10
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -142,6 +153,11 @@ type
     procedure WebBrowser1DidFinishLoad(ASender: TObject);    // Rutina que se ejecuta cuando finaliza la carga de la página web
     procedure DzHTMLText1LinkClick(Sender: TObject; Link: TDHBaseLink;     // Rutina que se ejecuta al hacer click sobre cualquier enlace dentro de la descripción de la aplicación en el menú deslizante
       var Handled: Boolean);
+    procedure Panel2Click(Sender: TObject);
+    procedure VertScrollBox2Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -211,6 +227,22 @@ begin
      WebBrowser1.Navigate;            // Inicia la carga de la página web en el navegador interno
 end;
 
+procedure TForm1.Button1Click(Sender: TObject);
+
+var
+   ficheronormas: TStringList;
+begin
+     Panel1.Visible:=False;
+     ficheronormas:=TStringList.Create;
+     ficheronormas.Add('1');
+     ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');
+     ficheronormas.Free;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+     Application.Terminate;
+end;
 
 // Rutina para abrir un enlace presente en la descripción HTML de la aplicación (localizada en el menú deslizante)
 
@@ -221,7 +253,6 @@ begin
      WebBrowser1.Visible:=True;               // Hace visible el navegador interno de la aplicación
      AbreURL(Link.LinkRef.Target);            // Abre la URL presente en el link HTML de la descripción
 end;
-
 
 // Rutina que se ejecuta al hacerse visible la ventana principal de la aplicación
 
@@ -236,6 +267,24 @@ begin
      RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
 end;
 
+procedure TForm1.FormCreate(Sender: TObject);
+
+var
+   ficheronormas: TStringList;
+
+begin
+     Button1.Width:=(Screen.Width/2)-20;
+     Button2.Width:=Button1.Width;
+     ficheronormas:=TStringList.Create;
+     try
+        ficheronormas.LoadFromFile(TPath.GetPublicPath+'/normas.txt');
+        Panel1.Visible:=False;
+        ficheronormas.Free;
+     except
+           Panel1.Visible:=True;
+           ficheronormas.Free;
+     end;
+end;
 
 // Rutina que permite reconocer la pulsación de la tecla Atrás de Android y actuar en consecuencia en la aplicación
 
@@ -391,6 +440,10 @@ begin
 end;
 
 
+procedure TForm1.Panel2Click(Sender: TObject);
+begin
+end;
+
 // Rutina que parsea el código XML de feedburner.com para obtener todos los datos necesarios de las noticias de bandancha.eu
 
 procedure TForm1.RellenaCampos;
@@ -411,6 +464,7 @@ var
    urlimagen: string;           // Cadena de caracteres que guarda la URL de la noticia
    memoria: TMemoryStream;      // Zona de memoria para guardar una imagen
    descripcion: string;         // Cadena de caracteres que contiene una descripción de la noticia (dentro del contenido desde el primer <p> hasta el primer </p>)
+   dia, mes: string;
 
 begin
      SpeedButton4.Visible:=False;         // Desactiva botón de recargar noticias en pantalla principal
@@ -418,24 +472,24 @@ begin
      FMXLoadingIndicator1.Active:=True;   // Hace que se inicie la animación del indicador de carga de página
      TThread.CreateAnonymousThread(procedure // Inicia hilo asíncrono con la aplicación para cargar los datos de las noticias
      begin
-     xml:=IdHTTP1.get('https://feeds.feedburner.com/bandaanchaeu?format=xml');            // Carga el código XML en la variable
+     xml:=IdHTTP1.get('https://bandaancha.eu/articulos.rss');            // Carga el código XML en la variable
      indice:=1;                                                                           // Inicia el índice de noticias a 1
      repeat                                                                               // Bucle
-          posicion:=Pos('<entry>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
+          posicion:=Pos('<item>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
           if (posicion<>-1) then                                                          // Mientras lo encuentre (posición<>-1)
               begin
-                   posicion2:=Pos('</entry>',xml,1)+length('</entry>');                   // Busca dentro de XML la cadena </entry> (fin de noticia)
+                   posicion2:=Pos('</item>',xml,1)+length('</item>');                   // Busca dentro de XML la cadena </entry> (fin de noticia)
                    next:=posicion2;                                                       // Carga la posición en next
-                   subcadena:=Copy(xml,posicion+8,posicion2-posicion-8);                  // Rellena subcadena con la cadena que hay dentro de <entry> y </entry>
+                   subcadena:=Copy(xml,posicion+6,posicion2-posicion-6);                  // Rellena subcadena con la cadena que hay dentro de <entry> y </entry>
                    posicion:=pos('<title>',subcadena,1);                                  // Busca dentro de subcadena la cadena <title> (inicio título de la noticia)
                    posicion2:=pos('</title>',subcadena,1);                                // Busca dentro de subcadena la cadena </title> (fin de título de título)
                    titulo:=copy(subcadena,posicion+7,posicion2-posicion-7);               // Rellena título con la cadena que hay entre <title> y </title>
-                   posicion:=pos('<name>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
-                   posicion2:=pos('</name>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
-                   autor:=copy(subcadena,posicion+6,posicion2-posicion-6);                // Rellena autor con la cadena que hay entre <name> y </name>
-                   posicion:=pos('<content type="html">',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
-                   posicion2:=pos('</content>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
-                   contenido:=copy(subcadena,posicion+21,posicion2-posicion-21);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
+                   posicion:=pos('<dc:creator>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
+                   posicion2:=pos('</dc:creator>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
+                   autor:=copy(subcadena,posicion+12,posicion2-posicion-12);                // Rellena autor con la cadena que hay entre <name> y </name>
+                   posicion:=pos('<description>',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
+                   posicion2:=pos('</description>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
+                   contenido:=copy(subcadena,posicion+13,posicion2-posicion-13);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
 
                    posicion:=Pos('img class=cn src=',contenido,1);                        // Busca dentro de contenido la cadena img class=cn src= (inicio de imagen)
                    if  (posicion<>0) then                                                 // Si la cadena existe (posición<>0)
@@ -533,27 +587,94 @@ begin
                    TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar la descripción de la noticia
                    begin
                    case indice of                                                                    // Dependiendo del valor de indice
-                        1      : Label23.Text:=cadena;                                               // Rellena descripción noticia 1
-                        2      : Label25.Text:=cadena;                                               // Rellena descripción noticia 2
-                        3      : Label26.Text:=cadena;                                               // Rellena descripción noticia 3
-                        4      : Label27.Text:=cadena;                                               // Rellena descripción noticia 4
-                        5      : Label28.Text:=cadena;                                               // Rellena descripción noticia 5
-                        6      : Label29.Text:=cadena;                                               // Rellena descripción noticia 6
-                        7      : Label30.Text:=cadena;                                               // Rellena descripción noticia 7
-                        8      : Label31.Text:=cadena;                                               // Rellena descripción noticia 8
-                        9      : Label32.Text:=cadena;                                               // Rellena descripción noticia 9
-                        10     : Label33.Text:=cadena;                                               // Rellena descripción noticia 10
+                        1      : DzHTMLText2.Lines.Add(cadena);                                      // Rellena descripción noticia 1
+                        2      : DzHTMLText3.Lines.Add(cadena);                                      // Rellena descripción noticia 2
+                        3      : DzHTMLText4.Lines.Add(cadena);                                      // Rellena descripción noticia 3
+                        4      : DzHTMLText5.Lines.Add(cadena);                                      // Rellena descripción noticia 4
+                        5      : DzHTMLText6.Lines.Add(cadena);                                      // Rellena descripción noticia 5
+                        6      : DzHTMLText7.Lines.Add(cadena);                                      // Rellena descripción noticia 6
+                        7      : DzHTMLText8.Lines.Add(cadena);                                      // Rellena descripción noticia 7
+                        8      : DzHTMLText9.Lines.Add(cadena);                                      // Rellena descripción noticia 8
+                        9      : DzHTMLText10.Lines.Add(cadena);                                     // Rellena descripción noticia 9
+                        10     : DzHTMLText11.Lines.Add(cadena);                                     // Rellena descripción noticia 10
                    end;
                    end);
 
-                   posicion:=pos('<updated>',subcadena,1);                                           // Busca dentro de subcadena la cadena <updated> (fecha y hora de publicación)
-                   posicion2:=pos('</updated>',subcadena,1);                                         // Busca dentro de subcadena la cadena </updated> (fin de fecha y hora de publicación)
+                   posicion:=pos('<pubDate>',subcadena,1);                                           // Busca dentro de subcadena la cadena <updated> (fecha y hora de publicación)
+                   posicion2:=pos('</pubDate>',subcadena,1);                                         // Busca dentro de subcadena la cadena </updated> (fin de fecha y hora de publicación)
                    fechahora:=copy(subcadena,posicion+9,posicion2-posicion-9);                       // Copia la cadena entre <updated> y </updated> en la variable fechahora
-                   fecha:=copy(fechahora,9,2)+'/'+copy(fechahora,6,2)+'/'+copy(fechahora,1,4);       // Toma la fecha dentro de la variable fechahora
-                   hora:=copy(fechahora,12,5);                                                       // Toma la hora dentro de la variable fechahora
-                   posicion:=pos('<link rel="alternate" type="text/html" href="',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
-                   posicion2:=pos('"/>',subcadena,posicion);                                         // Busca dentro de subcadena la cadena </link> (fin de enlace a la noticia)
-                   cadenaenlace:=copy(subcadena,posicion+length('<link rel="alternate" type="text/html" href="'),posicion2-posicion-length('<link rel="alternate" type="text/html" href="'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
+                   fecha:=copy(fechahora,1,16);
+
+                   // Nueva rutina para cambiar el mes del inglés al castellano
+
+                   mes:=Copy(fecha,9,3);                                             // Copia los tres caracteres del mes
+                   if (mes='Jan') then                                               // Cambia Enero
+                      mes:='Enero'
+                   else
+                       if (mes='Feb') then                                           // Cambia Febrero
+                          mes:='Febrero'
+                       else
+                           if (mes='Mar') then                                       // Cambia Marzo
+                              mes:='Marzo'
+                           else
+                               if (mes='Apr') then                                   // Cambia Abril
+                                  mes:='Abril'
+                               else
+                                   if (mes='May') then                               // Cambia Mayo
+                                      mes:='Mayo'
+                                   else
+                                       if (mes='Jun') then                           // Cambia Junio
+                                          mes:='Junio'
+                                       else
+                                           if (mes='Jul') then                       // Cambia Julio
+                                              mes:='Julio'
+                                           else
+                                               if (mes='Aug') then                   // Cambia Agosto
+                                                  mes:='Agosto'
+                                               else
+                                                   if (mes='Sep') then               // Cambia Septiembre
+                                                      mes:='Septiembre'
+                                                   else
+                                                       if (mes='Oct') then           // Cambia Octubre
+                                                          mes:='Octubre'
+                                                       else
+                                                           if (mes='Nov') then       // Cambia Noviembre
+                                                              mes:='Noviembre'
+                                                           else
+                                                               if (mes='Dec') then   // Cambia Diciembre
+                                                                  mes:='Diciembre';
+
+                   fecha:=ReplaceStr(fecha,Copy(fecha,9,3),mes);                                                     // Toma la fecha dentro de la variable fechahora
+
+                   // Nueva rutina  para cambiar el dia de la semana del inglés al castellano
+
+                   dia:=Copy(fecha,1,3);                                   // Copia los tres primeros caracteres de la cadena de fecha
+                   if (dia='Mon') then                                     // Cambia el Lunes
+                      dia:='Lunes'
+                   else
+                       if (dia='Tue') then                                 // Cambia el Martes
+                          dia:='Martes'
+                       else
+                           if (dia='Wed') then                             // Cambia el Miércoles
+                              dia:='Miércoles'
+                           else
+                               if (dia='Thu') then                         // Cambia el Jueves
+                                  dia:='Jueves'
+                               else
+                                   if (dia='Fri') then                     // Cambia el Viernes
+                                      dia:='Viernes'
+                                   else
+                                       if (dia='Sat') then                 // Cambia el Sábado
+                                          dia:='Sábado'
+                                       else
+                                           if (dia='Sun') then             // Cambia el Domingo
+                                              dia:='Domingo';
+                   fecha:=ReplaceStr(fecha,Copy(fecha,1,3),dia);
+
+                   hora:=copy(fechahora,18,5);                                                       // Toma la hora dentro de la variable fechahora
+                   posicion:=pos('<link>',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
+                   posicion2:=pos('</link>',subcadena,posicion);                                         // Busca dentro de subcadena la cadena </link> (fin de enlace a la noticia)
+                   cadenaenlace:=copy(subcadena,posicion+length('<link>'),posicion2-posicion-length('<link>'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
                    enlace[indice]:=copy(cadenaenlace,1,length(cadenaenlace));                        // Rellena el array de enlaces a noticias en el indice indicado con la cadena cadenaenlace
                    xml:=copy(xml,next,length(xml)-next);                                             // Pone el puntero de XML a la siguiente zona de noticias
                    TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar título, autor, fecha y hora de publicación de la noticia
@@ -663,6 +784,11 @@ begin
      RellenaCampos;                        // Rellena todas las noticias
 end;
 
+
+procedure TForm1.VertScrollBox2Click(Sender: TObject);
+begin
+
+end;
 
 // Rutina que se ejecuta cuando se acaba la carga de una página en el navegador interno de la aplicación
 
