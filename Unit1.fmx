@@ -803,6 +803,47 @@ object Form1: TForm1
     Position.Y = 40.000000000000000000
     TabOrder = 11
   end
+  object Panel1: TPanel
+    Position.X = 152.000000000000000000
+    Position.Y = 96.000000000000000000
+    TabOrder = 14
+    object ToolBar2: TToolBar
+      TabOrder = 0
+      object Image12: TImage
+        MultiResBitmap = <
+          item
+          end>
+        Position.X = 64.000000000000000000
+      end
+      object Label23: TLabel
+        Position.X = 216.000000000000000000
+        Position.Y = 8.000000000000000000
+        Text = 'Label23'
+        TabOrder = 1
+      end
+    end
+    object ToolBar3: TToolBar
+      Position.Y = 40.000000000000000000
+      TabOrder = 1
+      object Button1: TButton
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        TabOrder = 0
+        Text = 'Button1'
+      end
+      object Button2: TButton
+        Position.X = 200.000000000000000000
+        Position.Y = 8.000000000000000000
+        TabOrder = 1
+        Text = 'Button2'
+      end
+    end
+    object DzHTMLText12: TDzHTMLText
+      TabOrder = 2
+      Position.X = 56.000000000000000000
+      Position.Y = 104.000000000000000000
+    end
+  end
   object MultiView1: TMultiView
     Size.Width = 250.000000000000000000
     Size.Height = 432.000000000000000000
@@ -852,7 +893,7 @@ object Form1: TForm1
           Position.Y = 96.000000000000000000
         end
         object DzHTMLText1: TDzHTMLText
-          TabOrder = 96
+          TabOrder = 98
           Position.X = 48.000000000000000000
           Position.Y = 320.000000000000000000
         end
@@ -877,47 +918,6 @@ object Form1: TForm1
         TabOrder = 4
         Text = 'ListBoxItem5'
       end
-    end
-  end
-  object Panel1: TPanel
-    Position.X = 152.000000000000000000
-    Position.Y = 96.000000000000000000
-    TabOrder = 14
-    object ToolBar2: TToolBar
-      TabOrder = 0
-      object Image12: TImage
-        MultiResBitmap = <
-          item
-          end>
-        Position.X = 64.000000000000000000
-      end
-      object Label23: TLabel
-        Position.X = 216.000000000000000000
-        Position.Y = 8.000000000000000000
-        Text = 'Label23'
-        TabOrder = 1
-      end
-    end
-    object ToolBar3: TToolBar
-      Position.Y = 40.000000000000000000
-      TabOrder = 1
-      object Button1: TButton
-        Position.X = 24.000000000000000000
-        Position.Y = 8.000000000000000000
-        TabOrder = 0
-        Text = 'Button1'
-      end
-      object Button2: TButton
-        Position.X = 200.000000000000000000
-        Position.Y = 8.000000000000000000
-        TabOrder = 1
-        Text = 'Button2'
-      end
-    end
-    object DzHTMLText12: TDzHTMLText
-      TabOrder = 2
-      Position.X = 56.000000000000000000
-      Position.Y = 104.000000000000000000
     end
   end
   object IdHTTP1: TIdHTTP

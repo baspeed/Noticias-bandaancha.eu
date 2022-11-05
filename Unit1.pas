@@ -108,25 +108,25 @@ type
     Image9: TImage;       // Imagen de la noticia 9
     Image10: TImage;      // Imagen de la noticia 10
     Image11: TImage;      // Imagen del logo de bandaancha en el menú deslizante
-    DzHTMLText1: TDzHTMLText;
-    DzHTMLText2: TDzHTMLText;
-    DzHTMLText3: TDzHTMLText;
-    DzHTMLText4: TDzHTMLText;
-    DzHTMLText5: TDzHTMLText;
-    DzHTMLText6: TDzHTMLText;
-    DzHTMLText7: TDzHTMLText;
-    DzHTMLText8: TDzHTMLText;
-    DzHTMLText9: TDzHTMLText;
-    DzHTMLText10: TDzHTMLText;
-    DzHTMLText11: TDzHTMLText;
-    Panel1: TPanel;
-    ToolBar2: TToolBar;
-    ToolBar3: TToolBar;
-    Image12: TImage;
-    Label23: TLabel;
-    DzHTMLText12: TDzHTMLText;
-    Button1: TButton;
-    Button2: TButton;       // Descripción noticia 10
+    DzHTMLText1: TDzHTMLText;       // Descripción de la aplicación en el menú deslizante de la app
+    DzHTMLText2: TDzHTMLText;       // Descripción de la noticia 1
+    DzHTMLText3: TDzHTMLText;       // Descripción de la noticia 2
+    DzHTMLText4: TDzHTMLText;       // Descripción de la noticia 3
+    DzHTMLText5: TDzHTMLText;       // Descripción de la noticia 4
+    DzHTMLText6: TDzHTMLText;       // Descripción de la noticia 5
+    DzHTMLText7: TDzHTMLText;       // Descripción de la noticia 6
+    DzHTMLText8: TDzHTMLText;       // Descripción de la noticia 7
+    DzHTMLText9: TDzHTMLText;       // Descripción de la noticia 8
+    DzHTMLText10: TDzHTMLText;      // Descripción de la noticia 9
+    DzHTMLText11: TDzHTMLText;      // Descripción de la noticia 10
+    Panel1: TPanel;                 // Panel que encierra la pantalla de aceptación de normas de bandaancha.eu
+    ToolBar2: TToolBar;             // Recuadro superior para logo y texto de la pantalla
+    ToolBar3: TToolBar;             // Recuadro inferior para los botones de aceptar o cancelar la aceptación de las normas
+    Image12: TImage;                // Imagen con el logotipo de la aplicación
+    Label23: TLabel;                // Texto en la parte superior de la pantalla de aceptación de las normas
+    DzHTMLText12: TDzHTMLText;      // Texto HTML de las normas de bandaancha.eu
+    Button1: TButton;               // Botón de aceptar las normas de bandaancha.eu
+    Button2: TButton;               // Botón de cancelar las normas de bandaancha.eu
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -153,11 +153,9 @@ type
     procedure WebBrowser1DidFinishLoad(ASender: TObject);    // Rutina que se ejecuta cuando finaliza la carga de la página web
     procedure DzHTMLText1LinkClick(Sender: TObject; Link: TDHBaseLink;     // Rutina que se ejecuta al hacer click sobre cualquier enlace dentro de la descripción de la aplicación en el menú deslizante
       var Handled: Boolean);
-    procedure Panel2Click(Sender: TObject);
-    procedure VertScrollBox2Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);        // Rutina que se ejecuta cuando el usuario pulsa el botón de cancelar la aceptación de las normas
+    procedure FormCreate(Sender: TObject);          // Rutina que se ejecuta al cargar la app en el dispositivo
+    procedure Button1Click(Sender: TObject);        // Rutina que se ejecuta cuando el usuario pulsa el botón de aceptar las normas de bandancha.eu
   private
     { Private declarations }
   public
@@ -227,21 +225,27 @@ begin
      WebBrowser1.Navigate;            // Inicia la carga de la página web en el navegador interno
 end;
 
+
+// Rutina que se ejecuta cuando el usuario acepta las normas de bandaancha.eu
+
 procedure TForm1.Button1Click(Sender: TObject);
 
 var
-   ficheronormas: TStringList;
+   ficheronormas: TStringList;                                     // Memoria con lineas de texto
 begin
-     Panel1.Visible:=False;
-     ficheronormas:=TStringList.Create;
-     ficheronormas.Add('1');
-     ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');
-     ficheronormas.Free;
+     Panel1.Visible:=False;                                        // Oculta el panel con las normas de bandaancha.eu
+     ficheronormas:=TStringList.Create;                            // Crea la variable con lineas de texto
+     ficheronormas.Add('1');                                       // Añade una linea con la cadena '1'
+     ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');  // Graba el archivo normas.txt con esa linea anterior
+     ficheronormas.Free;                                           // Libera la memoria de la variable de lineas de texto
 end;
+
+
+// Rutina que se ejecuta cuando el usuario cancela las normas de bandaancha.eu
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-     Application.Terminate;
+     Application.Terminate;           // Termina la aplicación inmediatamente
 end;
 
 // Rutina para abrir un enlace presente en la descripción HTML de la aplicación (localizada en el menú deslizante)
@@ -267,22 +271,25 @@ begin
      RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
 end;
 
+
+// Rutina que se ejecuta cuando la aplicación se está cargando en el dispositivo
+
 procedure TForm1.FormCreate(Sender: TObject);
 
 var
-   ficheronormas: TStringList;
+   ficheronormas: TStringList;                                                    // Variable de lineas de texto
 
 begin
-     Button1.Width:=(Screen.Width/2)-20;
-     Button2.Width:=Button1.Width;
-     ficheronormas:=TStringList.Create;
+     Button1.Width:=(Screen.Width/2)-20;                                          // Ajusta ancho del botón de aceptación de normas
+     Button2.Width:=Button1.Width;                                                // Ajusta el ancho del segundo botón
+     ficheronormas:=TStringList.Create;                                           // Crea y prepara la variable de lineas de texto
      try
-        ficheronormas.LoadFromFile(TPath.GetPublicPath+'/normas.txt');
-        Panel1.Visible:=False;
-        ficheronormas.Free;
+        ficheronormas.LoadFromFile(TPath.GetPublicPath+'/normas.txt');            // Intenta cargar el fichero de texto con la cadena '1'
+        Panel1.Visible:=False;                                                    // Si está oculta el panel de aceptación de normas y sigue la ejecución
+        ficheronormas.Free;                                                       // Libera la memoria de la variable de lineas de texto
      except
-           Panel1.Visible:=True;
-           ficheronormas.Free;
+           Panel1.Visible:=True;                                                  // Si no existe el fichero de texto, el panel de aceptación de normas se hace visible
+           ficheronormas.Free;                                                    // Libera la memoria de la variable de lineas de texto
      end;
 end;
 
@@ -437,11 +444,6 @@ begin
              ImageControl1.Visible:=False; // Oculta control de copia de pantalla
              WebBrowser1.Visible:=True;    // Hace visible el navegador web interno de la aplicación
         end;
-end;
-
-
-procedure TForm1.Panel2Click(Sender: TObject);
-begin
 end;
 
 // Rutina que parsea el código XML de feedburner.com para obtener todos los datos necesarios de las noticias de bandancha.eu
@@ -782,12 +784,6 @@ procedure TForm1.SpeedButton4Click(Sender: TObject);
 
 begin
      RellenaCampos;                        // Rellena todas las noticias
-end;
-
-
-procedure TForm1.VertScrollBox2Click(Sender: TObject);
-begin
-
 end;
 
 // Rutina que se ejecuta cuando se acaba la carga de una página en el navegador interno de la aplicación
