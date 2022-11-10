@@ -153,9 +153,9 @@ type
     procedure WebBrowser1DidFinishLoad(ASender: TObject);    // Rutina que se ejecuta cuando finaliza la carga de la página web
     procedure DzHTMLText1LinkClick(Sender: TObject; Link: TDHBaseLink;     // Rutina que se ejecuta al hacer click sobre cualquier enlace dentro de la descripción de la aplicación en el menú deslizante
       var Handled: Boolean);
-    procedure Button2Click(Sender: TObject);        // Rutina que se ejecuta cuando el usuario pulsa el botón de cancelar la aceptación de las normas
-    procedure FormCreate(Sender: TObject);          // Rutina que se ejecuta al cargar la app en el dispositivo
-    procedure Button1Click(Sender: TObject);        // Rutina que se ejecuta cuando el usuario pulsa el botón de aceptar las normas de bandancha.eu
+    procedure Button2Click(Sender: TObject);         // Rutina que se ejecuta cuando el usuario pulsa el botón de cancelar la aceptación de las normas
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -237,7 +237,14 @@ begin
      ficheronormas:=TStringList.Create;                            // Crea la variable con lineas de texto
      ficheronormas.Add('1');                                       // Añade una linea con la cadena '1'
      ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');  // Graba el archivo normas.txt con esa linea anterior
-     ficheronormas.Free;                                           // Libera la memoria de la variable de lineas de texto
+     ficheronormas.Free;
+     IdHTTP1.ConnectTimeout:=2000;            // Tiempo de espera hasta conexión con servidor = 10 segundos
+     IdHTTP1.ReadTimeout:=2000;               // Tiempo de espera hasta lectura de datos del servidor = 10 segundos
+     IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=2000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 10 segundos
+     IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=2000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 10 segundos
+     MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
+     IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL
+     RellenaCampos;                                         // Libera la memoria de la variable de lineas de texto
 end;
 
 
@@ -261,23 +268,9 @@ end;
 // Rutina que se ejecuta al hacerse visible la ventana principal de la aplicación
 
 procedure TForm1.FormActivate(Sender: TObject);
-begin
-     IdHTTP1.ConnectTimeout:=10000;            // Tiempo de espera hasta conexión con servidor = 10 segundos
-     IdHTTP1.ReadTimeout:=10000;               // Tiempo de espera hasta lectura de datos del servidor = 10 segundos
-     IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=10000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 10 segundos
-     IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=10000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 10 segundos
-     MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
-     IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL
-     RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
-end;
-
-
-// Rutina que se ejecuta cuando la aplicación se está cargando en el dispositivo
-
-procedure TForm1.FormCreate(Sender: TObject);
 
 var
-   ficheronormas: TStringList;                                                    // Variable de lineas de texto
+   ficheronormas: TStringList;
 
 begin
      Button1.Width:=(Screen.Width/2)-20;                                          // Ajusta ancho del botón de aceptación de normas
@@ -286,11 +279,24 @@ begin
      try
         ficheronormas.LoadFromFile(TPath.GetPublicPath+'/normas.txt');            // Intenta cargar el fichero de texto con la cadena '1'
         Panel1.Visible:=False;                                                    // Si está oculta el panel de aceptación de normas y sigue la ejecución
-        ficheronormas.Free;                                                       // Libera la memoria de la variable de lineas de texto
-     except
-           Panel1.Visible:=True;                                                  // Si no existe el fichero de texto, el panel de aceptación de normas se hace visible
-           ficheronormas.Free;                                                    // Libera la memoria de la variable de lineas de texto
+        ficheronormas.Free;
+        IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL                                                      // Libera la memoria de la variable de lineas de texto
+        IdHTTP1.ConnectTimeout:=2000;            // Tiempo de espera hasta conexión con servidor = 10 segundos
+        IdHTTP1.ReadTimeout:=2000;               // Tiempo de espera hasta lectura de datos del servidor = 10 segundos
+        IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=2000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 10 segundos
+        IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=2000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 10 segundos
+        MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
+        RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
+     except                                                  // Si no existe el fichero de texto, el panel de aceptación de normas se hace visible
+           ficheronormas.Free;                               // Libera la memoria de la variable de lineas de texto
      end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+
+begin
+     Button1.Width:=(Screen.Width/2)-20;
+     Button2.Width:=Button1.Width;
 end;
 
 // Rutina que permite reconocer la pulsación de la tecla Atrás de Android y actuar en consecuencia en la aplicación
@@ -469,6 +475,16 @@ var
    dia, mes: string;
 
 begin
+     DzHTMLText2.Lines.Clear;
+     DzHTMLText3.Lines.Clear;
+     DzHTMLText4.Lines.Clear;
+     DzHTMLText5.Lines.Clear;
+     DzHTMLText6.Lines.Clear;
+     DzHTMLText7.Lines.Clear;
+     DzHTMLText8.Lines.Clear;
+     DzHTMLText9.Lines.Clear;
+     DzHTMLText10.Lines.Clear;
+     DzHTMLText11.Lines.Clear;
      SpeedButton4.Visible:=False;         // Desactiva botón de recargar noticias en pantalla principal
      FMXLoadingIndicator1.Visible:=True;  // Hace visible el indicador de carga de página
      FMXLoadingIndicator1.Active:=True;   // Hace que se inicie la animación del indicador de carga de página
