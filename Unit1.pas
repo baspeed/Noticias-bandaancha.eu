@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------------
 //  Noticias bandaancha.eu v2
 //
-//  v2.3.562.17102022
+//  v2.3.766.13112022
 //  Por José Ignacio Legido Barrios (usuario djnacho de bandaancha.eu)
 //  Creado para la comunidad de usuarios de bandaancha.eu
 //
@@ -12,8 +12,8 @@
 //
 // Versión actual creada en Delphi 11.2 Alexandria
 //
-// Modificación comenzada el  05-11-2022 para coger las noticias directamente de
-// bandaancha.eu sin pasar por feedburner.com
+// Se vuelve al código original que cogía las noticias de bandaancha.eu
+// a través de feedburner.com
 // ---------------------------------------------------------------------------------
 
 unit Unit1;
@@ -238,10 +238,10 @@ begin
      ficheronormas.Add('1');                                       // Añade una linea con la cadena '1'
      ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');  // Graba el archivo normas.txt con esa linea anterior
      ficheronormas.Free;
-     IdHTTP1.ConnectTimeout:=2000;            // Tiempo de espera hasta conexión con servidor = 10 segundos
-     IdHTTP1.ReadTimeout:=2000;               // Tiempo de espera hasta lectura de datos del servidor = 10 segundos
-     IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=2000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 10 segundos
-     IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=2000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 10 segundos
+     IdHTTP1.ConnectTimeout:=5000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
+     IdHTTP1.ReadTimeout:=5000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
+     IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=5000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
+     IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=5000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 5 segundos
      MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
      IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL
      RellenaCampos;                                         // Libera la memoria de la variable de lineas de texto
@@ -281,10 +281,10 @@ begin
         Panel1.Visible:=False;                                                    // Si está oculta el panel de aceptación de normas y sigue la ejecución
         ficheronormas.Free;
         IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL                                                      // Libera la memoria de la variable de lineas de texto
-        IdHTTP1.ConnectTimeout:=2000;            // Tiempo de espera hasta conexión con servidor = 10 segundos
-        IdHTTP1.ReadTimeout:=2000;               // Tiempo de espera hasta lectura de datos del servidor = 10 segundos
-        IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=2000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 10 segundos
-        IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=2000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 10 segundos
+        IdHTTP1.ConnectTimeout:=5000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
+        IdHTTP1.ReadTimeout:=5000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
+        IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=5000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
+        IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=5000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 5 segundos
         MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
         RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
      except                                                  // Si no existe el fichero de texto, el panel de aceptación de normas se hace visible
@@ -475,22 +475,22 @@ var
    dia, mes: string;
 
 begin
-     DzHTMLText2.Lines.Clear;
-     DzHTMLText3.Lines.Clear;
-     DzHTMLText4.Lines.Clear;
-     DzHTMLText5.Lines.Clear;
-     DzHTMLText6.Lines.Clear;
-     DzHTMLText7.Lines.Clear;
-     DzHTMLText8.Lines.Clear;
-     DzHTMLText9.Lines.Clear;
-     DzHTMLText10.Lines.Clear;
-     DzHTMLText11.Lines.Clear;
+     DzHTMLText2.Lines.Clear;   // Limpia la descripción de la noticia 1
+     DzHTMLText3.Lines.Clear;   // Limpia la descripción de la noticia 2
+     DzHTMLText4.Lines.Clear;   // Limpia la descripción de la noticia 3
+     DzHTMLText5.Lines.Clear;   // Limpia la descripción de la noticia 4
+     DzHTMLText6.Lines.Clear;   // Limpia la descripción de la noticia 5
+     DzHTMLText7.Lines.Clear;   // Limpia la descripción de la noticia 6
+     DzHTMLText8.Lines.Clear;   // Limpia la descripción de la noticia 7
+     DzHTMLText9.Lines.Clear;   // Limpia la descripción de la noticia 8
+     DzHTMLText10.Lines.Clear;  // Limpia la descripción de la noticia 9
+     DzHTMLText11.Lines.Clear;  // Limpia la descripción de la noticia 10
      SpeedButton4.Visible:=False;         // Desactiva botón de recargar noticias en pantalla principal
      FMXLoadingIndicator1.Visible:=True;  // Hace visible el indicador de carga de página
      FMXLoadingIndicator1.Active:=True;   // Hace que se inicie la animación del indicador de carga de página
      TThread.CreateAnonymousThread(procedure // Inicia hilo asíncrono con la aplicación para cargar los datos de las noticias
      begin
-     xml:=IdHTTP1.get('https://bandaancha.eu/articulos.rss');            // Carga el código XML en la variable
+     xml:=IdHTTP1.get('https://feeds.feedburner.com/bandaanchaeu');            // Carga el código XML en la variable
      indice:=1;                                                                           // Inicia el índice de noticias a 1
      repeat                                                                               // Bucle
           posicion:=Pos('<item>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
@@ -502,9 +502,9 @@ begin
                    posicion:=pos('<title>',subcadena,1);                                  // Busca dentro de subcadena la cadena <title> (inicio título de la noticia)
                    posicion2:=pos('</title>',subcadena,1);                                // Busca dentro de subcadena la cadena </title> (fin de título de título)
                    titulo:=copy(subcadena,posicion+7,posicion2-posicion-7);               // Rellena título con la cadena que hay entre <title> y </title>
-                   posicion:=pos('<dc:creator>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
-                   posicion2:=pos('</dc:creator>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
-                   autor:=copy(subcadena,posicion+12,posicion2-posicion-12);                // Rellena autor con la cadena que hay entre <name> y </name>
+                   posicion:=pos('<author>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
+                   posicion2:=pos('</author>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
+                   autor:=copy(subcadena,posicion+29,posicion2-posicion-30);                // Rellena autor con la cadena que hay entre <name> y </name>
                    posicion:=pos('<description>',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
                    posicion2:=pos('</description>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
                    contenido:=copy(subcadena,posicion+13,posicion2-posicion-13);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
@@ -625,45 +625,82 @@ begin
 
                    // Nueva rutina para cambiar el mes del inglés al castellano
 
-                   mes:=Copy(fecha,9,3);                                             // Copia los tres caracteres del mes
-                   if (mes='Jan') then                                               // Cambia Enero
-                      mes:='Enero'
+                   mes:=Copy(fecha,8,4);                                             // Copia los tres caracteres del mes
+                   if (mes='Jan ') then                                               // Cambia Enero
+                      mes:='Enero '
                    else
-                       if (mes='Feb') then                                           // Cambia Febrero
-                          mes:='Febrero'
+                   if (mes=' Jan') then
+                      mes:=' Enero'
+                   else
+                       if (mes='Feb ') then                                           // Cambia Febrero
+                          mes:='Febrero '
                        else
-                           if (mes='Mar') then                                       // Cambia Marzo
+                       if (mes=' Feb') then
+                          mes:=' Febrero'
+                       else
+                           if (mes='Mar ') then                                       // Cambia Marzo
                               mes:='Marzo'
                            else
-                               if (mes='Apr') then                                   // Cambia Abril
-                                  mes:='Abril'
+                           if (mes=' Mar') then
+                              mes:=' Marzo'
+                           else
+                               if (mes='Apr ') then                                   // Cambia Abril
+                                  mes:='Abril '
                                else
-                                   if (mes='May') then                               // Cambia Mayo
-                                      mes:='Mayo'
+                               if (mes=' Apr') then
+                                  mes:=' Abril'
+                               else
+                                   if (mes='May ') then                               // Cambia Mayo
+                                      mes:='Mayo '
                                    else
-                                       if (mes='Jun') then                           // Cambia Junio
-                                          mes:='Junio'
+                                   if (mes=' May') then
+                                      mes:=' Mayo'
+                                   else
+                                       if (mes='Jun ') then                           // Cambia Junio
+                                          mes:='Junio '
                                        else
-                                           if (mes='Jul') then                       // Cambia Julio
-                                              mes:='Julio'
+                                       if (mes=' Jun') then
+                                          mes:=' Junio'
+                                       else
+                                           if (mes='Jul ') then                       // Cambia Julio
+                                              mes:='Julio '
                                            else
-                                               if (mes='Aug') then                   // Cambia Agosto
-                                                  mes:='Agosto'
+                                           if (mes=' Jul') then
+                                              mes:=' Julio'
+                                           else
+                                               if (mes='Aug ') then                   // Cambia Agosto
+                                                  mes:='Agosto '
                                                else
-                                                   if (mes='Sep') then               // Cambia Septiembre
-                                                      mes:='Septiembre'
+                                               if (mes=' Aug') then
+                                                  mes:=' Agosto'
+                                               else
+                                                   if (mes='Sep ') then               // Cambia Septiembre
+                                                      mes:='Septiembre '
                                                    else
-                                                       if (mes='Oct') then           // Cambia Octubre
-                                                          mes:='Octubre'
+                                                   if (mes=' Sep') then
+                                                      mes:=' Septiembre'
+                                                   else
+                                                       if (mes='Oct ') then           // Cambia Octubre
+                                                          mes:='Octubre '
                                                        else
-                                                           if (mes='Nov') then       // Cambia Noviembre
-                                                              mes:='Noviembre'
+                                                       if (mes=' Oct') then
+                                                          mes:=' Octubre'
+                                                       else
+                                                           if (mes='Nov ') then       // Cambia Noviembre
+                                                              mes:='Noviembre '
                                                            else
-                                                               if (mes='Dec') then   // Cambia Diciembre
-                                                                  mes:='Diciembre';
+                                                           if (mes=' Nov') then
+                                                              mes:=' Noviembre'
+                                                           else
+                                                               if (mes='Dec ') then   // Cambia Diciembre
+                                                                  mes:='Diciembre '
+                                                               else
+                                                               if (mes=' Dec') then
+                                                                  mes:=' Diciembre';
 
-                   fecha:=ReplaceStr(fecha,Copy(fecha,9,3),mes);                                                     // Toma la fecha dentro de la variable fechahora
-
+                   fecha:=ReplaceStr(fecha,Copy(fecha,8,4),mes);                                                     // Toma la fecha dentro de la variable fechahora
+                   hora:=RightStr(fechahora,12);
+                   hora:=Copy(hora,1,5);
                    // Nueva rutina  para cambiar el dia de la semana del inglés al castellano
 
                    dia:=Copy(fecha,1,3);                                   // Copia los tres primeros caracteres de la cadena de fecha
@@ -687,9 +724,8 @@ begin
                                        else
                                            if (dia='Sun') then             // Cambia el Domingo
                                               dia:='Domingo';
-                   fecha:=ReplaceStr(fecha,Copy(fecha,1,3),dia);
 
-                   hora:=copy(fechahora,18,5);                                                       // Toma la hora dentro de la variable fechahora
+                   fecha:=ReplaceStr(fecha,Copy(fecha,1,3),dia);                                    // Toma la hora dentro de la variable fechahora
                    posicion:=pos('<link>',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
                    posicion2:=pos('</link>',subcadena,posicion);                                         // Busca dentro de subcadena la cadena </link> (fin de enlace a la noticia)
                    cadenaenlace:=copy(subcadena,posicion+length('<link>'),posicion2-posicion-length('<link>'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
