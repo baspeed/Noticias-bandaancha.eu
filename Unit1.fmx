@@ -893,7 +893,7 @@ object Form1: TForm1
           Position.Y = 96.000000000000000000
         end
         object DzHTMLText1: TDzHTMLText
-          TabOrder = 110
+          TabOrder = 111
           Position.X = 48.000000000000000000
           Position.Y = 320.000000000000000000
         end
