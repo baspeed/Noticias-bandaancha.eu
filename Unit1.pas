@@ -32,7 +32,7 @@ uses
   FMX.Types, FMX.WebBrowser, System.Types, System.IOUtils, FMX.Platform,
   FMX.VirtualKeyboard, FMX.Helpers.Android, System.UITypes,
   FMX.DialogService, System.StrUtils, Android.JNI.Toast, FMX.LoadingIndicator,
-  FMX.DzHTMLText;
+  FMX.DzHTMLText,system.SysUtils;
 
 type
   TForm1 = class(TForm)             // Ventana principal de la aplicación (Main Activity de Android)
@@ -602,6 +602,12 @@ begin
                    posicion:=Pos('<p>',descripcion,1);                                               // Busca dentro de descripcion el <p> (inicio de párrafo)
                    posicion2:=Pos('</p>',descripcion,posicion);                                      // Busca dentro de descripcion el </p> (fin de párrafo)
                    cadena:=Copy(descripcion,posicion+3,posicion2-posicion-3);                        // Rellena cadena con todos los caracteres entre <p> y </p>
+
+                   // Nueva parte donde se cogen los enlaces dentro de la descripción y se ajustan al estilo del componente DzHTMLText
+
+                   cadena:=ReplaceStr(cadena,'<a href=','<a:');
+
+
                    TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar la descripción de la noticia
                    begin
                    case indice of                                                                    // Dependiendo del valor de indice
