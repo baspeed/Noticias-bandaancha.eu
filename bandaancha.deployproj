@@ -119,15 +119,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android\Release\libbandaancha.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>libbandaancha.so</RemoteName>
-            <DeployClass>ProjectOutput_Android32</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Android64\Debug\styles.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>bandaancha\res\values\</RemoteDir>
             <RemoteName>styles.xml</RemoteName>

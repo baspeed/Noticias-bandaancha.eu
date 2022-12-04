@@ -349,7 +349,6 @@ begin
 
 end;
 
-
 // Rutina que muestra la noticia número 6 si se pulsa el título / imagen de la noticia
 
 procedure TForm1.Label11Tap(Sender: TObject; const Point: TPointF);
@@ -605,7 +604,7 @@ begin
 
                    // Nueva parte donde se cogen los enlaces dentro de la descripción y se ajustan al estilo del componente DzHTMLText
 
-                   cadena:=ReplaceStr(cadena,'<a href=','<a:');
+                   cadena:=ReplaceStr(cadena,'<a href=','<a:');  // Se reemplaza el <a href=" con <a: que es el tag de enlace de DzHTMLText
 
 
                    TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar la descripción de la noticia
