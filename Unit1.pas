@@ -489,7 +489,11 @@ begin
      FMXLoadingIndicator1.Active:=True;   // Hace que se inicie la animación del indicador de carga de página
      TThread.CreateAnonymousThread(procedure // Inicia hilo asíncrono con la aplicación para cargar los datos de las noticias
      begin
-     xml:=IdHTTP1.get('https://feeds.feedburner.com/bandaanchaeu');            // Carga el código XML en la variable
+     // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
+     // Se hace para obtener el feed XML de feedburner
+     repeat
+           xml:=IdHTTP1.get('https://feeds.feedburner.com/bandaanchaeu');            // Carga el código XML en la variable
+     until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
      indice:=1;                                                                           // Inicia el índice de noticias a 1
      repeat                                                                               // Bucle
           posicion:=Pos('<item>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
@@ -514,7 +518,12 @@ begin
                            posicion2:=Pos(' ',contenido,posicion+21);                     // Busca dentro de posicion el primer espacio
                            urlimagen:=Copy(contenido,posicion+17,posicion2-posicion-17);  // Copia la URL de la imagen (toda la cadena desde el final de img class=cn src= hasta el primer espacio)
                            memoria:=TMemoryStream.Create;                                 // Crea la zona de memoria para la imagen
-                           IdHTTP1.Get(urlimagen,memoria);                                // Obtiene la imagen de la URL y la carga en la zona de memoria
+                           // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
+                           // Se hace para obtener la imagen de la noticia de bandaancha.eu
+                           repeat
+                                 memoria.Seek(0,0);
+                                 IdHTTP1.Get(urlimagen,memoria);                          // Obtiene la imagen de la URL y la carga en la zona de memoria
+                           until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
                            TThread.Synchronize(nil,procedure                              // Inicia otro hilo asíncrono para cargar la imagen
                            begin
                            Form1.BeginUpdate;                                             // Prepara la ventana para actualizar

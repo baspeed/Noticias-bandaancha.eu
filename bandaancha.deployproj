@@ -4,7 +4,7 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup>
-        <DeviceId Condition="'$(Platform)'=='Android'"/>
+        <DeviceId Condition="'$(Platform)'=='Android'">X5BDU19215010028</DeviceId>
         <DeviceId Condition="'$(Platform)'=='Android64'">X5BDU19215010028</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
@@ -114,6 +114,15 @@
             <RemoteDir>bandaancha\res\values-v21\</RemoteDir>
             <RemoteName>styles.xml</RemoteName>
             <DeployClass>AndroidSplashStylesV21</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android\Release\libbandaancha.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libbandaancha.so</RemoteName>
+            <DeployClass>ProjectOutput_Android32</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
