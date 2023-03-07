@@ -5,7 +5,7 @@
     </ProjectExtensions>
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'"/>
-        <DeviceId Condition="'$(Platform)'=='Android64'">X5BDU19215010028</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'">5b214e75</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
     </PropertyGroup>
@@ -119,6 +119,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="Android\Release\libbandaancha.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libbandaancha.so</RemoteName>
+            <DeployClass>ProjectOutput_Android32</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android64\Debug\styles.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>bandaancha\res\values\</RemoteDir>
             <RemoteName>styles.xml</RemoteName>
@@ -183,7 +192,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu192x192.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>bandaancha\res\drawable-xxxhdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
             <DeployClass>Android_LauncherIcon192</DeployClass>
@@ -192,7 +201,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu192x192.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>bandaancha\res\drawable-xxxhdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
             <DeployClass>Android_LauncherIcon192</DeployClass>
