@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------------
 //  Noticias bandaancha.eu v2
 //
-//  v2.3.825.07032023
+//  v2.3.766.13112022
 //  Por José Ignacio Legido Barrios (usuario djnacho de bandaancha.eu)
 //  Creado para la comunidad de usuarios de bandaancha.eu
 //
@@ -653,7 +653,7 @@ begin
                           mes:=' Febrero'
                        else
                            if (mes='Mar ') then                                       // Cambia Marzo
-                              mes:='Marzo '
+                              mes:='Marzo'
                            else
                            if (mes=' Mar') then
                               mes:=' Marzo'
