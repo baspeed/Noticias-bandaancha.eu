@@ -32,7 +32,7 @@ uses
   FMX.Types, FMX.WebBrowser, System.Types, System.IOUtils, FMX.Platform,
   FMX.VirtualKeyboard, FMX.Helpers.Android, System.UITypes,
   FMX.DialogService, System.StrUtils, Android.JNI.Toast, FMX.LoadingIndicator,
-  FMX.DzHTMLText,system.SysUtils;
+  FMX.DzHTMLText,system.SysUtils, system.DateUtils;
 
 type
   TForm1 = class(TForm)             // Ventana principal de la aplicación (Main Activity de Android)
@@ -471,7 +471,8 @@ var
    urlimagen: string;           // Cadena de caracteres que guarda la URL de la noticia
    memoria: TMemoryStream;      // Zona de memoria para guardar una imagen
    descripcion: string;         // Cadena de caracteres que contiene una descripción de la noticia (dentro del contenido desde el primer <p> hasta el primer </p>)
-   dia, mes: string;
+   dia, mes, anio: string;
+   horatemp: TDateTime;
 
 begin
      DzHTMLText2.Lines.Clear;   // Limpia la descripción de la noticia 1
@@ -492,25 +493,25 @@ begin
      // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
      // Se hace para obtener el feed XML de feedburner
      repeat
-           xml:=IdHTTP1.get('https://feeds.feedburner.com/bandaanchaeu');            // Carga el código XML en la variable
+           xml:=IdHTTP1.Get('https://bandaancha.eu/feed_for_feed_burner.atom');      // Coge el feed directamente de bandaancha.eu sin pasar por feedburner.com (así se actualizan las noticias en el momento de publicarlas)
      until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
      indice:=1;                                                                           // Inicia el índice de noticias a 1
      repeat                                                                               // Bucle
-          posicion:=Pos('<item>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
+          posicion:=Pos('<entry>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
           if (posicion<>-1) then                                                          // Mientras lo encuentre (posición<>-1)
               begin
-                   posicion2:=Pos('</item>',xml,1)+length('</item>');                   // Busca dentro de XML la cadena </entry> (fin de noticia)
+                   posicion2:=Pos('</entry>',xml,1)+length('</entry>');                   // Busca dentro de XML la cadena </entry> (fin de noticia)
                    next:=posicion2;                                                       // Carga la posición en next
-                   subcadena:=Copy(xml,posicion+6,posicion2-posicion-6);                  // Rellena subcadena con la cadena que hay dentro de <entry> y </entry>
+                   subcadena:=Copy(xml,posicion+8,posicion2-posicion-8);                  // Rellena subcadena con la cadena que hay dentro de <entry> y </entry>
                    posicion:=pos('<title>',subcadena,1);                                  // Busca dentro de subcadena la cadena <title> (inicio título de la noticia)
                    posicion2:=pos('</title>',subcadena,1);                                // Busca dentro de subcadena la cadena </title> (fin de título de título)
                    titulo:=copy(subcadena,posicion+7,posicion2-posicion-7);               // Rellena título con la cadena que hay entre <title> y </title>
-                   posicion:=pos('<author>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
-                   posicion2:=pos('</author>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
-                   autor:=copy(subcadena,posicion+29,posicion2-posicion-30);                // Rellena autor con la cadena que hay entre <name> y </name>
-                   posicion:=pos('<description>',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
-                   posicion2:=pos('</description>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
-                   contenido:=copy(subcadena,posicion+13,posicion2-posicion-13);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
+                   posicion:=pos('<name>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
+                   posicion2:=pos('</name>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
+                   autor:=copy(subcadena,posicion+6,posicion2-posicion-6);                // Rellena autor con la cadena que hay entre <name> y </name>
+                   posicion:=pos('<content type="html">',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
+                   posicion2:=pos('</content>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
+                   contenido:=copy(subcadena,posicion+20,posicion2-posicion-20);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
 
                    posicion:=Pos('img class=cn src=',contenido,1);                        // Busca dentro de contenido la cadena img class=cn src= (inicio de imagen)
                    if  (posicion<>0) then                                                 // Si la cadena existe (posición<>0)
@@ -632,161 +633,71 @@ begin
                    end;
                    end);
 
-                   posicion:=pos('<pubDate>',subcadena,1);                                           // Busca dentro de subcadena la cadena <updated> (fecha y hora de publicación)
-                   posicion2:=pos('</pubDate>',subcadena,1);                                         // Busca dentro de subcadena la cadena </updated> (fin de fecha y hora de publicación)
+                   posicion:=pos('<updated>',subcadena,1);                                           // Busca dentro de subcadena la cadena <updated> (fecha y hora de publicación)
+                   posicion2:=pos('</updated>',subcadena,1);                                         // Busca dentro de subcadena la cadena </updated> (fin de fecha y hora de publicación)
                    fechahora:=copy(subcadena,posicion+9,posicion2-posicion-9);                       // Copia la cadena entre <updated> y </updated> en la variable fechahora
                    fecha:=copy(fechahora,1,16);
 
                    // Nueva rutina para cambiar el mes del inglés al castellano
 
-                   mes:=Copy(fecha,8,4);                                             // Copia los tres caracteres del mes
-                   if (mes='Jan ') then                                               // Cambia Enero
-                      mes:='Enero '
-                   else
-                   if (mes=' Jan') then
-                      mes:=' Enero'
-                   else
-                       if (mes='Feb ') then                                           // Cambia Febrero
-                          mes:='Febrero '
-                       else
-                       if (mes=' Feb') then
-                          mes:=' Febrero'
-                       else
-                           if (mes='Mar ') then                                       // Cambia Marzo
-                              mes:='Marzo'
-                           else
-                           if (mes=' Mar') then
-                              mes:=' Marzo'
-                           else
-                               if (mes='Apr ') then                                   // Cambia Abril
-                                  mes:='Abril '
-                               else
-                               if (mes=' Apr') then
-                                  mes:=' Abril'
-                               else
-                                   if (mes='May ') then                               // Cambia Mayo
-                                      mes:='Mayo '
-                                   else
-                                   if (mes=' May') then
-                                      mes:=' Mayo'
-                                   else
-                                       if (mes='Jun ') then                           // Cambia Junio
-                                          mes:='Junio '
-                                       else
-                                       if (mes=' Jun') then
-                                          mes:=' Junio'
-                                       else
-                                           if (mes='Jul ') then                       // Cambia Julio
-                                              mes:='Julio '
-                                           else
-                                           if (mes=' Jul') then
-                                              mes:=' Julio'
-                                           else
-                                               if (mes='Aug ') then                   // Cambia Agosto
-                                                  mes:='Agosto '
-                                               else
-                                               if (mes=' Aug') then
-                                                  mes:=' Agosto'
-                                               else
-                                                   if (mes='Sep ') then               // Cambia Septiembre
-                                                      mes:='Septiembre '
-                                                   else
-                                                   if (mes=' Sep') then
-                                                      mes:=' Septiembre'
-                                                   else
-                                                       if (mes='Oct ') then           // Cambia Octubre
-                                                          mes:='Octubre '
-                                                       else
-                                                       if (mes=' Oct') then
-                                                          mes:=' Octubre'
-                                                       else
-                                                           if (mes='Nov ') then       // Cambia Noviembre
-                                                              mes:='Noviembre '
-                                                           else
-                                                           if (mes=' Nov') then
-                                                              mes:=' Noviembre'
-                                                           else
-                                                               if (mes='Dec ') then   // Cambia Diciembre
-                                                                  mes:='Diciembre '
-                                                               else
-                                                               if (mes=' Dec') then
-                                                                  mes:=' Diciembre';
+                   anio:=Copy(fecha,1,4);       // Toma el año de la publicación
+                   mes:=Copy(fecha,6,2);        // Toma el mes de la publicación
+                   dia:=Copy(fecha,9,2);       // Toma el día de la publicación
+                   hora:=Copy(fecha,12,16);    // toma la hora de publicación
+                   horatemp:=StrToTime(hora);  // Cambia la hora de cadena de caracteres a valor de tiempo
+                   horatemp:=IncHour(horatemp,2); // Incrementa las horas en 2 (el feed pone la hora en horario GMT, al cual hay que sumarle 2 horas para que coincida con la hora española)
+                   hora:=IntToStr(HourOf(horatemp))+':'+IntToStr(MinuteOf(horatemp)); // La nueva hora (GMT+2) se pone de nuevo en formato de cadena de caracteres
 
-                   fecha:=ReplaceStr(fecha,Copy(fecha,8,4),mes);                                                     // Toma la fecha dentro de la variable fechahora
-                   hora:=RightStr(fechahora,12);
-                   hora:=Copy(hora,1,5);
-                   // Nueva rutina  para cambiar el dia de la semana del inglés al castellano
 
-                   dia:=Copy(fecha,1,3);                                   // Copia los tres primeros caracteres de la cadena de fecha
-                   if (dia='Mon') then                                     // Cambia el Lunes
-                      dia:='Lunes'
-                   else
-                       if (dia='Tue') then                                 // Cambia el Martes
-                          dia:='Martes'
-                       else
-                           if (dia='Wed') then                             // Cambia el Miércoles
-                              dia:='Miércoles'
-                           else
-                               if (dia='Thu') then                         // Cambia el Jueves
-                                  dia:='Jueves'
-                               else
-                                   if (dia='Fri') then                     // Cambia el Viernes
-                                      dia:='Viernes'
-                                   else
-                                       if (dia='Sat') then                 // Cambia el Sábado
-                                          dia:='Sábado'
-                                       else
-                                           if (dia='Sun') then             // Cambia el Domingo
-                                              dia:='Domingo';
+                   fecha:=dia+'-'+mes+'-'+anio+' ('+hora+')'; // Rellena la variable fecha con todos los valores (fecha y hora de publicación)
 
-                   fecha:=ReplaceStr(fecha,Copy(fecha,1,3),dia);                                    // Toma la hora dentro de la variable fechahora
-                   posicion:=pos('<link>',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
-                   posicion2:=pos('</link>',subcadena,posicion);                                         // Busca dentro de subcadena la cadena </link> (fin de enlace a la noticia)
-                   cadenaenlace:=copy(subcadena,posicion+length('<link>'),posicion2-posicion-length('<link>'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
-                   enlace[indice]:=copy(cadenaenlace,1,length(cadenaenlace));                        // Rellena el array de enlaces a noticias en el indice indicado con la cadena cadenaenlace
-                   xml:=copy(xml,next,length(xml)-next);                                             // Pone el puntero de XML a la siguiente zona de noticias
+                   posicion:=pos('<link rel="alternate" type="text/html" href="',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
+                   posicion2:=pos('"/>',subcadena,posicion);                                         // Busca dentro de subcadena la cadena </link> (fin de enlace a la noticia)
+                   cadenaenlace:=copy(subcadena,posicion+length('<link rel="alternate" type="text/html" href="'),posicion2-posicion-length('"/>'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
+                   enlace[indice]:=copy(cadenaenlace,1,length(cadenaenlace)-14);                        // Rellena el array de enlaces a noticias en el indice indicado con la cadena cadenaenlace
+                   xml:=copy(xml,next,length(xml)-next);                                              // Pone el puntero de XML a la siguiente zona de noticias
                    TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar título, autor, fecha y hora de publicación de la noticia
                    begin
                    case indice of                                                                    // Dependiendo del valor de la variable indice
                         1      : begin
                                       Label1.Text:=titulo;                                           // Rellena título noticia 1
-                                      Label2.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';        // Rellena autor, fecha y hora noticia 1
+                                      Label2.Text:='Autor: '+autor+', '+fecha;        // Rellena autor, fecha y hora noticia 1
                                  end;
                         2      : begin
                                       Label3.Text:=titulo;                                           // Rellena título noticia 2
-                                      Label4.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';        // Rellena autor, fecha y hora noticia 2
+                                      Label4.Text:='Autor: '+autor+', '+fecha;        // Rellena autor, fecha y hora noticia 2
                                  end;
                         3      : begin
                                       Label5.Text:=titulo;                                           // Rellena título noticia 3
-                                      Label6.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';        // Rellena autor, fecha y hora noticia 3
+                                      Label6.Text:='Autor: '+autor+', '+fecha;        // Rellena autor, fecha y hora noticia 3
                                  end;
                         4      : begin
                                       Label7.Text:=titulo;                                           // Rellena título noticia 4
-                                      Label8.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';        // Rellena autor, fecha y hora noticia 4
+                                      Label8.Text:='Autor: '+autor+', '+fecha;        // Rellena autor, fecha y hora noticia 4
                                  end;
                         5      : begin
                                       Label9.Text:=titulo;                                           // Rellena título noticia 5
-                                      Label10.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';       // Rellena autor, fecha y hora noticia 5
+                                      Label10.Text:='Autor: '+autor+', '+fecha;      // Rellena autor, fecha y hora noticia 5
                                  end;
                         6      : begin
                                       Label11.Text:=titulo;                                          // Rellena título noticia 6
-                                      Label12.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';       // Rellena autor, fecha y hora noticia 6
+                                      Label12.Text:='Autor: '+autor+', '+fecha;      // Rellena autor, fecha y hora noticia 6
                                  end;
                         7      : begin
                                       Label13.Text:=titulo;                                          // Rellena título noticia 7
-                                      Label14.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';       // Rellena autor, fecha y hora noticia 7
+                                      Label14.Text:='Autor: '+autor+', '+fecha;       // Rellena autor, fecha y hora noticia 7
                                  end;
                         8      : begin
                                       Label15.Text:=titulo;                                          // Rellena título noticia 8
-                                      Label16.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';       // Rellena autor, fecha y hora noticia 8
+                                      Label16.Text:='Autor: '+autor+', '+fecha;       // Rellena autor, fecha y hora noticia 8
                                  end;
                         9      : begin
                                       Label17.Text:=titulo;                                          // Rellena título noticia 9
-                                      Label18.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';       // Rellena autor, fecha y hora noticia 9
+                                      Label18.Text:='Autor: '+autor+', '+fecha;       // Rellena autor, fecha y hora noticia 9
                                  end;
                         10     : begin
                                       Label19.Text:=titulo;                                          // Rellena título noticia 10
-                                      Label20.Text:='Autor: '+autor+' ('+fecha+' - '+hora+')';       // Rellena autor, fecha y hora noticia 10
+                                      Label20.Text:='Autor: '+autor+', '+fecha;       // Rellena autor, fecha y hora noticia 10
                                  end;
 
                    end;
