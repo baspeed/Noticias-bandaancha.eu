@@ -646,9 +646,16 @@ begin
                    hora:=Copy(fecha,12,16);    // toma la hora de publicación
                    horatemp:=StrToTime(hora);  // Cambia la hora de cadena de caracteres a valor de tiempo
                    horatemp:=IncHour(horatemp,2); // Incrementa las horas en 2 (el feed pone la hora en horario GMT, al cual hay que sumarle 2 horas para que coincida con la hora española)
-                   hora:=IntToStr(HourOf(horatemp))+':'+IntToStr(MinuteOf(horatemp)); // La nueva hora (GMT+2) se pone de nuevo en formato de cadena de caracteres
-
-
+                   if (HourOf(horatemp)<10) and (MinuteOf(horatemp)<10) then
+                      hora:='0'+IntToStr(HourOf(horatemp))+':0'+IntToStr(MinuteOf(horatemp)) // La nueva hora (GMT+2) se pone de nuevo en formato de cadena de caracteres (con un cero delante de las horas si las horas y los minutos son < 10)
+                   else
+                       if (HourOf(horatemp)<10) then
+                          hora:='0'+IntToStr(HourOf(horatemp))+':'+IntToStr(MinuteOf(horatemp)) // La nueva hora (GMT+2) se pone de nuevo en formato de cadena de caracteres (con un cero delante de los minutos si las horas son < 10)
+                          else
+                              if (MinuteOf(horatemp)<10) then
+                                 hora:=IntToStr(HourOf(horatemp))+':0'+IntToStr(MinuteOf(horatemp))    // La nueva hora (GMT+2) se pone de nuevo en formato de cadena de caracteres (con un cero delante de los minutos si los minutos son < 10)
+                              else
+                                  hora:=IntToStr(HourOf(horatemp))+':'+IntToStr(MinuteOf(horatemp));  // La nueva hora (GMT+2) se pone de nuevo en formato de cadena de caracteres
                    fecha:=dia+'-'+mes+'-'+anio+' ('+hora+')'; // Rellena la variable fecha con todos los valores (fecha y hora de publicación)
 
                    posicion:=pos('<link rel="alternate" type="text/html" href="',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
