@@ -473,6 +473,7 @@ var
    descripcion: string;         // Cadena de caracteres que contiene una descripción de la noticia (dentro del contenido desde el primer <p> hasta el primer </p>)
    dia, mes, anio: string;
    horatemp: TDateTime;
+   intentosdescargaarchivo: Word;
 
 begin
      DzHTMLText2.Lines.Clear;   // Limpia la descripción de la noticia 1
@@ -492,153 +493,167 @@ begin
      begin
      // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
      // Se hace para obtener el feed XML de feedburner
+
+     // Pone el contador de intentos de descargas a 0
+
+     intentosdescargaarchivo:=0;
      repeat
-           xml:=IdHTTP1.Get('https://bandaancha.eu/feed_for_feed_burner.atom');      // Coge el feed directamente de bandaancha.eu sin pasar por feedburner.com (así se actualizan las noticias en el momento de publicarlas)
-     until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
-     indice:=1;                                                                           // Inicia el índice de noticias a 1
-     repeat                                                                               // Bucle
-          posicion:=Pos('<entry>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
-          if (posicion<>-1) then                                                          // Mientras lo encuentre (posición<>-1)
-              begin
-                   posicion2:=Pos('</entry>',xml,1)+length('</entry>');                   // Busca dentro de XML la cadena </entry> (fin de noticia)
-                   next:=posicion2;                                                       // Carga la posición en next
-                   subcadena:=Copy(xml,posicion+8,posicion2-posicion-8);                  // Rellena subcadena con la cadena que hay dentro de <entry> y </entry>
-                   posicion:=pos('<title>',subcadena,1);                                  // Busca dentro de subcadena la cadena <title> (inicio título de la noticia)
-                   posicion2:=pos('</title>',subcadena,1);                                // Busca dentro de subcadena la cadena </title> (fin de título de título)
-                   titulo:=copy(subcadena,posicion+7,posicion2-posicion-7);               // Rellena título con la cadena que hay entre <title> y </title>
-                   posicion:=pos('<name>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
-                   posicion2:=pos('</name>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
-                   autor:=copy(subcadena,posicion+6,posicion2-posicion-6);                // Rellena autor con la cadena que hay entre <name> y </name>
-                   posicion:=pos('<content type="html">',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
-                   posicion2:=pos('</content>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
-                   contenido:=copy(subcadena,posicion+20,posicion2-posicion-20);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
+           try
+              xml:=IdHTTP1.Get('https://bandaancha.eu/feed_for_feed_burner.atom');      // Coge el feed directamente de bandaancha.eu sin pasar por feedburner.com (así se actualizan las noticias en el momento de publicarlas)
+           except
+                 ;
+           end;
+           inc(intentosdescargaarchivo,1);
+     until ((IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299)) or (intentosdescargaarchivo>2);
 
-                   posicion:=Pos('img class=cn src=',contenido,1);                        // Busca dentro de contenido la cadena img class=cn src= (inicio de imagen)
-                   if  (posicion<>0) then                                                 // Si la cadena existe (posición<>0)
+     // Si se consigue descargar el archivo correctamente en menos de tres intentos
+
+     if (intentosdescargaarchivo<2) then
+        begin
+             indice:=1;                                                                           // Inicia el índice de noticias a 1
+             repeat                                                                               // Bucle
+                   posicion:=Pos('<entry>',xml,1);                                                 // Busca dentro de XML la cadena <entry> (inicio de noticia)
+                   if (posicion<>-1) then                                                          // Mientras lo encuentre (posición<>-1)
                       begin
-                           posicion2:=Pos(' ',contenido,posicion+21);                     // Busca dentro de posicion el primer espacio
-                           urlimagen:=Copy(contenido,posicion+17,posicion2-posicion-17);  // Copia la URL de la imagen (toda la cadena desde el final de img class=cn src= hasta el primer espacio)
-                           memoria:=TMemoryStream.Create;                                 // Crea la zona de memoria para la imagen
-                           // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
-                           // Se hace para obtener la imagen de la noticia de bandaancha.eu
-                           repeat
-                                 memoria.Seek(0,0);
-                                 IdHTTP1.Get(urlimagen,memoria);                          // Obtiene la imagen de la URL y la carga en la zona de memoria
-                           until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
-                           TThread.Synchronize(nil,procedure                              // Inicia otro hilo asíncrono para cargar la imagen
+                           posicion2:=Pos('</entry>',xml,1)+length('</entry>');                   // Busca dentro de XML la cadena </entry> (fin de noticia)
+                           next:=posicion2;                                                       // Carga la posición en next
+                           subcadena:=Copy(xml,posicion+8,posicion2-posicion-8);                  // Rellena subcadena con la cadena que hay dentro de <entry> y </entry>
+                           posicion:=pos('<title>',subcadena,1);                                  // Busca dentro de subcadena la cadena <title> (inicio título de la noticia)
+                           posicion2:=pos('</title>',subcadena,1);                                // Busca dentro de subcadena la cadena </title> (fin de título de título)
+                           titulo:=copy(subcadena,posicion+7,posicion2-posicion-7);               // Rellena título con la cadena que hay entre <title> y </title>
+                           posicion:=pos('<name>',subcadena,1);                                   // Busca dentro de subcadena la cadena <name> (inicio de autor)
+                           posicion2:=pos('</name>',subcadena,1);                                 // Busca dentro de subcadena la cadena </name> (fin de autor)
+                           autor:=copy(subcadena,posicion+6,posicion2-posicion-6);                // Rellena autor con la cadena que hay entre <name> y </name>
+                           posicion:=pos('<content type="html">',subcadena,1);                    // Busca dentro de subcadena la cadena <content type="html"> (inicio de contenido)
+                           posicion2:=pos('</content>',subcadena,1);                              // Busca dentro de subcadena la cadena </content> (fin de contenido)
+                           contenido:=copy(subcadena,posicion+20,posicion2-posicion-20);          // Rellena contenido con la que cadena que hay entre <content type="html"> y </content>
+
+                           posicion:=Pos('img class=cn src=',contenido,1);                        // Busca dentro de contenido la cadena img class=cn src= (inicio de imagen)
+                           if  (posicion<>0) then                                                 // Si la cadena existe (posición<>0)
+                               begin
+                                    posicion2:=Pos(' ',contenido,posicion+21);                     // Busca dentro de posicion el primer espacio
+                                    urlimagen:=Copy(contenido,posicion+17,posicion2-posicion-17);  // Copia la URL de la imagen (toda la cadena desde el final de img class=cn src= hasta el primer espacio)
+                                    memoria:=TMemoryStream.Create;                                 // Crea la zona de memoria para la imagen
+                                    // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
+                                    // Se hace para obtener la imagen de la noticia de bandaancha.eu
+                                    repeat
+                                          memoria.Seek(0,0);
+                                          IdHTTP1.Get(urlimagen,memoria);                          // Obtiene la imagen de la URL y la carga en la zona de memoria
+                                    until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
+                                    TThread.Synchronize(nil,procedure                              // Inicia otro hilo asíncrono para cargar la imagen
+                                    begin
+                                         Form1.BeginUpdate;                                             // Prepara la ventana para actualizar
+                                         case indice of                                                 // Dependiendo del valor de la variable indice
+                                              1      : begin
+                                                            Image1.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 1
+                                                       end;
+                                              2      : begin
+                                                            Image2.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 2
+                                                       end;
+                                              3      : begin
+                                                            Image3.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 3
+                                                       end;
+                                              4      : begin
+                                                            Image4.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 4
+                                                       end;
+                                              5      : begin
+                                                            Image5.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 5
+                                                       end;
+                                              6      : begin
+                                                            Image6.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 6
+                                                       end;
+                                              7      : begin
+                                                            Image7.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 7
+                                                       end;
+                                              8      : begin
+                                                            Image8.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 8
+                                                       end;
+                                              9      : begin
+                                                            Image9.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 9
+                                                       end;
+                                              10     : begin
+                                                            Image10.Bitmap.LoadFromStream(memoria);     // Carga en la imagen 10
+                                                       end;
+                                         end;
+                                         Form1.EndUpdate;                                               // Fin de actualización de ventana principal
+                                         end);
+                                    memoria.Free;                                                  // Libera la zona de memoria para imagen
+                               end                                                                 // Si no existe la cadena img class=cn src=
+                           else
+                               TThread.Synchronize(nil,procedure                                  // Inicia hilo asíncrono para cargar imagen por defecto
+                               begin
+                                    case indice of                                                     // Dependiendo del valor de la variable indice
+                                         1      : begin
+                                                       Image1.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 1
+                                                  end;
+                                         2      : begin
+                                                       Image2.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 2
+                                                  end;
+                                         3      : begin
+                                                       Image3.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 3
+                                                  end;
+                                         4      : begin
+                                                       Image4.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 4
+                                                  end;
+                                         5      : begin
+                                                       Image5.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 5
+                                                  end;
+                                         6      : begin
+                                                       Image6.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 6
+                                                  end;
+                                         7      : begin
+                                                       Image7.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 7
+                                                  end;
+                                         8      : begin
+                                                       Image8.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 8
+                                                  end;
+                                         9      : begin
+                                                       Image9.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 9
+                                                  end;
+                                         10     : begin
+                                                       Image10.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));   // Imagen por defecto 10
+                                                  end;
+                                    end;
+                               end);
+
+                           posicion:=Pos('&lt;p&gt;',contenido,1);                                           // Busca en contenido &lt;p&gt (<p>)
+                           posicion2:=Length(contenido);                                                     // Posicion2 = longitud de contenido
+                           descripcion:=Copy(contenido,posicion,posicion2-posicion);                         // Rellena descripcion desde el primer <p> hasta el final
+                           cadena:=ReplaceStr(descripcion,'&lt;','<');                                       // Rellena cadena con toda la cadena de descripcion desde el final de <p
+                           descripcion:=Copy(cadena,1,Length(cadena));                                       // Reemplaza &lt por <
+                           cadena:=ReplaceStr(descripcion,'&gt;','>');                                       // Reemplaza &gt por >
+                           descripcion:=Copy(cadena,1,Length(cadena));                                       // Rellena descrición con la nueva cadena con los caracteres con el inicio y fin de párrado estándar <p> y </p>
+                           posicion:=Pos('<p>',descripcion,1);                                               // Busca dentro de descripcion el <p> (inicio de párrafo)
+                           posicion2:=Pos('</p>',descripcion,posicion);                                      // Busca dentro de descripcion el </p> (fin de párrafo)
+                           cadena:=Copy(descripcion,posicion+3,posicion2-posicion-3);                        // Rellena cadena con todos los caracteres entre <p> y </p>
+
+                           // Nueva parte donde se cogen los enlaces dentro de la descripción y se ajustan al estilo del componente DzHTMLText
+
+                           cadena:=ReplaceStr(cadena,'<a href=','<a:');  // Se reemplaza el <a href=" con <a: que es el tag de enlace de DzHTMLText
+
+
+                           TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar la descripción de la noticia
                            begin
-                           Form1.BeginUpdate;                                             // Prepara la ventana para actualizar
-                           case indice of                                                 // Dependiendo del valor de la variable indice
-                                1      : begin
-                                              Image1.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 1
-                                         end;
-                                2      : begin
-                                              Image2.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 2
-                                         end;
-                                3      : begin
-                                              Image3.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 3
-                                         end;
-                                4      : begin
-                                              Image4.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 4
-                                         end;
-                                5      : begin
-                                              Image5.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 5
-                                         end;
-                                6      : begin
-                                              Image6.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 6
-                                         end;
-                                7      : begin
-                                              Image7.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 7
-                                         end;
-                                8      : begin
-                                              Image8.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 8
-                                         end;
-                                9      : begin
-                                              Image9.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 9
-                                         end;
-                                10     : begin
-                                              Image10.Bitmap.LoadFromStream(memoria);     // Carga en la imagen 10
-                                         end;
-                           end;
-                           Form1.EndUpdate;                                               // Fin de actualización de ventana principal
+                                case indice of                                                                    // Dependiendo del valor de indice
+                                     1      : DzHTMLText2.Lines.Add(cadena);                                      // Rellena descripción noticia 1
+                                     2      : DzHTMLText3.Lines.Add(cadena);                                      // Rellena descripción noticia 2
+                                     3      : DzHTMLText4.Lines.Add(cadena);                                      // Rellena descripción noticia 3
+                                     4      : DzHTMLText5.Lines.Add(cadena);                                      // Rellena descripción noticia 4
+                                     5      : DzHTMLText6.Lines.Add(cadena);                                      // Rellena descripción noticia 5
+                                     6      : DzHTMLText7.Lines.Add(cadena);                                      // Rellena descripción noticia 6
+                                     7      : DzHTMLText8.Lines.Add(cadena);                                      // Rellena descripción noticia 7
+                                     8      : DzHTMLText9.Lines.Add(cadena);                                      // Rellena descripción noticia 8
+                                     9      : DzHTMLText10.Lines.Add(cadena);                                     // Rellena descripción noticia 9
+                                     10     : DzHTMLText11.Lines.Add(cadena);                                     // Rellena descripción noticia 10
+                                end;
                            end);
-                           memoria.Free;                                                  // Libera la zona de memoria para imagen
-                      end                                                                 // Si no existe la cadena img class=cn src=
-                   else
-                       TThread.Synchronize(nil,procedure                                  // Inicia hilo asíncrono para cargar imagen por defecto
-                       begin
-                       case indice of                                                     // Dependiendo del valor de la variable indice
-                            1      : begin
-                                          Image1.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 1
-                                     end;
-                            2      : begin
-                                          Image2.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 2
-                                     end;
-                            3      : begin
-                                          Image3.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 3
-                                     end;
-                            4      : begin
-                                          Image4.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 4
-                                     end;
-                            5      : begin
-                                          Image5.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 5
-                                     end;
-                            6      : begin
-                                          Image6.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 6
-                                     end;
-                            7      : begin
-                                          Image7.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 7
-                                     end;
-                            8      : begin
-                                          Image8.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 8
-                                     end;
-                            9      : begin
-                                          Image9.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 9
-                                     end;
-                            10     : begin
-                                          Image10.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));   // Imagen por defecto 10
-                                     end;
-                       end;
-                       end);
 
-                   posicion:=Pos('&lt;p&gt;',contenido,1);                                           // Busca en contenido &lt;p&gt (<p>)
-                   posicion2:=Length(contenido);                                                     // Posicion2 = longitud de contenido
-                   descripcion:=Copy(contenido,posicion,posicion2-posicion);                         // Rellena descripcion desde el primer <p> hasta el final
-                   cadena:=ReplaceStr(descripcion,'&lt;','<');                                       // Rellena cadena con toda la cadena de descripcion desde el final de <p
-                   descripcion:=Copy(cadena,1,Length(cadena));                                       // Reemplaza &lt por <
-                   cadena:=ReplaceStr(descripcion,'&gt;','>');                                       // Reemplaza &gt por >
-                   descripcion:=Copy(cadena,1,Length(cadena));                                       // Rellena descrición con la nueva cadena con los caracteres con el inicio y fin de párrado estándar <p> y </p>
-                   posicion:=Pos('<p>',descripcion,1);                                               // Busca dentro de descripcion el <p> (inicio de párrafo)
-                   posicion2:=Pos('</p>',descripcion,posicion);                                      // Busca dentro de descripcion el </p> (fin de párrafo)
-                   cadena:=Copy(descripcion,posicion+3,posicion2-posicion-3);                        // Rellena cadena con todos los caracteres entre <p> y </p>
+                           posicion:=pos('<updated>',subcadena,1);                                           // Busca dentro de subcadena la cadena <updated> (fecha y hora de publicación)
+                           posicion2:=pos('</updated>',subcadena,1);                                         // Busca dentro de subcadena la cadena </updated> (fin de fecha y hora de publicación)
+                           fechahora:=copy(subcadena,posicion+9,posicion2-posicion-9);                       // Copia la cadena entre <updated> y </updated> en la variable fechahora
+                           fecha:=copy(fechahora,1,16);
 
-                   // Nueva parte donde se cogen los enlaces dentro de la descripción y se ajustan al estilo del componente DzHTMLText
-
-                   cadena:=ReplaceStr(cadena,'<a href=','<a:');  // Se reemplaza el <a href=" con <a: que es el tag de enlace de DzHTMLText
-
-
-                   TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar la descripción de la noticia
-                   begin
-                   case indice of                                                                    // Dependiendo del valor de indice
-                        1      : DzHTMLText2.Lines.Add(cadena);                                      // Rellena descripción noticia 1
-                        2      : DzHTMLText3.Lines.Add(cadena);                                      // Rellena descripción noticia 2
-                        3      : DzHTMLText4.Lines.Add(cadena);                                      // Rellena descripción noticia 3
-                        4      : DzHTMLText5.Lines.Add(cadena);                                      // Rellena descripción noticia 4
-                        5      : DzHTMLText6.Lines.Add(cadena);                                      // Rellena descripción noticia 5
-                        6      : DzHTMLText7.Lines.Add(cadena);                                      // Rellena descripción noticia 6
-                        7      : DzHTMLText8.Lines.Add(cadena);                                      // Rellena descripción noticia 7
-                        8      : DzHTMLText9.Lines.Add(cadena);                                      // Rellena descripción noticia 8
-                        9      : DzHTMLText10.Lines.Add(cadena);                                     // Rellena descripción noticia 9
-                        10     : DzHTMLText11.Lines.Add(cadena);                                     // Rellena descripción noticia 10
-                   end;
-                   end);
-
-                   posicion:=pos('<updated>',subcadena,1);                                           // Busca dentro de subcadena la cadena <updated> (fecha y hora de publicación)
-                   posicion2:=pos('</updated>',subcadena,1);                                         // Busca dentro de subcadena la cadena </updated> (fin de fecha y hora de publicación)
-                   fechahora:=copy(subcadena,posicion+9,posicion2-posicion-9);                       // Copia la cadena entre <updated> y </updated> en la variable fechahora
-                   fecha:=copy(fechahora,1,16);
-
-                   // Nueva rutina para cambiar el mes del inglés al castellano
+                           // Nueva rutina para cambiar el mes del inglés al castellano
 
                    anio:=Copy(fecha,1,4);       // Toma el año de la publicación
                    mes:=Copy(fecha,6,2);        // Toma el mes de la publicación
@@ -719,6 +734,14 @@ begin
           FMXLoadingIndicator1.Active:=False;             // Para la animación del indicar de carga de páginas
           FMXLoadingIndicator1.Visible:=False;            // Hace invisible el indicador de carga de páginas
      end);
+        end
+        else
+            TThread.Synchronize(nil,procedure
+            begin
+                 // Muestra mensaje de error al usuario si el archivo de feed no se ha podido acceder después de tres intentos
+                 TDialogService.ShowMessage('Error al acceder al servidor de bandaancha.eu. Vuelva a intentarlo en los próximos minutos.'+#13+
+                 'Si después de varios intentos no fuera posible el acceso a las noticias, contacte con el usuario djnacho a través del foro baspeed de bandaancha.eu, o bien en la dirección de email djnacho@bandaancha.eu');
+            end);
      end).Start;                                          // Inicia el hilo asíncrono para mostrar los datos de las noticias
 end;
 
