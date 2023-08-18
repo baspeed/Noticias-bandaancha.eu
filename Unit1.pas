@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------------
 //  Noticias bandaancha.eu v2
 //
-//  v2.3.766.13112022
+//  v2.5.1053
 //  Por José Ignacio Legido Barrios (usuario djnacho de bandaancha.eu)
 //  Creado para la comunidad de usuarios de bandaancha.eu
 //
@@ -12,8 +12,13 @@
 //
 // Versión actual creada en Delphi 11.2 Alexandria
 //
-// Se vuelve al código original que cogía las noticias de bandaancha.eu
-// a través de feedburner.com
+// Feed de noticias descargado directamente de bandaancha.eu para evitar la lentitud
+// de actualización de feedburner.com
+//
+// 18-08-2023: Aprovechando que hay que actualizar la app para que sea compatible con las nuevas directrices de Play Store
+// se procede a incorporar el primer código beta del sistema de notificaciones de la app. Aún está en desarrollo y sólo funciona si la app está
+// ejecutándose en primer plano.
+//
 // ---------------------------------------------------------------------------------
 
 unit Unit1;
@@ -32,7 +37,7 @@ uses
   FMX.Types, FMX.WebBrowser, System.Types, System.IOUtils, FMX.Platform,
   FMX.VirtualKeyboard, FMX.Helpers.Android, System.UITypes,
   FMX.DialogService, System.StrUtils, Android.JNI.Toast, FMX.LoadingIndicator,
-  FMX.DzHTMLText,system.SysUtils, system.DateUtils;
+  FMX.DzHTMLText,system.SysUtils, system.DateUtils, System.Notification;
 
 type
   TForm1 = class(TForm)             // Ventana principal de la aplicación (Main Activity de Android)
@@ -126,7 +131,8 @@ type
     Label23: TLabel;                // Texto en la parte superior de la pantalla de aceptación de las normas
     DzHTMLText12: TDzHTMLText;      // Texto HTML de las normas de bandaancha.eu
     Button1: TButton;               // Botón de aceptar las normas de bandaancha.eu
-    Button2: TButton;               // Botón de cancelar las normas de bandaancha.eu
+    Button2: TButton;
+    NotificationCenter1: TNotificationCenter;               // Botón de cancelar las normas de bandaancha.eu
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -156,6 +162,8 @@ type
     procedure Button2Click(Sender: TObject);         // Rutina que se ejecuta cuando el usuario pulsa el botón de cancelar la aceptación de las normas
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure IdHTTP1Redirect(Sender: TObject; var dest: string;
+      var NumRedirect: Integer; var Handled: Boolean; var VMethod: string);
   private
     { Private declarations }
   public
@@ -349,6 +357,12 @@ begin
 
 end;
 
+procedure TForm1.IdHTTP1Redirect(Sender: TObject; var dest: string;
+  var NumRedirect: Integer; var Handled: Boolean; var VMethod: string);
+begin
+     Handled:=True;
+end;
+
 // Rutina que muestra la noticia número 6 si se pulsa el título / imagen de la noticia
 
 procedure TForm1.Label11Tap(Sender: TObject; const Point: TPointF);
@@ -474,6 +488,8 @@ var
    dia, mes, anio: string;
    horatemp: TDateTime;
    intentosdescargaarchivo: Word;
+   Notificacion: TNotification;
+   cadenatitulo: TStringList;
 
 begin
      DzHTMLText2.Lines.Clear;   // Limpia la descripción de la noticia 1
@@ -504,11 +520,11 @@ begin
                  ;
            end;
            inc(intentosdescargaarchivo,1);
-     until ((IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299)) or (intentosdescargaarchivo>2);
+     until ((IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299)) or (intentosdescargaarchivo>3);
 
      // Si se consigue descargar el archivo correctamente en menos de tres intentos
 
-     if (intentosdescargaarchivo<2) then
+     if (intentosdescargaarchivo<3) then
         begin
              indice:=1;                                                                           // Inicia el índice de noticias a 1
              repeat                                                                               // Bucle
@@ -734,6 +750,51 @@ begin
           FMXLoadingIndicator1.Active:=False;             // Para la animación del indicar de carga de páginas
           FMXLoadingIndicator1.Visible:=False;            // Hace invisible el indicador de carga de páginas
      end);
+
+      //
+      // Nuevo código para ver si hay que presentar notificaciones de noticias nuevas
+      // Primero comprueba si existe el archivo newnotice.txt en el dispositivo. Si no existe muestra la notificación de la primera noticia.
+      // Si existe comprueba que el título extraido del XML del feed y el texto del archivo coinciden. Sin coinciden no hay noticias nuevas
+      // por lo que no se muestra notificación. Si no coinciden, se muestra la notificación.
+      //
+
+      if (FileExists(TPath.GetPublicPath+'/newnotice.txt')=False) then
+         begin
+              Notificacion:=NotificationCenter1.CreateNotification;
+              Notificacion.Name:='Noticias_ba';
+              Notificacion.Title:='Noticias bandaancha.eu';
+              Notificacion.AlertBody:=Label1.Text;
+              Notificacion.EnableSound:=True;
+              NotificationCenter1.PresentNotification(Notificacion);
+              Notificacion.Free;
+              cadenatitulo:=TStringList.Create;
+              cadenatitulo.Add(Label1.Text);
+              cadenatitulo.SaveToFile(TPath.GetPublicPath+'/newnotice.txt');
+              cadenatitulo.Free;
+         end
+      else
+          begin
+               cadenatitulo:=TStringList.Create;
+               cadenatitulo.LoadFromFile(TPath.GetPublicPath+'/newnotice.txt');
+               if (cadenatitulo[0]<>Label1.Text) then
+                  begin
+                       Notificacion:=NotificationCenter1.CreateNotification;
+                       Notificacion.Name:='Noticias_ba';
+                       Notificacion.Title:='Noticias bandaancha.eu';
+                       Notificacion.AlertBody:=Label1.Text;
+                       Notificacion.EnableSound:=True;
+                       NotificationCenter1.PresentNotification(Notificacion);
+                       Notificacion.Free;
+                       cadenatitulo[0]:=Label1.Text;
+                       cadenatitulo.SaveToFile(TPath.GetPublicPath+'/newnotice.txt');
+                       cadenatitulo.Free;
+                  end;
+          end;
+
+      //
+      // Fin del código para mostrar las notificaciones en pantalla
+      //
+
         end
         else
             TThread.Synchronize(nil,procedure
