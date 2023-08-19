@@ -37,7 +37,8 @@ uses
   FMX.Types, FMX.WebBrowser, System.Types, System.IOUtils, FMX.Platform,
   FMX.VirtualKeyboard, FMX.Helpers.Android, System.UITypes,
   FMX.DialogService, System.StrUtils, Android.JNI.Toast, FMX.LoadingIndicator,
-  FMX.DzHTMLText,system.SysUtils, system.DateUtils, System.Notification;
+  FMX.DzHTMLText,system.SysUtils, system.DateUtils, System.Notification,
+  System.Permissions, FMX.Dialogs;
 
 type
   TForm1 = class(TForm)             // Ventana principal de la aplicación (Main Activity de Android)
@@ -305,6 +306,26 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
      Button1.Width:=(Screen.Width/2)-20;
      Button2.Width:=Button1.Width;
+
+     //
+     // Cambio en el código debido a los cambios que se han producido en las notificaciones en Android 13.
+     //
+
+     {$IFDEF ANDROID}
+     if NotificationCenter1.AuthorizationStatus <> TAuthorizationStatus.Authorized then begin
+        NotificationCenter1.RequestPermission;
+     end;
+
+     if PermissionsService.IsPermissionGranted('android.permission.POST_NOTIFICATIONS') <> True then begin
+        PermissionsService.RequestPermissions(['android.permission.POST_NOTIFICATIONS'],
+        procedure(const APermissions: TClassicStringDynArray; const AGrantResults: TClassicPermissionStatusDynArray)
+        begin
+          if (AGrantResults[0] <> TPermissionStatus.Granted) and (TOSVersion.Check(13)=True) then
+            ShowMessage('Por favor activa las notificaciones de esta app para recibir notificaciones de noticias nuevas.');
+        end
+      );
+    end;
+  {$ENDIF}
 end;
 
 // Rutina que permite reconocer la pulsación de la tecla Atrás de Android y actuar en consecuencia en la aplicación
