@@ -46,6 +46,10 @@ object Form1: TForm1
         TextSettings.Font.Family = 'Roboto'
         TextSettings.Font.Size = 18.000000000000000000
         TabOrder = 0
+        object SpeedButton5: TSpeedButton
+          Position.X = 352.000000000000000000
+          Text = 'SpeedButton5'
+        end
       end
       object Label1: TLabel
         Position.X = 136.000000000000000000
@@ -118,6 +122,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton6: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image2: TImage
         MultiResBitmap = <
@@ -195,6 +210,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton7: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image3: TImage
         MultiResBitmap = <
@@ -272,6 +298,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton8: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image4: TImage
         MultiResBitmap = <
@@ -349,6 +386,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton9: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image5: TImage
         MultiResBitmap = <
@@ -426,6 +474,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton10: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image6: TImage
         MultiResBitmap = <
@@ -503,6 +562,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton11: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image7: TImage
         MultiResBitmap = <
@@ -580,6 +650,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton12: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image8: TImage
         MultiResBitmap = <
@@ -650,6 +731,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton13: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object ShadowEffect9: TShadowEffect
         Distance = 3.000000000000000000
@@ -734,6 +826,17 @@ object Form1: TForm1
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.VertAlign = Leading
         TabOrder = 1
+        object SpeedButton14: TSpeedButton
+          Align = Right
+          IconTintColor = claDarkorange
+          Margins.Top = -10.000000000000000000
+          Position.X = 307.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'actiontoolbutton'
+        end
       end
       object Image10: TImage
         MultiResBitmap = <
@@ -844,6 +947,143 @@ object Form1: TForm1
       Position.Y = 104.000000000000000000
     end
   end
+  object Rectangle11: TRectangle
+    Position.X = 56.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 50.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    object ShadowEffect11: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.300000011920929000
+      Opacity = 0.600000023841857900
+      ShadowColor = claBlack
+    end
+    object GroupBox1: TGroupBox
+      Position.X = 120.000000000000000000
+      Position.Y = 32.000000000000000000
+      Text = 'GroupBox1'
+      TabOrder = 0
+      object Button3: TButton
+        Position.X = 40.000000000000000000
+        Position.Y = 248.000000000000000000
+        TabOrder = 37
+        Text = 'Button3'
+        object ImageControl4: TImageControl
+          Bitmap.PNG = {
+            89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+            87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            034F494441546843ED993D6F1341108667E384C211C612054528A00689484854
+            083B5409468A93860A25FC82848E02099068A8627E0171491327928182021BD1
+            5020411F2969E9828953C4BE2C339BB96067F73EF6CEBE9C143F92E59DB3EC7D
+            DFDB99BDDD358C1871CE11FC1E9BC2A34FD744E7681EA42CE2CFE61D80FC18C0
+            347D7604F03303B00720F74088869C18DB6ABE9FDB555F8C492C0385A52F79F1
+            B7BDE2485176C58645991272535E9C7CDBACCEA0B9684432E00AEF48581DC7BB
+            CD9723D1C551991050896AC4DA4061B1BEDC95B01657F869C8C8B8104F9A1BA5
+            4DBE140A1CF9F01417EB2F408A7783164FA8DF9450537D58106A0454CAB40ED6
+            24C0325F1A2A286A5DE6B24FC3A454A81148523C417D519F1CFA1268A0B0F0E1
+            6592E25DA84FEA9B434F7C53880A96729E436B6667AEE26B0AA66F5EE62BFF29
+            2E7EE456000216FC0ADBD300E57DB7D5DE895AB0AF9FDD86BB77AE70A413D680
+            9A9D7293D7BDEAC13B855A0791E778BAF37EE26D501A500B871A4603EAEE835C
+            E1D09AD9FB53DC1A0CA4853471D887790462DC7D62FA869EF3CFDFFC5069E3BE
+            6CF01B05A3015CA7CC7373607CFBFE9B5BD1F0D2A419A055255EB45A98250169
+            226D1C9EA08FC0A12C732B7D18B469D3E8BD857A43802870189AC6C6036E05B3
+            DFEEC0C3C79F390A0F3EDCB6BED64A7D268C35306CB6775BDCB2456A138B6640
+            82B8C4CDA1B1BD13CD80499B66808A859B4363BFDDE5961D266D5A0DE0020A53
+            2D1EA67AB09DFBBD68D64A7D9AF51472E017375387499B66003232F2067BE818
+            B4E906528D08362060CC6A539D24F87C6A70F3047D042E88D41A3069D30CD089
+            591A0B9934994EF38C35203290BA51F0D2642EE25CB6E2749D3F1C9D394A0B6A
+            E2B00FA301DA7F66C633C62F9C05A4C57E4F9C9251F0BBFB84A701350A1399C4
+            CF834E431AFC4EE87CCF85083E5CB23AAF1C20AF70EDE37BB81568804013EBF8
+            B6741C254615C5076680770DF492CBD28940F53848842AF71948A8117049289D
+            02D3A6172B03049D973A9DA30A4E6D03DDB9D16CA30AD6F20F0E6B03843A256B
+            1DAC62A7AB718D28E1F4CCC1A9D26FB6F122920117D708AE53CAF8A8BFC59743
+            416B1BB53C8828DC2596815ED4A1D3A12C4BA0BF59651E1C91774DA9C5A1DA8C
+            883DB524C655E5A0FE661D31E27C03F00F1C0335A3F00F19980000000049454E
+            44AE426082}
+          Position.X = 18.000000000000000000
+          Position.Y = -4.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+        end
+      end
+      object Button4: TButton
+        Position.X = 48.000000000000000000
+        Position.Y = 64.000000000000000000
+        TabOrder = 38
+        Text = 'Button4'
+        object ImageControl2: TImageControl
+          Position.X = 16.000000000000000000
+          Position.Y = 8.000000000000000000
+          TabOrder = 5
+        end
+      end
+      object Button5: TButton
+        Align = Horizontal
+        StyledSettings = [Family, Size, FontColor]
+        Margins.Left = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 35.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 41
+        Text = 'Compartir con Facebook'
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TintColor = claDarkorange
+        object ImageControl3: TImageControl
+          Bitmap.PNG = {
+            89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+            87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            034F494441546843ED993D6F1341108667E384C211C612054528A00689484854
+            083B5409468A93860A25FC82848E02099068A8627E0171491327928182021BD1
+            5020411F2969E9828953C4BE2C339BB96067F73EF6CEBE9C143F92E59DB3EC7D
+            DFDB99BDDD358C1871CE11FC1E9BC2A34FD744E7681EA42CE2CFE61D80FC18C0
+            347D7604F03303B00720F74088869C18DB6ABE9FDB555F8C492C0385A52F79F1
+            B7BDE2485176C58645991272535E9C7CDBACCEA0B9684432E00AEF48581DC7BB
+            CD9723D1C551991050896AC4DA4061B1BEDC95B01657F869C8C8B8104F9A1BA5
+            4DBE140A1CF9F01417EB2F408A7783164FA8DF9450537D58106A0454CAB40ED6
+            24C0325F1A2A286A5DE6B24FC3A454A81148523C417D519F1CFA1268A0B0F0E1
+            6592E25DA84FEA9B434F7C53880A96729E436B6667AEE26B0AA66F5EE62BFF29
+            2E7EE456000216FC0ADBD300E57DB7D5DE895AB0AF9FDD86BB77AE70A413D680
+            9A9D7293D7BDEAC13B855A0791E778BAF37EE26D501A500B871A4603EAEE835C
+            E1D09AD9FB53DC1A0CA4853471D887790462DC7D62FA869EF3CFDFFC5069E3BE
+            6CF01B05A3015CA7CC7373607CFBFE9B5BD1F0D2A419A055255EB45A98250169
+            226D1C9EA08FC0A12C732B7D18B469D3E8BD857A43802870189AC6C6036E05B3
+            DFEEC0C3C79F390A0F3EDCB6BED64A7D268C35306CB6775BDCB2456A138B6640
+            82B8C4CDA1B1BD13CD80499B66808A859B4363BFDDE5961D266D5A0DE0020A53
+            2D1EA67AB09DFBBD68D64A7D9AF51472E017375387499B66003232F2067BE818
+            B4E906528D08362060CC6A539D24F87C6A70F3047D042E88D41A3069D30CD089
+            591A0B9934994EF38C35203290BA51F0D2642EE25CB6E2749D3F1C9D394A0B6A
+            E2B00FA301DA7F66C633C62F9C05A4C57E4F9C9251F0BBFB84A701350A1399C4
+            CF834E431AFC4EE87CCF85083E5CB23AAF1C20AF70EDE37BB81568804013EBF8
+            B6741C254615C5076680770DF492CBD28940F53848842AF71948A8117049289D
+            02D3A6172B03049D973A9DA30A4E6D03DDB9D16CA30AD6F20F0E6B03843A256B
+            1DAC62A7AB718D28E1F4CCC1A9D26FB6F122920117D708AE53CAF8A8BFC59743
+            416B1BB53C8828DC2596815ED4A1D3A12C4BA0BF59651E1C91774DA9C5A1DA8C
+            883DB524C655E5A0FE661D31E27C03F00F1C0335A3F00F19980000000049454E
+            44AE426082}
+          Position.X = 16.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+        end
+      end
+    end
+  end
+  object Rectangle12: TRectangle
+    Position.X = 40.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 50.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+  end
   object MultiView1: TMultiView
     Size.Width = 250.000000000000000000
     Size.Height = 432.000000000000000000
@@ -893,7 +1133,7 @@ object Form1: TForm1
           Position.Y = 96.000000000000000000
         end
         object DzHTMLText1: TDzHTMLText
-          TabOrder = 136
+          TabOrder = 182
           Position.X = 48.000000000000000000
           Position.Y = 320.000000000000000000
         end

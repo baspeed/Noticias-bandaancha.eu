@@ -18,7 +18,10 @@
 // 18-08-2023: Aprovechando que hay que actualizar la app para que sea compatible con las nuevas directrices de Play Store
 // se procede a incorporar el primer código beta del sistema de notificaciones de la app. Aún está en desarrollo y sólo funciona si la app está
 // ejecutándose en primer plano.
-//
+// 27-08-2023: Se incorpora el código que permite que cuando el usuario pulsa sobre la notificación de la app, se bra directemente el enlace
+// de esa noticia, sin tener que pulsar nuevamente sobre el título o la imagen de la noticia una vez pulsada la notificación.
+// 13-09-2023: Se incorpora el código para compartir las noticias desde facebook y X (Twitter) de forma inicial. En próximas revisiones
+// se añadirán más redes sociales.
 // ---------------------------------------------------------------------------------
 
 unit Unit1;
@@ -133,7 +136,27 @@ type
     DzHTMLText12: TDzHTMLText;      // Texto HTML de las normas de bandaancha.eu
     Button1: TButton;               // Botón de aceptar las normas de bandaancha.eu
     Button2: TButton;
-    NotificationCenter1: TNotificationCenter;               // Botón de cancelar las normas de bandaancha.eu
+    NotificationCenter1: TNotificationCenter;
+    SpeedButton5: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    SpeedButton11: TSpeedButton;
+    SpeedButton12: TSpeedButton;
+    SpeedButton13: TSpeedButton;
+    SpeedButton14: TSpeedButton;
+    Rectangle11: TRectangle;
+    ShadowEffect11: TShadowEffect;
+    GroupBox1: TGroupBox;
+    Button3: TButton;
+    Rectangle12: TRectangle;
+    Button4: TButton;
+    ImageControl2: TImageControl;
+    Button5: TButton;
+    ImageControl3: TImageControl;
+    ImageControl4: TImageControl;               // Botón de cancelar las normas de bandaancha.eu
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -160,11 +183,27 @@ type
     procedure WebBrowser1DidFinishLoad(ASender: TObject);    // Rutina que se ejecuta cuando finaliza la carga de la página web
     procedure DzHTMLText1LinkClick(Sender: TObject; Link: TDHBaseLink;     // Rutina que se ejecuta al hacer click sobre cualquier enlace dentro de la descripción de la aplicación en el menú deslizante
       var Handled: Boolean);
-    procedure Button2Click(Sender: TObject);         // Rutina que se ejecuta cuando el usuario pulsa el botón de cancelar la aceptación de las normas
-    procedure Button1Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);         // Rutina que se ejecuta cuando el usuario pulsa el botón de cancelar la aceptación de las normas de uso de bandaancha.eu
+    procedure Button1Click(Sender: TObject);         // Rutina que se ejecuta cuando el usuario pulsa el botón de aceptar las normas de uso de bandaancha.eu
+    procedure FormCreate(Sender: TObject);           // Rutina que se activa cuando se crea el activity de la aplicación y antes de ejecutar nada más de la app
     procedure IdHTTP1Redirect(Sender: TObject; var dest: string;
-      var NumRedirect: Integer; var Handled: Boolean; var VMethod: string);
+      var NumRedirect: Integer; var Handled: Boolean; var VMethod: string);  // Si hay una redirección HTTP al acceder a bandaancha.eu, el control se hace cargo de esa redirección
+    procedure NotificationCenter1ReceiveLocalNotification(Sender: TObject;
+      ANotification: TNotification);                              // Rutina que se ejecuta cuando se pulsa sobre la notificación de la app (abre directamente en la app el enlace de esa noticia)
+    procedure SalirCompartir(Sender: TObject);                    // Rutina que se ejecuta cuando el usuario pulsa volver a la aplicación en las opciones de compartir noticia
+    procedure CompartirNoticia1(Sender: TObject);                 // Rutinas para preparar la app para compartir noticias en facebook y x (twitter)
+    procedure CompartirNoticia2(Sender: TObject);
+    procedure CompartirNoticia3(Sender: TObject);
+    procedure CompartirNoticia4(Sender: TObject);
+    procedure CompartirNoticia5(Sender: TObject);
+    procedure CompartirNoticia6(Sender: TObject);
+    procedure CompartirNoticia7(Sender: TObject);
+    procedure CompartirNoticia8(Sender: TObject);
+    procedure CompartirNoticia9(Sender: TObject);
+    procedure CompartirNoticia10(Sender: TObject);
+    procedure CompartirFacebook(Sender: TObject);                 // Rutina para compartir noticias en facebook
+    procedure CompartirTwitter(Sender: TObject);                  // Rutina para compartir noticias en x (twitter)
+
   private
     { Private declarations }
   public
@@ -183,6 +222,7 @@ implementation
 
 var
    enlace: array[1..10] of string;       // Array de cadenas que representan los enlaces en texto de las URL a las noticias
+   indicenoticia: Word;
 
 // Rutina para abrir la web de bandaancha.eu en la aplicación
 
@@ -262,6 +302,111 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 begin
      Application.Terminate;           // Termina la aplicación inmediatamente
+end;
+
+
+// Rutina para compartir la noticia de bandaancha.eu en facebook
+
+
+procedure TForm1.CompartirFacebook(Sender: TObject);
+begin
+     Rectangle12.Visible:=False;           // Se hace invisible el rectángulo que oscurece el fondo
+     Rectangle11.Visible:=False;           // Se hace invisible el rectángulo que muestra las opciones de compartir la noticia
+     AbreURL('https://www.facebook.com/sharer.php?u='+enlace[indicenoticia]);  // Muestra en el navegador interno la URL para compartir la noticia de facebook gracias al índice indicado
+end;
+
+
+// Rutina para mostrar las opciones de compartir noticia (son iguales todas excepto por el índice que indica la noticia que se va a compartir)
+// Se comenta sólo la primera ya que todas son iguales excepto por el índice de la noticia
+
+procedure TForm1.CompartirNoticia1(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;            // Se hace visible el rectángulo que oscurece el fondo
+     Rectangle11.Visible:=True;            // Se hace visible el rectángulo que contiene las opciones para compartir noticias
+     Rectangle11.BringToFront;             // El rectángulo para compartir se lleva delante de todos los demás controles
+     indicenoticia:=1;                     // Situa el índice de noticia en el 1 ya que es la primera noticia (con este índice se accede a los enlaces de las noticias)
+end;
+
+procedure TForm1.CompartirNoticia10(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=10;
+end;
+
+procedure TForm1.CompartirNoticia2(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=2;
+end;
+
+procedure TForm1.CompartirNoticia3(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=3;
+end;
+
+procedure TForm1.CompartirNoticia4(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=4;
+end;
+
+procedure TForm1.CompartirNoticia5(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=5;
+end;
+
+procedure TForm1.CompartirNoticia6(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=6;
+end;
+
+procedure TForm1.CompartirNoticia7(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=7;
+end;
+
+procedure TForm1.CompartirNoticia8(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=8;
+end;
+
+procedure TForm1.CompartirNoticia9(Sender: TObject);
+begin
+     Rectangle12.Visible:=True;
+     Rectangle11.Visible:=True;
+     Rectangle11.BringToFront;
+     indicenoticia:=9;
+end;
+
+
+// Rutina para compartir la noticia de bandaancha.eu en X (antiguo Twitter)
+
+procedure TForm1.CompartirTwitter(Sender: TObject);
+begin
+      Rectangle12.Visible:=False;         // El rectángulo que oscurece el fondo se hace invisible
+      Rectangle11.Visible:=False;         // El rectángulo que hace visible las opciones para compartir se hace invisible
+      AbreURL('http://www.twitter.com/share?url='+enlace[indicenoticia]);    // Muestra en el navegador interno de la app la URL para compartir la noticia en X (antiguo Twitter) gracias al índice indicado
 end;
 
 // Rutina para abrir un enlace presente en la descripción HTML de la aplicación (localizada en el menú deslizante)
@@ -360,28 +505,38 @@ begin
                     Key:=0;                    // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
                end
             else
-                begin
-                     // Si se pulsa la tecla Atrás de Android en la pantalla principal de la aplicación
-                     // Muestra cuadro de diálogo para seleccionar si se quiere salir de la aplicación
-                     TDialogService.MessageDialog('¿Desea realmente salir de Noticias bandaancha.eu?',TMsgDlgType.mtWarning,
-                                                 [TMsgDlgBtn.mbCancel,TMsgDlgBtn.mbOK],TMsgDlgBtn.mbOK,0, procedure (const AResult: TModalResult)
-                                                 begin
-                                                      case AResult of
-                                                           mrOk:     Application.Terminate; // Si se selecciona OK, se sale directamente de la aplicación
-                                                           mrCancel: ;                      // Si se selecciona Cancel, se vuelve a la aplicación sin hacer nada
-                                                      end;
-                                                 end);
-                     Key:=0;
-                end;
+                if (Rectangle11.Visible=True) then
+                   begin
+                        Rectangle12.Visible:=False;       // El rectángulo que oscurece el fondo lo hacemos no visible
+                        Rectangle11.Visible:=False;       // El rectángulo que muestra las opciones para compartir la noticia lo hacemos no visible
+                        Key:=0;                           // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
+                   end
+                else
+                    begin
+                         // Si se pulsa la tecla Atrás de Android en la pantalla principal de la aplicación
+                         // Muestra cuadro de diálogo para seleccionar si se quiere salir de la aplicación
+                         TDialogService.MessageDialog('¿Desea realmente salir de Noticias bandaancha.eu?',TMsgDlgType.mtWarning,
+                                                     [TMsgDlgBtn.mbCancel,TMsgDlgBtn.mbOK],TMsgDlgBtn.mbOK,0, procedure (const AResult: TModalResult)
+                                                     begin
+                                                          case AResult of
+                                                               mrOk:     Application.Terminate; // Si se selecciona OK, se sale directamente de la aplicación
+                                                               mrCancel: ;                      // Si se selecciona Cancel, se vuelve a la aplicación sin hacer nada
+                                                          end;
+                                                     end);
+                         Key:=0;
+                    end;
 
   end;
 
 end;
 
+
+// Rutina que se ejecuta cuando hay una redirección HTTP al acceder a cualquier URL de internet
+
 procedure TForm1.IdHTTP1Redirect(Sender: TObject; var dest: string;
   var NumRedirect: Integer; var Handled: Boolean; var VMethod: string);
 begin
-     Handled:=True;
+     Handled:=True;         // El control se hace cargo de la redirección apuntando a la nueva URL
 end;
 
 // Rutina que muestra la noticia número 6 si se pulsa el título / imagen de la noticia
@@ -484,6 +639,20 @@ begin
              ImageControl1.Visible:=False; // Oculta control de copia de pantalla
              WebBrowser1.Visible:=True;    // Hace visible el navegador web interno de la aplicación
         end;
+end;
+
+procedure TForm1.NotificationCenter1ReceiveLocalNotification(Sender: TObject;
+  ANotification: TNotification);
+begin
+
+     //
+     // Código que permite abrir directamente el enlace de la noticia que se muestra como notificación en el dispositivo
+     //
+
+     // Si la notificacion es Noticias_ba (notificación de la app)
+     if (ANotification.Name='Noticias_ba') then
+        // Abre primer enlace de las noticias (la app siempre muestra como notificación la primera noticia más nueva)
+        AbreURL(enlace[1]);
 end;
 
 // Rutina que parsea el código XML de feedburner.com para obtener todos los datos necesarios de las noticias de bandancha.eu
@@ -779,35 +948,61 @@ begin
       // por lo que no se muestra notificación. Si no coinciden, se muestra la notificación.
       //
 
+      // Si no existe el fichero newnotice.txt (fichero de texto que guarda el título de la noticia más reciente guardada por la app)
       if (FileExists(TPath.GetPublicPath+'/newnotice.txt')=False) then
          begin
+              // Crea la notificación
               Notificacion:=NotificationCenter1.CreateNotification;
+              // Asigna un nombre a la notificación
               Notificacion.Name:='Noticias_ba';
+              // Asigna un título a la notificación
               Notificacion.Title:='Noticias bandaancha.eu';
+              // Asigna un texto a la notificación
               Notificacion.AlertBody:=Label1.Text;
+              // Activa sonido de notificación
               Notificacion.EnableSound:=True;
+              // Presenta notificación al usuario
               NotificationCenter1.PresentNotification(Notificacion);
+              // Libera notificación de la memoria
               Notificacion.Free;
+              // Crea lista de cadenas de caracteres
               cadenatitulo:=TStringList.Create;
+              // Añade el título de la noticia a la primera cadena
               cadenatitulo.Add(Label1.Text);
+              // Graba esa lista como el archivo newnotice.txt
               cadenatitulo.SaveToFile(TPath.GetPublicPath+'/newnotice.txt');
+              // Libera memoria de la lista de cadenas de caracteres
               cadenatitulo.Free;
          end
       else
+          // Si el archivo newnotice.txt existe
           begin
+               // Crea lista de cadenas de caracteres
                cadenatitulo:=TStringList.Create;
+               // Carga en la lista el fichero newnotice.txt
                cadenatitulo.LoadFromFile(TPath.GetPublicPath+'/newnotice.txt');
+               // Si la primera cadena (título guardado de la primera noticia) no coincide con el título de la primera noticia actual
                if (cadenatitulo[0]<>Label1.Text) then
                   begin
+                       // Crea notificación
                        Notificacion:=NotificationCenter1.CreateNotification;
+                       // Asigna nombre a la notificación
                        Notificacion.Name:='Noticias_ba';
+                       // Asigna título a la notificación
                        Notificacion.Title:='Noticias bandaancha.eu';
+                       // Asigna texto a la notificación
                        Notificacion.AlertBody:=Label1.Text;
+                       // Activa sonido de notificación
                        Notificacion.EnableSound:=True;
+                       // Presenta notificación al usuario
                        NotificationCenter1.PresentNotification(Notificacion);
+                       // Libera notificación de la memoria
                        Notificacion.Free;
+                       // Cambia el primer elemento de la lista de cadena de caracteres por el título de la primera noticia
                        cadenatitulo[0]:=Label1.Text;
+                       // Graba la lista como el archivo newnotice.txt
                        cadenatitulo.SaveToFile(TPath.GetPublicPath+'/newnotice.txt');
+                       // Libera memoria de la lista de cadena de caracteres
                        cadenatitulo.Free;
                   end;
           end;
@@ -825,6 +1020,15 @@ begin
                  'Si después de varios intentos no fuera posible el acceso a las noticias, contacte con el usuario djnacho a través del foro baspeed de bandaancha.eu, o bien en la dirección de email djnacho@bandaancha.eu');
             end);
      end).Start;                                          // Inicia el hilo asíncrono para mostrar los datos de las noticias
+end;
+
+
+// Rutina que ocurre cuando el usuario pulsa el botón de volver a la aplicación en el rectángulo para compartir noticias
+
+procedure TForm1.SalirCompartir(Sender: TObject);
+begin
+     Rectangle12.Visible:=False;        // El rectángulo que oscurece el fondo se hace invisible
+     Rectangle11.Visible:=False;        // El rectángulo que muestra las opciones para compartir noticias se hace invisible
 end;
 
 
