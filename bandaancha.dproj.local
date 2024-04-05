@@ -10,8 +10,8 @@
     <Transaction>2020/07/27 11:48:15.000.564,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2020/07/27 11:49:01.000.505,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2020/09/08 17:49:26.000.434,=C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2020/09/08 17:50:20.000.726,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.fmx=F:\Proyectos\Prueba Cards\Unit1.fmx</Transaction>
     <Transaction>2020/09/08 17:50:20.000.726,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=F:\Proyectos\Prueba Cards\Unit1.pas</Transaction>
+    <Transaction>2020/09/08 17:50:20.000.726,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.fmx=F:\Proyectos\Prueba Cards\Unit1.fmx</Transaction>
     <Transaction>2020/09/08 17:50:24.000.975,C:\Users\nacho\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=F:\Proyectos\Prueba Cards\Cards.dproj</Transaction>
     <Transaction>2020/09/08 21:37:31.000.831,=F:\Proyectos\Prueba Cards\Roboto-Medium.ttf</Transaction>
     <Transaction>2020/09/08 21:37:31.000.838,=F:\Proyectos\Prueba Cards\Roboto-Thin.ttf</Transaction>
@@ -60,10 +60,10 @@
     <Transaction>2022/10/12 21:51:52.000.036,=I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\JavascriptHelper\JavaScriptHelper.jar</Transaction>
     <Transaction>2022/10/12 21:53:04.000.323,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNC\FNC.jar=</Transaction>
     <Transaction>2022/10/12 22:00:24.000.586,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\CustomTabs\CustomTabs.jar=</Transaction>
+    <Transaction>2022/10/12 22:01:04.000.536,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\v13\android-support-v13.jar=</Transaction>
+    <Transaction>2022/10/12 22:01:04.000.606,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNCPrintDocumentAdapter\FNCPrintDocumentAdapter.jar=</Transaction>
     <Transaction>2022/10/12 22:01:04.000.647,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\WebChromeClient\FNCWebChromeClient.jar=</Transaction>
     <Transaction>2022/10/12 22:01:04.000.690,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\JavascriptHelper\JavaScriptHelper.jar=</Transaction>
-    <Transaction>2022/10/12 22:01:04.000.606,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\FNCPrintDocumentAdapter\FNCPrintDocumentAdapter.jar=</Transaction>
-    <Transaction>2022/10/12 22:01:04.000.536,I:\Componentes Delphi\TMS_FNC_UI_Pack_v3.7.3.1_Soure_Code_Downloadly.ir\TMS FNC UI Pack v3.7.3.1 Soure Code\Android Support\v13\android-support-v13.jar=</Transaction>
     <Transaction>2022/10/13 11:49:17.000.916,I:\bandaancha\ROBOTOITALIC.ttf=</Transaction>
     <Transaction>2022/10/13 11:49:17.000.725,I:\bandaancha\KELSON.ttf=</Transaction>
     <Transaction>2022/10/13 11:49:18.000.069,I:\bandaancha\UBUNTU.ttf=</Transaction>
@@ -75,7 +75,7 @@
     <Transaction>2022/11/23 11:13:29.000.171,C:\Program Files (x86)\Embarcadero\Studio\22.0\source\fmx\FMX.FontGlyphs.Android.pas=</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android64="5b214e75" Android=""/>
+		<NoProfile iOSSimulator="iPhone5" Android64="a505b1fc" Android="a505b1fc"/>
 	</ActiveMobileDevice>
 	<BT_BuildType>AppStore</BT_BuildType>
 </BorlandProject>

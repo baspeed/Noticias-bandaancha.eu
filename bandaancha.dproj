@@ -1,15 +1,15 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{16AB0590-8E3F-4673-9065-D43A00F11A7E}</ProjectGuid>
-        <ProjectVersion>19.5</ProjectVersion>
+        <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <MainSource>bandaancha.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Android64</Platform>
         <TargetedPlatforms>693267</TargetedPlatforms>
         <AppType>Application</AppType>
-        <PlatformSDK Condition="'$(PlatformSDK)'=='' And '$(Platform)'=='Android64'">AndroidSDK26.1.1_64bit.sdk</PlatformSDK>
+        <PlatformSDK Condition="'$(PlatformSDK)'=='' And '$(Platform)'=='Android64'">AndroidSDK25.2.5_64bit.sdk</PlatformSDK>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -188,7 +188,7 @@
         <Android_NotificationIcon72>$(BDS)\bin\Artwork\Android\FM_NotificationIcon_72x72.png</Android_NotificationIcon72>
         <Android_NotificationIcon96>$(BDS)\bin\Artwork\Android\FM_NotificationIcon_96x96.png</Android_NotificationIcon96>
         <Android_LauncherIcon192>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png</Android_LauncherIcon192>
-        <EnabledSysJars>annotation-1.2.0.dex.jar;asynclayoutinflater-1.0.0.dex.jar;billing-4.0.0.dex.jar;browser-1.0.0.dex.jar;cloud-messaging.dex.jar;collection-1.0.0.dex.jar;coordinatorlayout-1.0.0.dex.jar;core-1.5.0-rc02.dex.jar;core-common-2.0.1.dex.jar;core-runtime-2.0.1.dex.jar;cursoradapter-1.0.0.dex.jar;customview-1.0.0.dex.jar;documentfile-1.0.0.dex.jar;drawerlayout-1.0.0.dex.jar;firebase-annotations-16.0.0.dex.jar;firebase-common-20.0.0.dex.jar;firebase-components-17.0.0.dex.jar;firebase-datatransport-18.0.0.dex.jar;firebase-encoders-17.0.0.dex.jar;firebase-encoders-json-18.0.0.dex.jar;firebase-iid-interop-17.1.0.dex.jar;firebase-installations-17.0.0.dex.jar;firebase-installations-interop-17.0.0.dex.jar;firebase-measurement-connector-19.0.0.dex.jar;firebase-messaging-22.0.0.dex.jar;fmx.dex.jar;fragment-1.0.0.dex.jar;google-play-licensing.dex.jar;interpolator-1.0.0.dex.jar;javax.inject-1.dex.jar;legacy-support-core-ui-1.0.0.dex.jar;legacy-support-core-utils-1.0.0.dex.jar;lifecycle-common-2.0.0.dex.jar;lifecycle-livedata-2.0.0.dex.jar;lifecycle-livedata-core-2.0.0.dex.jar;lifecycle-runtime-2.0.0.dex.jar;lifecycle-service-2.0.0.dex.jar;lifecycle-viewmodel-2.0.0.dex.jar;listenablefuture-1.0.dex.jar;loader-1.0.0.dex.jar;localbroadcastmanager-1.0.0.dex.jar;play-services-ads-20.1.0.dex.jar;play-services-ads-base-20.1.0.dex.jar;play-services-ads-identifier-17.0.0.dex.jar;play-services-ads-lite-20.1.0.dex.jar;play-services-base-17.5.0.dex.jar;play-services-basement-17.6.0.dex.jar;play-services-cloud-messaging-16.0.0.dex.jar;play-services-drive-17.0.0.dex.jar;play-services-games-21.0.0.dex.jar;play-services-location-18.0.0.dex.jar;play-services-maps-17.0.1.dex.jar;play-services-measurement-base-18.0.0.dex.jar;play-services-measurement-sdk-api-18.0.0.dex.jar;play-services-places-placereport-17.0.0.dex.jar;play-services-stats-17.0.0.dex.jar;play-services-tasks-17.2.0.dex.jar;print-1.0.0.dex.jar;room-common-2.1.0.dex.jar;room-runtime-2.1.0.dex.jar;slidingpanelayout-1.0.0.dex.jar;sqlite-2.0.1.dex.jar;sqlite-framework-2.0.1.dex.jar;swiperefreshlayout-1.0.0.dex.jar;transport-api-3.0.0.dex.jar;transport-backend-cct-3.0.0.dex.jar;transport-runtime-3.0.0.dex.jar;user-messaging-platform-1.0.0.dex.jar;versionedparcelable-1.1.1.dex.jar;viewpager-1.0.0.dex.jar;work-runtime-2.1.0.dex.jar</EnabledSysJars>
+        <EnabledSysJars>activity-1.7.2.dex.jar;annotation-experimental-1.3.0.dex.jar;annotation-jvm-1.6.0.dex.jar;annotations-13.0.dex.jar;appcompat-1.2.0.dex.jar;appcompat-resources-1.2.0.dex.jar;billing-6.0.1.dex.jar;biometric-1.1.0.dex.jar;browser-1.4.0.dex.jar;cloud-messaging.dex.jar;collection-1.1.0.dex.jar;concurrent-futures-1.1.0.dex.jar;core-1.10.1.dex.jar;core-common-2.2.0.dex.jar;core-ktx-1.10.1.dex.jar;core-runtime-2.2.0.dex.jar;cursoradapter-1.0.0.dex.jar;customview-1.0.0.dex.jar;documentfile-1.0.0.dex.jar;drawerlayout-1.0.0.dex.jar;error_prone_annotations-2.9.0.dex.jar;exifinterface-1.3.6.dex.jar;firebase-annotations-16.2.0.dex.jar;firebase-common-20.3.1.dex.jar;firebase-components-17.1.0.dex.jar;firebase-datatransport-18.1.7.dex.jar;firebase-encoders-17.0.0.dex.jar;firebase-encoders-json-18.0.0.dex.jar;firebase-encoders-proto-16.0.0.dex.jar;firebase-iid-interop-17.1.0.dex.jar;firebase-installations-17.1.3.dex.jar;firebase-installations-interop-17.1.0.dex.jar;firebase-measurement-connector-19.0.0.dex.jar;firebase-messaging-23.1.2.dex.jar;fmx.dex.jar;fragment-1.2.5.dex.jar;google-play-licensing.dex.jar;interpolator-1.0.0.dex.jar;javax.inject-1.dex.jar;kotlin-stdlib-1.8.22.dex.jar;kotlin-stdlib-common-1.8.22.dex.jar;kotlin-stdlib-jdk7-1.8.22.dex.jar;kotlin-stdlib-jdk8-1.8.22.dex.jar;kotlinx-coroutines-android-1.6.4.dex.jar;kotlinx-coroutines-core-jvm-1.6.4.dex.jar;legacy-support-core-utils-1.0.0.dex.jar;lifecycle-common-2.6.1.dex.jar;lifecycle-livedata-2.6.1.dex.jar;lifecycle-livedata-core-2.6.1.dex.jar;lifecycle-runtime-2.6.1.dex.jar;lifecycle-service-2.6.1.dex.jar;lifecycle-viewmodel-2.6.1.dex.jar;lifecycle-viewmodel-savedstate-2.6.1.dex.jar;listenablefuture-1.0.dex.jar;loader-1.0.0.dex.jar;localbroadcastmanager-1.0.0.dex.jar;okio-jvm-3.4.0.dex.jar;play-services-ads-22.2.0.dex.jar;play-services-ads-base-22.2.0.dex.jar;play-services-ads-identifier-18.0.0.dex.jar;play-services-ads-lite-22.2.0.dex.jar;play-services-appset-16.0.1.dex.jar;play-services-base-18.1.0.dex.jar;play-services-basement-18.1.0.dex.jar;play-services-cloud-messaging-17.0.1.dex.jar;play-services-location-21.0.1.dex.jar;play-services-maps-18.1.0.dex.jar;play-services-measurement-base-20.1.2.dex.jar;play-services-measurement-sdk-api-20.1.2.dex.jar;play-services-stats-17.0.2.dex.jar;play-services-tasks-18.0.2.dex.jar;print-1.0.0.dex.jar;profileinstaller-1.3.0.dex.jar;room-common-2.2.5.dex.jar;room-runtime-2.2.5.dex.jar;savedstate-1.2.1.dex.jar;sqlite-2.1.0.dex.jar;sqlite-framework-2.1.0.dex.jar;startup-runtime-1.1.1.dex.jar;tracing-1.0.0.dex.jar;transport-api-3.0.0.dex.jar;transport-backend-cct-3.1.8.dex.jar;transport-runtime-3.1.8.dex.jar;user-messaging-platform-2.0.0.dex.jar;vectordrawable-1.1.0.dex.jar;vectordrawable-animated-1.1.0.dex.jar;versionedparcelable-1.1.1.dex.jar;viewpager-1.0.0.dex.jar;work-runtime-2.7.0.dex.jar</EnabledSysJars>
         <PF_KeyStore>F:\KeyStore\baspeed.keystore</PF_KeyStore>
         <PF_KeyStorePass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_KeyStorePass>
         <VerInfo_Build>1</VerInfo_Build>
@@ -250,12 +250,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_OSX64)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;tethering;FireDACMSSQLDriver;FireDACDBXDriver;RDesignChart;RESTBackendComponents;bindengine;CloudService;FireDACMySQLDriver;RDesignLAB;DataSnapClient;bindcompdbx;IndyIPServer;IndySystem;fmxFireDAC;FireDACTDataDriver;FMXTee;soaprtl;DbxCommonDriver;xmlrtl;DataSnapNativeClient;soapmidas;fmxobj;rtl;DbxClientDriver;DBXSybaseASADriver;IndyIPClient;FireDACODBCDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;FireDACMongoDBDriver;DataSnapServerMidas;RESTComponents;DBXInterBaseDriver;emsclientfiredac;DataSnapFireDAC;bindcompfmx;DBXOracleDriver;inetdb;FmxTeeUI;FireDACIBDriver;fmx;fmxdae;RDesignUX;dbexpress;IndyCore;dsnap;DataSnapCommon;emsclient;FireDACCommon;soapserver;FireDACOracleDriver;DBXMySQLDriver;DBXFirebirdDriver;FireDACCommonODBC;FireDACCommonDriver;inet;IndyIPCommon;FireDAC;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;ibxpress;DataSnapServer;ibxbindings;FireDACDSDriver;CustomIPTransport;bindcomp;fgx;DBXInformixDriver;IcsCommonD103Run;dbxcds;dsnapxml;dbrtl;IndyProtocols;inetdbxpress;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers</VerInfo_Keys>
+        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers;ITSAppUsesNonExemptEncryption=false;NSBluetoothAlwaysUsageDescription=The reason for accessing the Bluetooth interface</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_OSXARM64)'!=''">
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers</VerInfo_Keys>
+        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers;ITSAppUsesNonExemptEncryption=false;NSBluetoothAlwaysUsageDescription=The reason for accessing the Bluetooth interface</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_UsePackage>DBXSqliteDriver;tethering;FireDACMSSQLDriver;FireDACDBXDriver;RDesignChart;RESTBackendComponents;bindengine;CloudService;FireDACMySQLDriver;RDesignLAB;DataSnapClient;bindcompdbx;IndyIPServer;IndySystem;fmxFireDAC;FireDACTDataDriver;FMXTee;soaprtl;DbxCommonDriver;xmlrtl;DataSnapNativeClient;soapmidas;fmxobj;rtl;DbxClientDriver;DBXSybaseASADriver;IndyIPClient;FireDACODBCDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;FireDACMongoDBDriver;DataSnapServerMidas;RESTComponents;DBXInterBaseDriver;emsclientfiredac;DataSnapFireDAC;bindcompfmx;DBXOracleDriver;inetdb;FmxTeeUI;FireDACIBDriver;fmx;fmxdae;RDesignUX;dbexpress;IndyCore;dsnap;DataSnapCommon;emsclient;FireDACCommon;soapserver;FireDACOracleDriver;DBXMySQLDriver;DBXFirebirdDriver;FireDACCommonODBC;FireDACCommonDriver;inet;IndyIPCommon;FireDAC;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;ibxpress;DataSnapServer;ibxbindings;FireDACDSDriver;CustomIPTransport;bindcomp;fgx;DBXInformixDriver;IcsCommonD103Run;dbxcds;dsnapxml;dbrtl;IndyProtocols;inetdbxpress;fmxase;$(DCC_UsePackage);$(DCC_UsePackage)</DCC_UsePackage>
@@ -322,13 +322,13 @@
         <Android_NotificationIcon96>Img\bandaanchaeu96x96.png</Android_NotificationIcon96>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android64)'!=''">
-        <VerInfo_Build>51</VerInfo_Build>
+        <VerInfo_Build>100</VerInfo_Build>
         <Android_SplashImage426>Img\ba-426x320.png</Android_SplashImage426>
         <Android_SplashImage470>Img\ba-470x320.png</Android_SplashImage470>
         <Android_SplashImage640>Img\ba-640x480.png</Android_SplashImage640>
         <Android_SplashImage960>Img\ba-960x720.png</Android_SplashImage960>
         <Android_SplashGravity>fill_vertical</Android_SplashGravity>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=51;versionName=2.6.1216;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=100;versionName=2.7.1479;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <PF_AliasKeyPass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_AliasKeyPass>
         <AUP_WRITE_EXTERNAL_STORAGE>false</AUP_WRITE_EXTERNAL_STORAGE>
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
@@ -351,6 +351,8 @@
         <Android_LauncherIcon192>Img\bandaanchaeu192x192.png</Android_LauncherIcon192>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
         <AUP_ACCESS_NOTIFICATION_POLICY>true</AUP_ACCESS_NOTIFICATION_POLICY>
+        <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
+        <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -368,9 +370,9 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
-        <VerInfo_Build>51</VerInfo_Build>
+        <VerInfo_Build>100</VerInfo_Build>
         <Android_NotificationAccentColor>#000000</Android_NotificationAccentColor>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=51;versionName=2.6.1216;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=100;versionName=2.7.1479;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <AUP_ACCESS_COARSE_LOCATION>false</AUP_ACCESS_COARSE_LOCATION>
         <AUP_ACCESS_FINE_LOCATION>false</AUP_ACCESS_FINE_LOCATION>
         <AUP_CALL_PHONE>false</AUP_CALL_PHONE>
@@ -384,11 +386,13 @@
         <PF_AliasKeyPass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_AliasKeyPass>
         <BT_BuildType>AppStore</BT_BuildType>
         <AUP_ACCESS_NOTIFICATION_POLICY>true</AUP_ACCESS_NOTIFICATION_POLICY>
+        <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
+        <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android64)'!=''">
         <PF_AliasKeyPass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_AliasKeyPass>
-        <VerInfo_Build>51</VerInfo_Build>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=51;versionName=2.6.1216;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Build>100</VerInfo_Build>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=100;versionName=2.7.1479;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <Android_SplashImage426>Img\ba-426x320.png</Android_SplashImage426>
         <Android_SplashImage470>Img\ba-470x320.png</Android_SplashImage470>
         <Android_SplashImage640>Img\ba-640x480.png</Android_SplashImage640>
@@ -417,7 +421,9 @@
         <Android_LauncherIcon192>Img\bandaanchaeu192x192.png</Android_LauncherIcon192>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
         <AUP_ACCESS_NOTIFICATION_POLICY>true</AUP_ACCESS_NOTIFICATION_POLICY>
-        <IncludeAndroid_NotificationAccentColor>False</IncludeAndroid_NotificationAccentColor>
+        <IncludeAndroid_NotificationAccentColor>false</IncludeAndroid_NotificationAccentColor>
+        <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
+        <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice64)'!=''">
         <iPhone_Notification60>$(BDS)\bin\Artwork\iOS\iPhone\FM_NotificationIcon_60x60.png</iPhone_Notification60>
@@ -466,11 +472,26 @@
                     <Source Name="MainSource">bandaancha.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_144x144.png" Configuration="Release" Class="Android_LauncherIcon144"/>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_144x144.png" Configuration="Release" Class="Android_LauncherIcon144">
                     <Platform Name="Android">
@@ -637,21 +658,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="OSX32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Android64\Debug\AndroidManifest.xml" Configuration="Debug" Class="ProjectAndroidManifest"/>
                 <DeployFile LocalName="Android64\Debug\AndroidManifest.xml" Configuration="Debug" Class="ProjectAndroidManifest">
                     <Platform Name="Android64">
@@ -661,6 +667,17 @@
                 <DeployFile LocalName="Android64\Debug\bandaancha.classes" Configuration="Debug" Class="AndroidClasses">
                     <Platform Name="Android64">
                         <Operation>64</Operation>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android64\Debug\colors-night-v21.xml" Configuration="Debug" Class="Android_ColorsDark">
+                    <Platform Name="Android64">
+                        <RemoteName>colors.xml</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android64\Debug\colors.xml" Configuration="Debug" Class="Android_Colors">
+                    <Platform Name="Android64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -705,6 +722,17 @@
                 <DeployFile LocalName="Android64\Release\bandaancha.classes" Configuration="Release" Class="AndroidClasses">
                     <Platform Name="Android64">
                         <Operation>64</Operation>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android64\Release\colors-night-v21.xml" Configuration="Release" Class="Android_ColorsDark">
+                    <Platform Name="Android64">
+                        <RemoteName>colors.xml</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android64\Release\colors.xml" Configuration="Release" Class="Android_Colors">
+                    <Platform Name="Android64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -800,12 +828,6 @@
                 <DeployFile LocalName="Android\Release\libbandaancha.so" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="Android\Release\libbandaancha.so" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Android">
-                        <RemoteName>libbandaancha.so</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Android\Release\libbandaancha.so" Configuration="Release" Class="ProjectOutput_Android32">
-                    <Platform Name="Android64">
                         <RemoteName>libbandaancha.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1082,6 +1104,11 @@
                 </DeployFile>
                 <DeployFile LocalName="KELSON.ttf" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="KELSON.ttf" Configuration="Release" Class="ProjectFile"/>
+                <DeployFile LocalName="ROBOTOITALIC.ttf" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ROBOTOITALIC.ttf" Configuration="Release" Class="ProjectFile"/>
+                <DeployFile LocalName="UBUNTU.ttf" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="UBUNTU.ttf" Configuration="Release" Class="ProjectFile"/>
+                <DeployFile LocalName="Win32\Debug\bandaancha.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="openssl-1.02_Android\arm64-v8a\libcrypto.so" Configuration="Debug" Class="File">
                     <Platform Name="Android64">
                         <RemoteDir>assets\internal\</RemoteDir>
@@ -1123,11 +1150,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="ROBOTOITALIC.ttf" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ROBOTOITALIC.ttf" Configuration="Release" Class="ProjectFile"/>
-                <DeployFile LocalName="UBUNTU.ttf" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="UBUNTU.ttf" Configuration="Release" Class="ProjectFile"/>
-                <DeployFile LocalName="Win32\Debug\bandaancha.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -1218,6 +1240,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="AndroidSplashImageDefV21">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="AndroidSplashStyles">
                     <Platform Name="Android">
                         <RemoteDir>res\values</RemoteDir>
@@ -1238,6 +1270,66 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="AndroidSplashStylesV31">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v26</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v26</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconBackground">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconForeground">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconMonochrome">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconV33">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v33</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v33</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="Android_Colors">
                     <Platform Name="Android">
                         <RemoteDir>res\values</RemoteDir>
@@ -1245,6 +1337,16 @@
                     </Platform>
                     <Platform Name="Android64">
                         <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_ColorsDark">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-night-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-night-v21</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -1418,6 +1520,56 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="Android_VectorizedNotificationIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v24</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v24</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplash">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplashDark">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-night-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-night-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplashV31">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplashV31Dark">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-night-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-night-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="DebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -1546,6 +1698,197 @@
                     </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectAndroidManifest">
+                    <Platform Name="Android">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXDebug">
+                    <Platform Name="OSX64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXEntitlements">
+                    <Platform Name="OSX32">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXInfoPList">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXResource">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="ProjectOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\arm64-v8a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Linux64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOutput_Android32">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceDebug">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSEntitlements">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSInfoPList">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSLaunchScreen">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSResource">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="iOS_AppStore1024">
@@ -1745,197 +2088,6 @@
                     </Platform>
                     <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectAndroidManifest">
-                    <Platform Name="Android">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Android64">
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceDebug">
-                    <Platform Name="iOSDevice32">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSEntitlements">
-                    <Platform Name="iOSDevice32">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSInfoPList">
-                    <Platform Name="iOSDevice32">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSLaunchScreen">
-                    <Platform Name="iOSDevice64">
-                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
-                        <Operation>64</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
-                        <Operation>64</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSResource">
-                    <Platform Name="iOSDevice32">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOSXDebug">
-                    <Platform Name="OSX64">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOSXEntitlements">
-                    <Platform Name="OSX32">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX64">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOSXInfoPList">
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
-                        <RemoteDir>Contents</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOSXResource">
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\Resources</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
-                        <RemoteDir>Contents\Resources</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Required="true" Name="ProjectOutput">
-                    <Platform Name="Android">
-                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Android64">
-                        <RemoteDir>library\lib\arm64-v8a</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice32">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Linux64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOutput_Android32">
-                    <Platform Name="Android64">
-                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectUWPManifest">
-                    <Platform Name="Win32">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Win64">
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="UWP_DelphiLogo150">
-                    <Platform Name="Win32">
-                        <RemoteDir>Assets</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Win64">
-                        <RemoteDir>Assets</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="UWP_DelphiLogo44">
-                    <Platform Name="Win32">
-                        <RemoteDir>Assets</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="Win64">
-                        <RemoteDir>Assets</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>

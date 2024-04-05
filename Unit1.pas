@@ -18,10 +18,13 @@
 // 18-08-2023: Aprovechando que hay que actualizar la app para que sea compatible con las nuevas directrices de Play Store
 // se procede a incorporar el primer código beta del sistema de notificaciones de la app. Aún está en desarrollo y sólo funciona si la app está
 // ejecutándose en primer plano.
-// 27-08-2023: Se incorpora el código que permite que cuando el usuario pulsa sobre la notificación de la app, se bra directemente el enlace
+// 27-08-2023: Se incorpora el código que permite que cuando el usuario pulsa sobre la notificación de la app, se abra directemente el enlace
 // de esa noticia, sin tener que pulsar nuevamente sobre el título o la imagen de la noticia una vez pulsada la notificación.
 // 13-09-2023: Se incorpora el código para compartir las noticias desde facebook y X (Twitter) de forma inicial. En próximas revisiones
 // se añadirán más redes sociales.
+// 05-04-2024: Se cambia el código para compartir las noticias, utilizando el estándar de Android para compartir texto entre aplicaciones,
+// de forma que ahora se pueden compartir los enlaces con cualquier aplicación que lo permita en el dispositivo (no sólo con facebook o
+// X(Twitter))
 // ---------------------------------------------------------------------------------
 
 unit Unit1;
@@ -41,7 +44,10 @@ uses
   FMX.VirtualKeyboard, FMX.Helpers.Android, System.UITypes,
   FMX.DialogService, System.StrUtils, Android.JNI.Toast, FMX.LoadingIndicator,
   FMX.DzHTMLText,system.SysUtils, system.DateUtils, System.Notification,
-  System.Permissions, FMX.Dialogs;
+  System.Permissions, FMX.Dialogs, IdCookieManager, Androidapi.JNI.GraphicsContentViewText,
+  Androidapi.JNI.Net,Androidapi.JNI.App, Androidapi.Helpers, androidapi.Jni.JavaTypes, FMX.Platform.Android,
+  Androidapi.JNI.Webkit, Androidapi.JNI.Os, System.Actions, FMX.ActnList,
+  FMX.StdActns, FMX.MediaLibrary.Actions;
 
 type
   TForm1 = class(TForm)             // Ventana principal de la aplicación (Main Activity de Android)
@@ -135,28 +141,30 @@ type
     Label23: TLabel;                // Texto en la parte superior de la pantalla de aceptación de las normas
     DzHTMLText12: TDzHTMLText;      // Texto HTML de las normas de bandaancha.eu
     Button1: TButton;               // Botón de aceptar las normas de bandaancha.eu
-    Button2: TButton;
-    NotificationCenter1: TNotificationCenter;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
-    SpeedButton7: TSpeedButton;
-    SpeedButton8: TSpeedButton;
-    SpeedButton9: TSpeedButton;
-    SpeedButton10: TSpeedButton;
-    SpeedButton11: TSpeedButton;
-    SpeedButton12: TSpeedButton;
-    SpeedButton13: TSpeedButton;
-    SpeedButton14: TSpeedButton;
-    Rectangle11: TRectangle;
-    ShadowEffect11: TShadowEffect;
-    GroupBox1: TGroupBox;
-    Button3: TButton;
-    Rectangle12: TRectangle;
-    Button4: TButton;
-    ImageControl2: TImageControl;
-    Button5: TButton;
-    ImageControl3: TImageControl;
-    ImageControl4: TImageControl;               // Botón de cancelar las normas de bandaancha.eu
+    Button2: TButton;               // Botón para cancelar la aceptación de las normas de bandaancha.eu y salir de la aplicación
+    NotificationCenter1: TNotificationCenter; // Control que permite mostrar notificaciones a la app
+    SpeedButton5: TSpeedButton;               // Botón para compartir la noticia número 1
+    SpeedButton6: TSpeedButton;               // Botón para compartir la noticia número 2
+    SpeedButton7: TSpeedButton;               // Botón para compartir la noticia número 3
+    SpeedButton8: TSpeedButton;               // Botón para compartir la noticia número 4
+    SpeedButton9: TSpeedButton;               // Botón para compartir la noticia número 5
+    SpeedButton10: TSpeedButton;              // Botón para compartir la noticia número 6
+    SpeedButton11: TSpeedButton;              // Botón para compartir la noticia número 7
+    SpeedButton12: TSpeedButton;              // Botón para compartir la noticia número 8
+    SpeedButton13: TSpeedButton;              // Botón para compartir la noticia número 9
+    SpeedButton14: TSpeedButton;              // Botón para compartir la noticia número 10
+
+    ActionList1: TActionList;                 // Lista de acciones que puede realizar la aplicación
+    ShowShareSheetAction1: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 1
+    ShowShareSheetAction2: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 2
+    ShowShareSheetAction3: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 3
+    ShowShareSheetAction4: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 4
+    ShowShareSheetAction5: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 5
+    ShowShareSheetAction6: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 6
+    ShowShareSheetAction7: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 7
+    ShowShareSheetAction8: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 8
+    ShowShareSheetAction9: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 9
+    ShowShareSheetAction10: TShowShareSheetAction;      // Acción de compartir el enlace de la noticia 10
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -190,19 +198,17 @@ type
       var NumRedirect: Integer; var Handled: Boolean; var VMethod: string);  // Si hay una redirección HTTP al acceder a bandaancha.eu, el control se hace cargo de esa redirección
     procedure NotificationCenter1ReceiveLocalNotification(Sender: TObject;
       ANotification: TNotification);                              // Rutina que se ejecuta cuando se pulsa sobre la notificación de la app (abre directamente en la app el enlace de esa noticia)
-    procedure SalirCompartir(Sender: TObject);                    // Rutina que se ejecuta cuando el usuario pulsa volver a la aplicación en las opciones de compartir noticia
-    procedure CompartirNoticia1(Sender: TObject);                 // Rutinas para preparar la app para compartir noticias en facebook y x (twitter)
-    procedure CompartirNoticia2(Sender: TObject);
-    procedure CompartirNoticia3(Sender: TObject);
-    procedure CompartirNoticia4(Sender: TObject);
-    procedure CompartirNoticia5(Sender: TObject);
-    procedure CompartirNoticia6(Sender: TObject);
-    procedure CompartirNoticia7(Sender: TObject);
-    procedure CompartirNoticia8(Sender: TObject);
-    procedure CompartirNoticia9(Sender: TObject);
-    procedure CompartirNoticia10(Sender: TObject);
-    procedure CompartirFacebook(Sender: TObject);                 // Rutina para compartir noticias en facebook
-    procedure CompartirTwitter(Sender: TObject);                  // Rutina para compartir noticias en x (twitter)
+
+    procedure ShowShareSheetAction1BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 1
+    procedure ShowShareSheetAction3BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 2
+    procedure ShowShareSheetAction4BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 3
+    procedure ShowShareSheetAction5BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 4
+    procedure ShowShareSheetAction6BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 5
+    procedure ShowShareSheetAction7BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 6
+    procedure ShowShareSheetAction8BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 7
+    procedure ShowShareSheetAction9BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 8
+    procedure ShowShareSheetAction10BeforeExecute(Sender: TObject);  // Rutina que se ejecuta justa antes de compartir noticia 9
+    procedure ShowShareSheetAction2BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 10
 
   private
     { Private declarations }
@@ -305,109 +311,6 @@ begin
 end;
 
 
-// Rutina para compartir la noticia de bandaancha.eu en facebook
-
-
-procedure TForm1.CompartirFacebook(Sender: TObject);
-begin
-     Rectangle12.Visible:=False;           // Se hace invisible el rectángulo que oscurece el fondo
-     Rectangle11.Visible:=False;           // Se hace invisible el rectángulo que muestra las opciones de compartir la noticia
-     AbreURL('https://www.facebook.com/sharer.php?u='+enlace[indicenoticia]);  // Muestra en el navegador interno la URL para compartir la noticia de facebook gracias al índice indicado
-end;
-
-
-// Rutina para mostrar las opciones de compartir noticia (son iguales todas excepto por el índice que indica la noticia que se va a compartir)
-// Se comenta sólo la primera ya que todas son iguales excepto por el índice de la noticia
-
-procedure TForm1.CompartirNoticia1(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;            // Se hace visible el rectángulo que oscurece el fondo
-     Rectangle11.Visible:=True;            // Se hace visible el rectángulo que contiene las opciones para compartir noticias
-     Rectangle11.BringToFront;             // El rectángulo para compartir se lleva delante de todos los demás controles
-     indicenoticia:=1;                     // Situa el índice de noticia en el 1 ya que es la primera noticia (con este índice se accede a los enlaces de las noticias)
-end;
-
-procedure TForm1.CompartirNoticia10(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=10;
-end;
-
-procedure TForm1.CompartirNoticia2(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=2;
-end;
-
-procedure TForm1.CompartirNoticia3(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=3;
-end;
-
-procedure TForm1.CompartirNoticia4(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=4;
-end;
-
-procedure TForm1.CompartirNoticia5(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=5;
-end;
-
-procedure TForm1.CompartirNoticia6(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=6;
-end;
-
-procedure TForm1.CompartirNoticia7(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=7;
-end;
-
-procedure TForm1.CompartirNoticia8(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=8;
-end;
-
-procedure TForm1.CompartirNoticia9(Sender: TObject);
-begin
-     Rectangle12.Visible:=True;
-     Rectangle11.Visible:=True;
-     Rectangle11.BringToFront;
-     indicenoticia:=9;
-end;
-
-
-// Rutina para compartir la noticia de bandaancha.eu en X (antiguo Twitter)
-
-procedure TForm1.CompartirTwitter(Sender: TObject);
-begin
-      Rectangle12.Visible:=False;         // El rectángulo que oscurece el fondo se hace invisible
-      Rectangle11.Visible:=False;         // El rectángulo que hace visible las opciones para compartir se hace invisible
-      AbreURL('http://www.twitter.com/share?url='+enlace[indicenoticia]);    // Muestra en el navegador interno de la app la URL para compartir la noticia en X (antiguo Twitter) gracias al índice indicado
-end;
 
 // Rutina para abrir un enlace presente en la descripción HTML de la aplicación (localizada en el menú deslizante)
 
@@ -435,10 +338,10 @@ begin
         Panel1.Visible:=False;                                                    // Si está oculta el panel de aceptación de normas y sigue la ejecución
         ficheronormas.Free;
         IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL                                                      // Libera la memoria de la variable de lineas de texto
-        IdHTTP1.ConnectTimeout:=5000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
-        IdHTTP1.ReadTimeout:=5000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
-        IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=5000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
-        IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=5000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 5 segundos
+        IdHTTP1.ConnectTimeout:=10000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
+        IdHTTP1.ReadTimeout:=10000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
+        IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=10000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
+        IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=10000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 5 segundos
         MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
         RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
      except                                                  // Si no existe el fichero de texto, el panel de aceptación de normas se hace visible
@@ -505,13 +408,7 @@ begin
                     Key:=0;                    // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
                end
             else
-                if (Rectangle11.Visible=True) then
-                   begin
-                        Rectangle12.Visible:=False;       // El rectángulo que oscurece el fondo lo hacemos no visible
-                        Rectangle11.Visible:=False;       // El rectángulo que muestra las opciones para compartir la noticia lo hacemos no visible
-                        Key:=0;                           // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
-                   end
-                else
+                
                     begin
                          // Si se pulsa la tecla Atrás de Android en la pantalla principal de la aplicación
                          // Muestra cuadro de diálogo para seleccionar si se quiere salir de la aplicación
@@ -1022,15 +919,55 @@ begin
      end).Start;                                          // Inicia el hilo asíncrono para mostrar los datos de las noticias
 end;
 
-
-// Rutina que ocurre cuando el usuario pulsa el botón de volver a la aplicación en el rectángulo para compartir noticias
-
-procedure TForm1.SalirCompartir(Sender: TObject);
+procedure TForm1.ShowShareSheetAction10BeforeExecute(Sender: TObject);
 begin
-     Rectangle12.Visible:=False;        // El rectángulo que oscurece el fondo se hace invisible
-     Rectangle11.Visible:=False;        // El rectángulo que muestra las opciones para compartir noticias se hace invisible
+     ShowShareSheetAction10.TextMessage:=enlace[9];          // Comparte enlace a la noticia 9
 end;
 
+procedure TForm1.ShowShareSheetAction1BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction1.TextMessage:=enlace[1];          // Comparte enlace a la noticia 1
+end;
+
+procedure TForm1.ShowShareSheetAction2BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction2.TextMessage:=enlace[10];         // Comparte enlace a la noticia 10
+end;
+
+procedure TForm1.ShowShareSheetAction3BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction3.TextMessage:=enlace[2];          // Comparte enlace a la noticia 2
+end;
+
+procedure TForm1.ShowShareSheetAction4BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction4.TextMessage:=enlace[3];          // Comparte enlace a la noticia 3
+end;
+
+procedure TForm1.ShowShareSheetAction5BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction5.TextMessage:=enlace[4];          // Comparte enlace a la noticia 4
+end;
+
+procedure TForm1.ShowShareSheetAction6BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction6.TextMessage:=enlace[5];          // Comparte enlace a la noticia 5
+end;
+
+procedure TForm1.ShowShareSheetAction7BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction7.TextMessage:=enlace[6];          // Comparte enlace a la noticia 6
+end;
+
+procedure TForm1.ShowShareSheetAction8BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction8.TextMessage:=enlace[7];          // Comparte enlace a la noticia 7
+end;
+
+procedure TForm1.ShowShareSheetAction9BeforeExecute(Sender: TObject);
+begin
+     ShowShareSheetAction9.TextMessage:=enlace[8];          // Comparte enlace a la noticia 8
+end;
 
 // Rutina que ocurre al pulsar el botón de menú deslizante
 
