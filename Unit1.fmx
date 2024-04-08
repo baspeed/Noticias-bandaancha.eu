@@ -10,19 +10,19 @@ object Form1: TForm1
   DesignerMasterStyle = 3
   object WebBrowser1: TWebBrowser
     Align = Client
-    Size.Width = 390.000000000000000000
-    Size.Height = 432.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 384.000000000000000000
     Size.PlatformDefault = False
     WindowsEngine = IEOnly
   end
   object VertScrollBox1: TVertScrollBox
     Align = Client
-    Size.Width = 390.000000000000000000
-    Size.Height = 432.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 384.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Viewport.Width = 385.000000000000000000
-    Viewport.Height = 432.000000000000000000
+    Viewport.Width = 635.000000000000000000
+    Viewport.Height = 384.000000000000000000
     object Rectangle1: TRectangle
       Position.X = 136.000000000000000000
       Position.Y = 88.000000000000000000
@@ -83,7 +83,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 3460.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -104,7 +104,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -120,7 +120,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -134,7 +134,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -154,7 +154,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -162,7 +162,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -176,7 +176,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 3030.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -197,7 +197,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -213,7 +213,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -227,7 +227,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -247,7 +247,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -255,7 +255,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -269,7 +269,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 2600.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -290,7 +290,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -306,7 +306,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -320,7 +320,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -340,7 +340,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -348,7 +348,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -362,7 +362,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 2170.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -383,7 +383,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -399,7 +399,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -413,7 +413,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -433,7 +433,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -441,7 +441,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -455,7 +455,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 1740.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -476,7 +476,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -492,7 +492,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -506,7 +506,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -526,7 +526,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -534,7 +534,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -548,7 +548,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 1310.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -569,7 +569,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -585,7 +585,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -599,7 +599,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -619,7 +619,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -627,7 +627,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -641,7 +641,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 880.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -662,7 +662,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -678,7 +678,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -692,7 +692,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -712,7 +712,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -720,7 +720,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -734,7 +734,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 450.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -748,7 +748,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -764,7 +764,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -778,7 +778,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -805,7 +805,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -813,7 +813,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -827,7 +827,7 @@ object Form1: TForm1
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 20.000000000000000000
-      Size.Width = 365.000000000000000000
+      Size.Width = 615.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claWhitesmoke
@@ -848,7 +848,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 60.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO1'
@@ -864,7 +864,7 @@ object Form1: TForm1
         Margins.Right = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 380.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'ROBOTO2'
@@ -878,7 +878,7 @@ object Form1: TForm1
           IconTintColor = claDarkorange
           ImageIndex = -1
           Margins.Top = -10.000000000000000000
-          Position.X = 307.000000000000000000
+          Position.X = 557.000000000000000000
           Position.Y = -10.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -898,7 +898,7 @@ object Form1: TForm1
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 70.000000000000000000
-        Size.Width = 355.000000000000000000
+        Size.Width = 605.000000000000000000
         Size.Height = 200.000000000000000000
         Size.PlatformDefault = False
       end
@@ -906,7 +906,7 @@ object Form1: TForm1
         Align = Top
         TabOrder = 2
         Position.Y = 275.000000000000000000
-        Size.Width = 365.000000000000000000
+        Size.Width = 615.000000000000000000
         Size.Height = 145.000000000000000000
         Size.PlatformDefault = False
       end
@@ -917,11 +917,6 @@ object Form1: TForm1
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    object SpeedButton1: TSpeedButton
-      Position.X = 32.000000000000000000
-      Text = 'SpeedButton1'
-      TextSettings.Trimming = None
-    end
     object Label21: TLabel
       Position.X = 96.000000000000000000
       Position.Y = 16.000000000000000000
@@ -958,12 +953,12 @@ object Form1: TForm1
   object ImageControl1: TImageControl
     Position.X = 168.000000000000000000
     Position.Y = 40.000000000000000000
-    TabOrder = 11
+    TabOrder = 10
   end
   object Panel1: TPanel
     Position.X = 152.000000000000000000
     Position.Y = 96.000000000000000000
-    TabOrder = 14
+    TabOrder = 13
     object ToolBar2: TToolBar
       TabOrder = 0
       object Image12: TImage
@@ -1004,81 +999,58 @@ object Form1: TForm1
       Position.Y = 104.000000000000000000
     end
   end
-  object MultiView1: TMultiView
-    Size.Width = 250.000000000000000000
-    Size.Height = 432.000000000000000000
+  object ToolBar4: TToolBar
+    Position.Y = 48.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
-    object ListBox1: TListBox
-      Position.X = 40.000000000000000000
-      Position.Y = 200.000000000000000000
+    TabOrder = 18
+    object Button3: TButton
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
       TabOrder = 0
-      DisableFocusEffect = True
-      DefaultItemStyles.ItemStyle = ''
-      DefaultItemStyles.GroupHeaderStyle = ''
-      DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 195.000000000000000000
-      Viewport.Height = 200.000000000000000000
-      object ListBoxItem1: TListBoxItem
-        TabOrder = 0
-        Text = 'ListBoxItem1'
-        object Label22: TLabel
-          Position.X = 64.000000000000000000
-          Position.Y = 21.000000000000000000
-          TextSettings.Trimming = None
-          Text = 'Label22'
-          TabOrder = 1
-        end
-        object Label24: TLabel
-          Align = Top
-          AutoSize = True
-          StyledSettings = []
-          Margins.Top = 10.000000000000000000
-          Position.Y = 10.000000000000000000
-          Size.Width = 195.000000000000000000
-          Size.Height = 54.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Family = 'ROBOTO3'
-          TextSettings.Font.Size = 20.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.FontColor = claDarkorange
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = 'Noticias bandaancha.eu'
-          TabOrder = 3
-        end
-        object Image11: TImage
-          MultiResBitmap = <
-            item
-            end>
-          Position.X = 96.000000000000000000
-          Position.Y = 96.000000000000000000
-        end
-        object DzHTMLText1: TDzHTMLText
-          TabOrder = 206
-          Position.X = 48.000000000000000000
-          Position.Y = 320.000000000000000000
-        end
+      Text = 'Button3'
+      TextSettings.Trimming = None
+      object ImageControl2: TImageControl
+        Position.X = 16.000000000000000000
+        Position.Y = 16.000000000000000000
+        TabOrder = 5
       end
-      object ListBoxItem2: TListBoxItem
-        Position.Y = 44.000000000000000000
-        TabOrder = 1
-        Text = 'ListBoxItem2'
+    end
+    object Button4: TButton
+      Position.X = 120.000000000000000000
+      Position.Y = 8.000000000000000000
+      TabOrder = 1
+      Text = 'Button4'
+      TextSettings.Trimming = None
+      object ImageControl3: TImageControl
+        Position.X = 16.000000000000000000
+        Position.Y = 16.000000000000000000
+        TabOrder = 5
       end
-      object ListBoxItem3: TListBoxItem
-        Position.Y = 88.000000000000000000
-        TabOrder = 2
-        Text = 'ListBoxItem3'
+    end
+    object Button5: TButton
+      Position.X = 200.000000000000000000
+      Position.Y = 16.000000000000000000
+      TabOrder = 2
+      Text = 'Button5'
+      TextSettings.Trimming = None
+      object ImageControl4: TImageControl
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        TabOrder = 5
       end
-      object ListBoxItem4: TListBoxItem
-        Position.Y = 132.000000000000000000
-        TabOrder = 3
-        Text = 'ListBoxItem4'
-      end
-      object ListBoxItem5: TListBoxItem
-        Position.Y = 176.000000000000000000
-        TabOrder = 4
-        Text = 'ListBoxItem5'
+    end
+    object Button6: TButton
+      Position.X = 264.000000000000000000
+      Position.Y = 16.000000000000000000
+      TabOrder = 3
+      Text = 'Button6'
+      TextSettings.Trimming = None
+      object ImageControl5: TImageControl
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        TabOrder = 5
       end
     end
   end

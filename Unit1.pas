@@ -55,8 +55,7 @@ type
     Rectangle1: TRectangle;         // Área de la tarjeta de noticias 1
     ShadowEffect1: TShadowEffect;   // Efecto de sombra sobre la tarjeta 1
     Label2: TLabel;                 // Texto que muestra autor y fecha del posteo de la noticia 1
-    ToolBar1: TToolBar;             // Barra de menú superior de la aplicación
-    SpeedButton1: TSpeedButton;     // Botón de menú de la aplicación (icono zona superior derecha de la pantalla)
+    ToolBar1: TToolBar;     // Botón de menú de la aplicación (icono zona superior derecha de la pantalla)
     Label21: TLabel;                // Título de la aplicación en la parte superior de aplicación
     Rectangle2: TRectangle;         // Área de la tarjeta de noticias 2
     ShadowEffect2: TShadowEffect;   // Efecto de sombra sobre la tarjeta 2
@@ -92,16 +91,7 @@ type
     Rectangle10: TRectangle;        // Área de la tarjeta de noticias 10
     ShadowEffect10: TShadowEffect;  // Efecto de sombra sobre la tarjeta 10
     Label19: TLabel;                // Título de la noticia de la tarjeta 10
-    Label20: TLabel;                // Texto que muestra autor y fecha del posteo de la noticia 10
-    MultiView1: TMultiView;         // Control que muestra el menú deslizante que aparece al pulsar el botón de menú de la aplicación
-    ListBox1: TListBox;             // Lista con los elementos del menú principal
-    ListBoxItem1: TListBoxItem;     // Elemento 1 del menú principal
-    Label22: TLabel;                // Título de la aplicación en el menú principal
-    Label24: TLabel;                // Número de versión de la aplicación en el menú principal
-    ListBoxItem2: TListBoxItem;     // Elemento 2 del menú principal
-    ListBoxItem3: TListBoxItem;     // Elemento 3 del menú principal
-    ListBoxItem4: TListBoxItem;     // Elemento 4 del menú principal
-    ListBoxItem5: TListBoxItem;     // Elemento 5 del menú principal
+    Label20: TLabel;     // Elemento 5 del menú principal
     WebBrowser1: TWebBrowser;       // Control que muestra las páginas web dentro de la aplicación
     ImageControl1: TImageControl;   // Control que guarda una imagen de la pantalla para volver atrás despues de realizar alguna acción
     SpeedButton2: TSpeedButton;     // Botón múltiple
@@ -121,9 +111,7 @@ type
     Image7: TImage;       // Imagen de la noticia 7
     Image8: TImage;       // Imagen de la noticia 8
     Image9: TImage;       // Imagen de la noticia 9
-    Image10: TImage;      // Imagen de la noticia 10
-    Image11: TImage;      // Imagen del logo de bandaancha en el menú deslizante
-    DzHTMLText1: TDzHTMLText;       // Descripción de la aplicación en el menú deslizante de la app
+    Image10: TImage;       // Descripción de la aplicación en el menú deslizante de la app
     DzHTMLText2: TDzHTMLText;       // Descripción de la noticia 1
     DzHTMLText3: TDzHTMLText;       // Descripción de la noticia 2
     DzHTMLText4: TDzHTMLText;       // Descripción de la noticia 3
@@ -164,7 +152,16 @@ type
     ShowShareSheetAction7: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 7
     ShowShareSheetAction8: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 8
     ShowShareSheetAction9: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 9
-    ShowShareSheetAction10: TShowShareSheetAction;      // Acción de compartir el enlace de la noticia 10
+    ShowShareSheetAction10: TShowShareSheetAction;
+    ToolBar4: TToolBar;
+    Button3: TButton;
+    ImageControl2: TImageControl;
+    Button4: TButton;
+    ImageControl3: TImageControl;
+    Button5: TButton;
+    ImageControl4: TImageControl;
+    Button6: TButton;
+    ImageControl5: TImageControl;      // Acción de compartir el enlace de la noticia 10
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -208,7 +205,11 @@ type
     procedure ShowShareSheetAction8BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 7
     procedure ShowShareSheetAction9BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 8
     procedure ShowShareSheetAction10BeforeExecute(Sender: TObject);  // Rutina que se ejecuta justa antes de compartir noticia 9
-    procedure ShowShareSheetAction2BeforeExecute(Sender: TObject);   // Rutina que se ejecuta justa antes de compartir noticia 10
+    procedure ShowShareSheetAction2BeforeExecute(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -234,7 +235,6 @@ var
 
 procedure TForm1.AbreBandaAncha(Sender: TObject);
 begin
-     MultiView1.HideMaster;             // Cierra el menú deslizante
      AbreURL('https://bandaancha.eu');  // Llama a la rutina para abrir la URL en el navegador interno de la aplicación
 end;
 
@@ -243,7 +243,6 @@ end;
 
 procedure TForm1.AbreForoApp(Sender: TObject);
 begin
-     MultiView1.HideMaster;          // Cierra el menú deslizante
      AbreURL('https://bandaancha.eu/foros/comunidad/herramientas/baspeed');    // Llama a la rutina para abrir la URL en el navegador interno de la aplicación
 end;
 
@@ -252,7 +251,6 @@ end;
 
 procedure TForm1.AbreForos(Sender: TObject);
 begin
-     MultiView1.HideMaster;        // Cierra el menú deslizante
      AbreURL('https://bandaancha.eu/foros');    // Llama a la rutina para abrir la URL en el navegador interno de la aplicación
 end;
 
@@ -261,7 +259,6 @@ end;
 
 procedure TForm1.AbrePaginaDJNacho(Sender: TObject);
 begin
-     MultiView1.HideMaster;                // Cierra el menú deslizante
      AbreURL('https://baspeed.synology.me/djnacho');    // Llama a la rutina para abrir la URL en el navegador interno de la aplicación
 end;
 
@@ -293,11 +290,11 @@ begin
      ficheronormas.Add('1');                                       // Añade una linea con la cadena '1'
      ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');  // Graba el archivo normas.txt con esa linea anterior
      ficheronormas.Free;
+     ToolBar4.Visible:=True;
      IdHTTP1.ConnectTimeout:=5000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
      IdHTTP1.ReadTimeout:=5000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
      IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=5000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
      IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=5000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 5 segundos
-     MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
      IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL
      RellenaCampos;                                         // Libera la memoria de la variable de lineas de texto
 end;
@@ -312,12 +309,31 @@ end;
 
 
 
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+     AbreURL('https://bandaancha.eu');         // Muestra la página principal de bandaancha.eu
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+     AbreURL('https://bandaancha.eu/foros');   // Muestra el índice de foros de bandaancha.eu
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+     AbreURL('https://bandaancha.eu/foros/comunidad/herramientas/baspeed');   // Muestra el foro de BASpeed dentro de bandaancha.eu
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+     AbreURL('https://baspeed.synology.me/djnacho');                          // Muestra mi página personal
+end;
+
 // Rutina para abrir un enlace presente en la descripción HTML de la aplicación (localizada en el menú deslizante)
 
 procedure TForm1.DzHTMLText1LinkClick(Sender: TObject; Link: TDHBaseLink;
   var Handled: Boolean);
 begin
-     MultiView1.HideMaster;                   // Cierra el menú deslizante
      WebBrowser1.Visible:=True;               // Hace visible el navegador interno de la aplicación
      AbreURL(Link.LinkRef.Target);            // Abre la URL presente en el link HTML de la descripción
 end;
@@ -337,12 +353,12 @@ begin
         ficheronormas.LoadFromFile(TPath.GetPublicPath+'/normas.txt');            // Intenta cargar el fichero de texto con la cadena '1'
         Panel1.Visible:=False;                                                    // Si está oculta el panel de aceptación de normas y sigue la ejecución
         ficheronormas.Free;
+        ToolBar4.Visible:=True;
         IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL                                                      // Libera la memoria de la variable de lineas de texto
         IdHTTP1.ConnectTimeout:=10000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
         IdHTTP1.ReadTimeout:=10000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
         IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=10000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
         IdSSLIOHandlerSocketOpenSSL1.ReadTimeout:=10000;       // Tiempo de espera hasta lectura de datos del servidor (parte SSL) = 5 segundos
-        MultiView1.Width:=Screen.Width-40;                     // Anchura del menú deslizante = Anchura total de la pantalla - 40 pixels
         RellenaCampos;                                         // Llama a la rutina que rellena todos los datos de las noticias en la pantalla principal
      except                                                  // Si no existe el fichero de texto, el panel de aceptación de normas se hace visible
            ficheronormas.Free;                               // Libera la memoria de la variable de lineas de texto
@@ -373,6 +389,8 @@ begin
         end
       );
     end;
+    WebBrowser1.EnableCaching:=False;     // Se desactiva el caché a nivel de ejecución para que siempre los últimos cambios en la página
+                                          // pase lo que pase a nivel de diseño (aviso de Vukits en el foro BASpeed de bandaancha.eu)
   {$ENDIF}
 end;
 
@@ -385,7 +403,6 @@ begin
   begin
     if (ImageControl1.Visible=True) then    // Si está visible el control que permite una copia de la pantalla
        begin
-            MultiView1.HideMaster;          // Oculta el menú deslizante
             ImageControl1.Visible:=False;   // Oculta el control que permite la copia de pantalla
             WebBrowser1.Visible:=True;      // Hace visible el navegador interno web de la aplicación
             Key:=0;                         // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
@@ -402,27 +419,19 @@ begin
                 Key:=0;                        // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
            end
         else
-            if (MultiView1.Visible=True) then  // Si está visible el menú deslizante
-               begin
-                    MultiView1.HideMaster;     // Oculta el control deslizante
-                    Key:=0;                    // Retorna a la app el código 0 para que la app pueda seguir explorando pulsaciones de teclas
-               end
-            else
-                
-                    begin
-                         // Si se pulsa la tecla Atrás de Android en la pantalla principal de la aplicación
-                         // Muestra cuadro de diálogo para seleccionar si se quiere salir de la aplicación
-                         TDialogService.MessageDialog('¿Desea realmente salir de Noticias bandaancha.eu?',TMsgDlgType.mtWarning,
-                                                     [TMsgDlgBtn.mbCancel,TMsgDlgBtn.mbOK],TMsgDlgBtn.mbOK,0, procedure (const AResult: TModalResult)
-                                                     begin
-                                                          case AResult of
-                                                               mrOk:     Application.Terminate; // Si se selecciona OK, se sale directamente de la aplicación
-                                                               mrCancel: ;                      // Si se selecciona Cancel, se vuelve a la aplicación sin hacer nada
-                                                          end;
-                                                     end);
-                         Key:=0;
-                    end;
-
+            begin
+                 // Si se pulsa la tecla Atrás de Android en la pantalla principal de la aplicación
+                 // Muestra cuadro de diálogo para seleccionar si se quiere salir de la aplicación
+                 TDialogService.MessageDialog('¿Desea realmente salir de Noticias bandaancha.eu?',TMsgDlgType.mtWarning,
+                 [TMsgDlgBtn.mbCancel,TMsgDlgBtn.mbOK],TMsgDlgBtn.mbOK,0, procedure (const AResult: TModalResult)
+                 begin
+                      case AResult of
+                           mrOk:     Application.Terminate; // Si se selecciona OK, se sale directamente de la aplicación
+                           mrCancel: ;                      // Si se selecciona Cancel, se vuelve a la aplicación sin hacer nada
+                      end;
+                 end);
+                 Key:=0;
+            end;
   end;
 
 end;
@@ -440,7 +449,6 @@ end;
 
 procedure TForm1.Label11Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;         // Cierra menú deslizante
      AbreURL(enlace[6]);            // Abre en el navegador interno la página web que corresponde a la noticia nº6 de bandaancha.eu
 end;
 
@@ -449,7 +457,6 @@ end;
 
 procedure TForm1.Label13Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;         // Cierra menú deslizante
      AbreURL(enlace[7]);            // Abre en el navegador interno la página web que corresponde a la noticia nº7 de bandaancha.eu
 end;
 
@@ -458,7 +465,6 @@ end;
 
 procedure TForm1.Label15Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;         // Cierra menú deslizante
      AbreURL(enlace[8]);            // Abre en el navegador interno la página web que corresponde a la noticia nº8 de bandaancha.eu
 end;
 
@@ -467,7 +473,6 @@ end;
 
 procedure TForm1.Label17Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;         // Cierra menú deslizante
      AbreURL(enlace[9]);            // Abre en el navegador interno la página web que corresponde a la noticia nº9 de bandaancha.eu
 end;
 
@@ -476,7 +481,6 @@ end;
 
 procedure TForm1.Label19Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;         // Cierra menú deslizante
      AbreURL(enlace[10]);           // Abre en el navegador interno la página web que corresponde a la noticia nº10 de bandaancha.eu
 end;
 
@@ -485,7 +489,6 @@ end;
 
 procedure TForm1.Label1Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;        // Cierra menú deslizante
      AbreURL(enlace[1]);           // Abre en el navegador interno la página web que corresponde a la noticia nº1 de bandaancha.eu
 end;
 
@@ -494,7 +497,6 @@ end;
 
 procedure TForm1.Label3Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;        // Cierra menú deslizante
      AbreURL(enlace[2]);           // Abre en el navegador interno la página web que corresponde a la noticia nº2 de bandaancha.eu
 end;
 
@@ -503,7 +505,6 @@ end;
 
 procedure TForm1.Label5Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;        // Cierra menú deslizante
      AbreURL(enlace[3]);           // Abre en el navegador interno la página web que corresponde a la noticia nº3 de bandaancha.eu
 end;
 
@@ -512,7 +513,6 @@ end;
 
 procedure TForm1.Label7Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;        // Cierra menú deslizante
      AbreURL(enlace[4]);           // Abre en el navegador interno la página web que corresponde a la noticia nº4 de bandaancha.eu
 end;
 
@@ -521,7 +521,6 @@ end;
 
 procedure TForm1.Label9Tap(Sender: TObject; const Point: TPointF);
 begin
-     MultiView1.HideMaster;        // Cierra menú deslizante
      AbreURL(enlace[5]);           // Abre en el navegador interno la página web que corresponde a la noticia nº5 de bandaancha.eu
 end;
 
@@ -532,7 +531,6 @@ procedure TForm1.MultiView1Hidden(Sender: TObject);
 begin
      if (ImageControl1.Visible=True) then  // Si el control de copia de pantalla está visible
         begin
-             MultiView1.HideMaster;        // Oculta menú deslizante
              ImageControl1.Visible:=False; // Oculta control de copia de pantalla
              WebBrowser1.Visible:=True;    // Hace visible el navegador web interno de la aplicación
         end;
@@ -978,13 +976,7 @@ begin
              ImageControl1.Bitmap:=WebBrowser1.MakeScreenshot;      // Hace una captura de pantalla del contenido de la pantalla
              WebBrowser1.Visible:=False;                            // Hace el navegador interno de la aplicación invisible
              ImageControl1.Visible:=True;                           // Hace visible el contenido de la captura de pantalla
-             MultiView1.ShowMaster;                                 // Muestra el menú deslizante
-        end
-     else
-         begin
-              MultiView1.ShowMaster;                                // Si el navegador interno de la aplicación NO está visible muestra directamente el menú deslizante
-         end;
-
+        end;
 end;
 
 
