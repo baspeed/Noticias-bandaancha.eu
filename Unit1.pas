@@ -153,15 +153,16 @@ type
     ShowShareSheetAction8: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 8
     ShowShareSheetAction9: TShowShareSheetAction;       // Acción de compartir el enlace de la noticia 9
     ShowShareSheetAction10: TShowShareSheetAction;
-    ToolBar4: TToolBar;
-    Button3: TButton;
-    ImageControl2: TImageControl;
-    Button4: TButton;
-    ImageControl3: TImageControl;
-    Button5: TButton;
-    ImageControl4: TImageControl;
-    Button6: TButton;
-    ImageControl5: TImageControl;      // Acción de compartir el enlace de la noticia 10
+    Panel2: TPanel;
+    Rectangle11: TRectangle;
+    Image11: TImage;
+    Label22: TLabel;
+    Image13: TImage;
+    Label24: TLabel;
+    Image14: TImage;
+    Label25: TLabel;
+    Image15: TImage;
+    Label26: TLabel;      // Acción de compartir el enlace de la noticia 10
     procedure AbreBandaAncha(Sender: TObject);    // Rutina para abrir la página de bandaancha.eu
     procedure AbreForos(Sender: TObject);         // Rutina para abrir la página de foros de bandaancha.eu
     procedure AbreForoApp(Sender: TObject);       // Rutina para abrir el foro de BASpeed dentro de bandaancha.eu
@@ -290,7 +291,7 @@ begin
      ficheronormas.Add('1');                                       // Añade una linea con la cadena '1'
      ficheronormas.SaveToFile(TPath.GetPublicPath+'/normas.txt');  // Graba el archivo normas.txt con esa linea anterior
      ficheronormas.Free;
-     ToolBar4.Visible:=True;
+     Panel2.Visible:=True;
      IdHTTP1.ConnectTimeout:=5000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
      IdHTTP1.ReadTimeout:=5000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
      IdSSLIOHandlerSocketOpenSSL1.ConnectTimeout:=5000;    // Tiempo de espera hasta conexión con el servidor (parte SSL) = 5 segundos
@@ -353,7 +354,7 @@ begin
         ficheronormas.LoadFromFile(TPath.GetPublicPath+'/normas.txt');            // Intenta cargar el fichero de texto con la cadena '1'
         Panel1.Visible:=False;                                                    // Si está oculta el panel de aceptación de normas y sigue la ejecución
         ficheronormas.Free;
-        ToolBar4.Visible:=True;
+        Panel2.Visible:=True;
         IdOpenSSLSetLibPath(TPath.GetDocumentsPath);           // Indica donde se encuentra la librería instalada para el acceso SSL                                                      // Libera la memoria de la variable de lineas de texto
         IdHTTP1.ConnectTimeout:=10000;            // Tiempo de espera hasta conexión con servidor = 5 segundos
         IdHTTP1.ReadTimeout:=10000;               // Tiempo de espera hasta lectura de datos del servidor = 5 segundos
