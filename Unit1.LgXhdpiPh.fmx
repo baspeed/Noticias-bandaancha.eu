@@ -587,8 +587,8 @@ inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
     inherited Label21: TLabel
       Align = Left
       StyledSettings = []
-      Margins.Left = 20.000000000000000000
-      Position.X = 20.000000000000000000
+      Margins.Left = 10.000000000000000000
+      Position.X = 10.000000000000000000
       Size.Width = 392.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
@@ -596,7 +596,7 @@ inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
       TextSettings.Font.Size = 17.000000000000000000
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       TextSettings.FontColor = claDarkorange
-      Text = 'Noticias bandaancha.eu (v2.8.1542)'
+      Text = 'Noticias bandaancha.eu (v2.8.1.1697)'
     end
     inherited SpeedButton2: TSpeedButton
       Align = Right

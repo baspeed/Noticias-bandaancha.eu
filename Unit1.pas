@@ -633,53 +633,103 @@ begin
                            posicion:=Pos('img class=cn src=',contenido,1);                        // Busca dentro de contenido la cadena img class=cn src= (inicio de imagen)
                            if  (posicion<>0) then                                                 // Si la cadena existe (posición<>0)
                                begin
-                                    posicion2:=Pos(' ',contenido,posicion+21);                     // Busca dentro de posicion el primer espacio
+                                    // Arreglado el fallo de la carga de las imágenes aquí.
+                                    // En vez de posicion+17 se le indicaba posicion+21, por lo que el puntero calculaba mal la posicion de
+                                    // donde coger la imagen. Ahora queda solucionado. Aparte se añade código por si hubiera algún fallo al
+                                    // cargar la imagen, entonces carga la imagen por defecto.
+                                    posicion2:=Pos(' ',contenido,posicion+17);                     // Busca dentro de posicion el primer espacio
                                     urlimagen:=Copy(contenido,posicion+17,posicion2-posicion-17);  // Copia la URL de la imagen (toda la cadena desde el final de img class=cn src= hasta el primer espacio)
                                     memoria:=TMemoryStream.Create;                                 // Crea la zona de memoria para la imagen
                                     // Repite el siguiente trozo de código en caso de error de transferencia hasta que se obtenga un código ok de transferencia (entre 200 y 299)
                                     // Se hace para obtener la imagen de la noticia de bandaancha.eu
+                                    intentosdescargaarchivo:=0;
                                     repeat
-                                          memoria.Seek(0,0);
-                                          IdHTTP1.Get(urlimagen,memoria);                          // Obtiene la imagen de la URL y la carga en la zona de memoria
-                                    until (IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299);
-                                    TThread.Synchronize(nil,procedure                              // Inicia otro hilo asíncrono para cargar la imagen
-                                    begin
-                                         Form1.BeginUpdate;                                             // Prepara la ventana para actualizar
-                                         case indice of                                                 // Dependiendo del valor de la variable indice
-                                              1      : begin
-                                                            Image1.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 1
-                                                       end;
-                                              2      : begin
-                                                            Image2.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 2
-                                                       end;
-                                              3      : begin
-                                                            Image3.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 3
-                                                       end;
-                                              4      : begin
-                                                            Image4.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 4
-                                                       end;
-                                              5      : begin
-                                                            Image5.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 5
-                                                       end;
-                                              6      : begin
-                                                            Image6.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 6
-                                                       end;
-                                              7      : begin
-                                                            Image7.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 7
-                                                       end;
-                                              8      : begin
-                                                            Image8.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 8
-                                                       end;
-                                              9      : begin
-                                                            Image9.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 9
-                                                       end;
-                                              10     : begin
-                                                            Image10.Bitmap.LoadFromStream(memoria);     // Carga en la imagen 10
-                                                       end;
-                                         end;
-                                         Form1.EndUpdate;                                               // Fin de actualización de ventana principal
-                                         end);
-                                    memoria.Free;                                                  // Libera la zona de memoria para imagen
+
+                                          try
+                                             memoria.Seek(0,0);                                     // Intenta descargar la imagen tres veces como máximo
+                                             IdHTTP1.Get(urlimagen,memoria);                        // Obtiene la imagen de la URL y la carga en la zona de memoria
+                                          except
+                                                ;
+                                          end;
+                                          Inc(intentosdescargaarchivo,1);
+                                    until ((IdHTTP1.ResponseCode>=200) and (IdHTTP1.ResponseCode<=299)) or (intentosdescargaarchivo>3);
+                                   if (intentosdescargaarchivo<=3) then
+                                      begin
+                                           TThread.Synchronize(nil,procedure                              // Inicia otro hilo asíncrono para cargar la imagen
+                                           begin
+                                                Form1.BeginUpdate;                                             // Prepara la ventana para actualizar
+                                                case indice of                                                 // Dependiendo del valor de la variable indice
+                                                     1      : begin
+                                                                   Image1.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 1
+                                                              end;
+                                                     2      : begin
+                                                                   Image2.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 2
+                                                              end;
+                                                     3      : begin
+                                                                   Image3.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 3
+                                                              end;
+                                                     4      : begin
+                                                                   Image4.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 4
+                                                              end;
+                                                     5      : begin
+                                                                   Image5.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 5
+                                                              end;
+                                                     6      : begin
+                                                                   Image6.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 6
+                                                              end;
+                                                     7      : begin
+                                                                   Image7.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 7
+                                                              end;
+                                                     8      : begin
+                                                                   Image8.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 8
+                                                              end;
+                                                     9      : begin
+                                                                   Image9.Bitmap.LoadFromStream(memoria);      // Carga en la imagen 9
+                                                              end;
+                                                     10     : begin
+                                                               Image10.Bitmap.LoadFromStream(memoria);     // Carga en la imagen 10
+                                                              end;
+                                                end;
+                                                Form1.EndUpdate;                                               // Fin de actualización de ventana principal
+                                           end);
+                                           memoria.Free;
+                                     end
+                                   else
+                                        // Si falla la descarga de la imagen, entonces usa la imagen por defecto de la app
+                                        begin
+                                             case indice of                                                     // Dependiendo del valor de la variable indice
+                                                  1      : begin
+                                                                Image1.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 1
+                                                           end;
+                                                  2      : begin
+                                                                Image2.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 2
+                                                           end;
+                                                  3      : begin
+                                                                Image3.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 3
+                                                           end;
+                                                  4      : begin
+                                                                Image4.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 4
+                                                           end;
+                                                  5      : begin
+                                                                Image5.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 5
+                                                           end;
+                                                  6      : begin
+                                                                Image6.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 6
+                                                           end;
+                                                  7      : begin
+                                                                Image7.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 7
+                                                           end;
+                                                  8      : begin
+                                                                Image8.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 8
+                                                           end;
+                                                  9      : begin
+                                                                Image9.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));    // Imagen por defecto 9
+                                                           end;
+                                                  10     : begin
+                                                                Image10.Bitmap.LoadFromFile(TPath.Combine(TPath.GetDocumentsPath,'ba.png'));   // Imagen por defecto 10
+                                                           end;
+                                             end;
+                                        end;                                                                                                                                // Libera la zona de memoria para imagen
                                end                                                                 // Si no existe la cadena img class=cn src=
                            else
                                TThread.Synchronize(nil,procedure                                  // Inicia hilo asíncrono para cargar imagen por defecto
