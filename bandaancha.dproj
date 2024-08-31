@@ -100,12 +100,6 @@
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='iOSDevice64' and '$(Cfg_2)'=='true') or '$(Cfg_2_iOSDevice64)'!=''">
-        <Cfg_2_iOSDevice64>true</Cfg_2_iOSDevice64>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='iOSSimARM64' and '$(Cfg_2)'=='true') or '$(Cfg_2_iOSSimARM64)'!=''">
         <Cfg_2_iOSSimARM64>true</Cfg_2_iOSSimARM64>
         <CfgParent>Cfg_2</CfgParent>
@@ -295,9 +289,9 @@
         <PF_KeyStorePass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_KeyStorePass>
         <PF_AliasKey>baspeed</PF_AliasKey>
         <PF_AliasKeyPass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_AliasKeyPass>
-        <VerInfo_Build>105</VerInfo_Build>
+        <VerInfo_Build>108</VerInfo_Build>
         <Android_NotificationAccentColor>#000000</Android_NotificationAccentColor>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=105;versionName=2.8.1.1702;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=108;versionName=2.8.2.2163;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
         <AUP_READ_EXTERNAL_STORAGE>false</AUP_READ_EXTERNAL_STORAGE>
         <AUP_CAMERA>false</AUP_CAMERA>
@@ -323,16 +317,16 @@
         <Android_LauncherIcon192>I:\Proyectos\bandaancha\Img\bandaanchaeu192x192.png</Android_LauncherIcon192>
         <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
         <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
-        <Android_SplashTileMode>mirror</Android_SplashTileMode>
+        <Android_SplashTileMode>disabled</Android_SplashTileMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android64)'!=''">
-        <VerInfo_Build>105</VerInfo_Build>
+        <VerInfo_Build>108</VerInfo_Build>
         <Android_SplashImage426>Img\ba-426x320.png</Android_SplashImage426>
         <Android_SplashImage470>Img\ba-470x320.png</Android_SplashImage470>
         <Android_SplashImage640>Img\ba-640x480.png</Android_SplashImage640>
         <Android_SplashImage960>Img\ba-960x720.png</Android_SplashImage960>
         <Android_SplashGravity>fill_vertical</Android_SplashGravity>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=105;versionName=2.8.1.1702;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=108;versionName=2.8.2.2163;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <PF_AliasKeyPass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_AliasKeyPass>
         <AUP_WRITE_EXTERNAL_STORAGE>false</AUP_WRITE_EXTERNAL_STORAGE>
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
@@ -356,7 +350,7 @@
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
         <AUP_ACCESS_NOTIFICATION_POLICY>true</AUP_ACCESS_NOTIFICATION_POLICY>
         <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
-        <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
+        <Android_DarkBackgroundColor>#008000</Android_DarkBackgroundColor>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -374,9 +368,9 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
-        <VerInfo_Build>105</VerInfo_Build>
+        <VerInfo_Build>108</VerInfo_Build>
         <Android_NotificationAccentColor>#000000</Android_NotificationAccentColor>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=105;versionName=2.8.1.1702;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=108;versionName=2.8.2.2163;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <AUP_ACCESS_COARSE_LOCATION>false</AUP_ACCESS_COARSE_LOCATION>
         <AUP_ACCESS_FINE_LOCATION>false</AUP_ACCESS_FINE_LOCATION>
         <AUP_CALL_PHONE>false</AUP_CALL_PHONE>
@@ -392,23 +386,28 @@
         <AUP_ACCESS_NOTIFICATION_POLICY>true</AUP_ACCESS_NOTIFICATION_POLICY>
         <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
         <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
-        <Android_LauncherIcon36>I:\Proyectos\bandaancha\Img\bandaanchaeu36x36.png</Android_LauncherIcon36>
-        <Android_LauncherIcon48>I:\Proyectos\bandaancha\Img\bandaanchaeu48x48.png</Android_LauncherIcon48>
-        <Android_LauncherIcon72>I:\Proyectos\bandaancha\Img\bandaanchaeu72x72.png</Android_LauncherIcon72>
-        <Android_LauncherIcon96>I:\Proyectos\bandaancha\Img\bandaanchaeu96x96.png</Android_LauncherIcon96>
-        <Android_LauncherIcon144>I:\Proyectos\bandaancha\Img\bandaanchaeu144x144.png</Android_LauncherIcon144>
-        <Android_LauncherIcon192>I:\Proyectos\bandaancha\Img\bandaanchaeu192x192.png</Android_LauncherIcon192>
-        <Android_SplashImage426>I:\Proyectos\bandaancha\Img\ba-426x320.png</Android_SplashImage426>
-        <Android_SplashImage470>I:\Proyectos\bandaancha\Img\ba-470x320.png</Android_SplashImage470>
-        <Android_SplashImage640>I:\Proyectos\bandaancha\Img\ba-640x480.png</Android_SplashImage640>
-        <Android_SplashImage960>I:\Proyectos\bandaancha\Img\ba-960x720.png</Android_SplashImage960>
+        <Android_LauncherIcon36>Img\bandaanchaeu36x36.png</Android_LauncherIcon36>
+        <Android_LauncherIcon48>Img\bandaanchaeu48x48.png</Android_LauncherIcon48>
+        <Android_LauncherIcon72>Img\bandaanchaeu72x72.png</Android_LauncherIcon72>
+        <Android_LauncherIcon96>Img\bandaanchaeu96x96.png</Android_LauncherIcon96>
+        <Android_LauncherIcon144>Img\bandaanchaeu144x144.png</Android_LauncherIcon144>
+        <Android_LauncherIcon192>Img\bandaanchaeu192x192.png</Android_LauncherIcon192>
+        <Android_SplashImage426>Img\ba-426x320.png</Android_SplashImage426>
+        <Android_SplashImage470>Img\ba-470x320.png</Android_SplashImage470>
+        <Android_SplashImage640>Img\ba-640x480.png</Android_SplashImage640>
+        <Android_SplashImage960>Img\ba-960x720.png</Android_SplashImage960>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
         <Android_SplashGravity>fill_vertical</Android_SplashGravity>
+        <Android_NotificationIcon24>Img\bandaanchaeu24x24.png</Android_NotificationIcon24>
+        <Android_NotificationIcon36>Img\bandaanchaeu36x36.png</Android_NotificationIcon36>
+        <Android_NotificationIcon48>Img\bandaanchaeu48x48.png</Android_NotificationIcon48>
+        <Android_NotificationIcon72>Img\bandaanchaeu72x72.png</Android_NotificationIcon72>
+        <Android_NotificationIcon96>Img\bandaanchaeu96x96.png</Android_NotificationIcon96>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android64)'!=''">
         <PF_AliasKeyPass>853F47DB5F98078DCF63E534A45C7BA2E442084E7EA7ECF99F567730D8503CDADB5BA3CFE3371C39C1EA5730FA9DC37FBAE93602043622DA163545DEE5A722D5C950F373D56AFA9EBFF9AF5207411D1A92103E761DE50925E3BB16E34439</PF_AliasKeyPass>
-        <VerInfo_Build>105</VerInfo_Build>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=105;versionName=2.8.1.1702;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Build>108</VerInfo_Build>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Noticias bandaancha.eu;versionCode=108;versionName=2.8.2.2163;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <Android_SplashImage426>Img\ba-426x320.png</Android_SplashImage426>
         <Android_SplashImage470>Img\ba-470x320.png</Android_SplashImage470>
         <Android_SplashImage640>Img\ba-640x480.png</Android_SplashImage640>
@@ -439,14 +438,7 @@
         <AUP_ACCESS_NOTIFICATION_POLICY>true</AUP_ACCESS_NOTIFICATION_POLICY>
         <IncludeAndroid_NotificationAccentColor>false</IncludeAndroid_NotificationAccentColor>
         <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
-        <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_2_iOSDevice64)'!=''">
-        <iPhone_Notification60>$(BDS)\bin\Artwork\iOS\iPhone\FM_NotificationIcon_60x60.png</iPhone_Notification60>
-        <iPhone_Setting87>$(BDS)\bin\Artwork\iOS\iPhone\FM_SettingIcon_87x87.png</iPhone_Setting87>
-        <iPhone_Notification40>$(BDS)\bin\Artwork\iOS\iPhone\FM_NotificationIcon_40x40.png</iPhone_Notification40>
-        <iPhone_Setting58>$(BDS)\bin\Artwork\iOS\iPhone\FM_SettingIcon_58x58.png</iPhone_Setting58>
-        <iPad_Notification40>$(BDS)\bin\Artwork\iOS\iPad\FM_NotificationIcon_40x40.png</iPad_Notification40>
+        <Android_DarkBackgroundColor>#008000</Android_DarkBackgroundColor>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSSimARM64)'!=''">
         <Cfg_2>true</Cfg_2>
@@ -463,10 +455,11 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="H:\Delphi_Comp\Toast\Android.JNI.Toast.pas"/>
         <DCCReference Include="Unit1.pas">
             <Form>Form1</Form>
+            <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="F:\Delphi_Comp\Toast\Android.JNI.Toast.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -2167,6 +2160,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
+            <ModelSupport>False</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

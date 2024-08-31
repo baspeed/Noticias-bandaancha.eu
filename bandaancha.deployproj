@@ -4,7 +4,7 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup>
-        <DeviceId Condition="'$(Platform)'=='Android'"/>
+        <DeviceId Condition="'$(Platform)'=='Android'">a505b1fc</DeviceId>
         <DeviceId Condition="'$(Platform)'=='Android64'">a505b1fc</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
@@ -484,10 +484,10 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu72x72.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-hdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon72</DeployClass>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-470x320.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-normal\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage470</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -548,10 +548,19 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu36x36.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-ldpi\</RemoteDir>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-426x320.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-small\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage426</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu96x96.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-xhdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon36</DeployClass>
+            <DeployClass>Android_LauncherIcon96</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -575,28 +584,19 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-470x320.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-normal\</RemoteDir>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-640x480.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-large\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
-            <DeployClass>Android_SplashImage470</DeployClass>
+            <DeployClass>Android_SplashImage640</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_72x72.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-xxhdpi\</RemoteDir>
-            <RemoteName>ic_notification.png</RemoteName>
-            <DeployClass>Android_NotificationIcon72</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu144x144.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-xxhdpi\</RemoteDir>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu36x36.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-ldpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon144</DeployClass>
+            <DeployClass>Android_LauncherIcon36</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -620,10 +620,19 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu96x96.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-xhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon96</DeployClass>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_72x72.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-xxhdpi\</RemoteDir>
+            <RemoteName>ic_notification.png</RemoteName>
+            <DeployClass>Android_NotificationIcon72</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-960x720.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-xlarge\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage960</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -692,24 +701,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-426x320.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-small\</RemoteDir>
-            <RemoteName>splash_image.png</RemoteName>
-            <DeployClass>Android_SplashImage426</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-640x480.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-large\</RemoteDir>
-            <RemoteName>splash_image.png</RemoteName>
-            <DeployClass>Android_SplashImage640</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Android\Debug\strings.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>bandaancha\res\values\</RemoteDir>
             <RemoteName>strings.xml</RemoteName>
@@ -746,28 +737,19 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu48x48.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-mdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon48</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="I:\Proyectos\bandaancha\Img\ba-960x720.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>bandaancha\res\drawable-xlarge\</RemoteDir>
-            <RemoteName>splash_image.png</RemoteName>
-            <DeployClass>Android_SplashImage960</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Img\ba-960x720.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>bandaancha\res\drawable-xlarge\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage960</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu144x144.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-xxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon144</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -796,6 +778,15 @@
             <RemoteName>libcrypto.so</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu72x72.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-hdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon72</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -849,6 +840,15 @@
             <RemoteDir>bandaancha\res\values-night-v21\</RemoteDir>
             <RemoteName>colors.xml</RemoteName>
             <DeployClass>Android_ColorsDark</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="I:\Proyectos\bandaancha\Img\bandaanchaeu48x48.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>bandaancha\res\drawable-mdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon48</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>

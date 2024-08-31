@@ -20,8 +20,8 @@ program bandaancha;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  Unit1 in 'Unit1.pas' {Form1},
-  Android.JNI.Toast in 'F:\Delphi_Comp\Toast\Android.JNI.Toast.pas';
+  Android.JNI.Toast in 'H:\Delphi_Comp\Toast\Android.JNI.Toast.pas',
+  Unit1 in 'Unit1.pas' {Form1};
 
 {$R *.res}
 

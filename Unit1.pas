@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------------
 //  Noticias bandaancha.eu v2
 //
-//  v2.5.1053
+//  v2.8.2.2163
 //  Por José Ignacio Legido Barrios (usuario djnacho de bandaancha.eu)
 //  Creado para la comunidad de usuarios de bandaancha.eu
 //
@@ -25,6 +25,7 @@
 // 05-04-2024: Se cambia el código para compartir las noticias, utilizando el estándar de Android para compartir texto entre aplicaciones,
 // de forma que ahora se pueden compartir los enlaces con cualquier aplicación que lo permita en el dispositivo (no sólo con facebook o
 // X(Twitter))
+// 31-08-2024: Se cambia el código en el parser XML del feed de bandaancha para poder mostrar las noticias correctamente.
 // ---------------------------------------------------------------------------------
 
 unit Unit1;
@@ -601,7 +602,7 @@ begin
      intentosdescargaarchivo:=0;
      repeat
            try
-              xml:=IdHTTP1.Get('https://bandaancha.eu/feed_for_feed_burner.atom');      // Coge el feed directamente de bandaancha.eu sin pasar por feedburner.com (así se actualizan las noticias en el momento de publicarlas)
+              xml:=IdHTTP1.Get('https://bandaancha.eu/portada.atom');      // Coge el feed directamente de bandaancha.eu sin pasar por feedburner.com (así se actualizan las noticias en el momento de publicarlas)
            except
                  ;
            end;
@@ -827,8 +828,8 @@ begin
 
                    posicion:=pos('<link rel="alternate" type="text/html" href="',subcadena,1);       // Busca dentro de subcadena la cadena <link rel="alternate" type "text/html" href=" (inicio de enlace a la noticia)
                    posicion2:=pos('"/>',subcadena,posicion);                                         // Busca dentro de subcadena la cadena </link> (fin de enlace a la noticia)
-                   cadenaenlace:=copy(subcadena,posicion+length('<link rel="alternate" type="text/html" href="'),posicion2-posicion-length('"/>'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
-                   enlace[indice]:=copy(cadenaenlace,1,length(cadenaenlace)-14);                        // Rellena el array de enlaces a noticias en el indice indicado con la cadena cadenaenlace
+                   cadenaenlace:=copy(subcadena,posicion+length('<link rel="alternate" type="text/html" href="'),posicion2-posicion-length('<link rel="alternate" type="text/html" href="'));     // Copia el enlace URL a la noticia a la variable cadenaenlace
+                   enlace[indice]:=cadenaenlace;                        // Rellena el array de enlaces a noticias en el indice indicado con la cadena cadenaenlace
                    xml:=copy(xml,next,length(xml)-next);                                              // Pone el puntero de XML a la siguiente zona de noticias
                    TThread.Synchronize(nil,procedure                                                 // Inicia hilo asíncrono para mostrar título, autor, fecha y hora de publicación de la noticia
                    begin
